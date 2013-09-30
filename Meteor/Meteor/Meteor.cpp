@@ -8,7 +8,6 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	//hi hello init
 	//adfasdf
-	//hell o
+	//hell o 한글 주석을 달아보자
 	return 0;
 }
-
