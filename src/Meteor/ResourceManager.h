@@ -15,9 +15,15 @@
 class CResourceManager : public IResourceManager
 {
 public:
+	// --------------------------------
+	//	IResourceManager interface
+	// --------------------------------
 	ResourceId	CreateResource( std::string path );
 	IResource *	GetResource( ResourceId id );
 
+	// --------------------------------
+	//	GetInstance
+	// --------------------------------
 	static CResourceManager & GetInstance();
 
 private:
