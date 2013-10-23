@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputState.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="IResource.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="PrintLog.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceId.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -95,8 +97,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PrintLog.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -109,6 +113,9 @@
   <ItemGroup>
     <Image Include="Meteor.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

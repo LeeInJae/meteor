@@ -12,6 +12,12 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintLog.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -45,6 +51,12 @@
     <ClInclude Include="IRender.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintLog.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Meteor.rc" />
@@ -66,5 +78,11 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{b49d66c3-b98d-4670-b716-3dc5b3c4a18d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{4f5a9eba-c789-4c85-8c96-a7f67da318ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
