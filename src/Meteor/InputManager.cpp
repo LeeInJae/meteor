@@ -33,8 +33,3 @@ CInputManager & CInputManager::GetInstance()
 
 	return instance;
 }
-
-// ----------------------------------------------------------------
-//	Others
-// ----------------------------------------------------------------
-CInputManager::CInputManager() {}

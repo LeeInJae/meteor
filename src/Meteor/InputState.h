@@ -1,3 +1,10 @@
+/**
+ * @file	InputState.h
+ * @brief
+ * @author	Lee JinWoo
+ *
+ */
+
 #pragma once
 
 enum InputState

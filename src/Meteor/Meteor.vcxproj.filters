@@ -30,6 +30,12 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="D2DRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -60,9 +66,6 @@
     <ClInclude Include="InputManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="IRender.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -81,6 +84,21 @@
     <ClInclude Include="NPC.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="D2DRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseWindow.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ISceneManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Meteor.rc" />
@@ -93,9 +111,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{865dfa89-9a89-4831-b419-fce7420fbe78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{815c97ec-8d3c-4a8d-bb0d-5c9e4051946f}</UniqueIdentifier>
     </Filter>
@@ -105,8 +120,8 @@
     <Filter Include="Game">
       <UniqueIdentifier>{4f5a9eba-c789-4c85-8c96-a7f67da318ee}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <Filter Include="Core">
+      <UniqueIdentifier>{865dfa89-9a89-4831-b419-fce7420fbe78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

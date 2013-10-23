@@ -1,3 +1,10 @@
+/**
+ * @file	IInputManager.h
+ * @brief
+ * @author	Lee JinWoo
+ *
+ */
+
 #pragma once
 
 #include "InputState.h"

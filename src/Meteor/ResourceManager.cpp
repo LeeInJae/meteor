@@ -37,8 +37,3 @@ CResourceManager & CResourceManager::GetInstance()
 
 	return instance;
 }
-
-// ----------------------------------------------------------------
-//	Others
-// ----------------------------------------------------------------
-CResourceManager::CResourceManager() {}

@@ -27,7 +27,7 @@ public:
 	static CResourceManager & GetInstance();
 
 private:
-	CResourceManager();
+	CResourceManager() {};
 	CResourceManager( const CResourceManager & );
 	CResourceManager & operator=( const CResourceManager & );
 

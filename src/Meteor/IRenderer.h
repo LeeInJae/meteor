@@ -1,9 +1,16 @@
+/**
+ * @file	IRenderer.h
+ * @brief
+ * @author	Lee JinWoo
+ *
+ */
+
 #pragma once
 
-class IRender
+class IRenderer
 {
 public:
-	virtual ~IRender() {}
+	virtual ~IRenderer() {}
 
 	virtual bool Init() = 0;
 	virtual bool Release() = 0;

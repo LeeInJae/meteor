@@ -24,8 +24,7 @@ public:
 	static CInputManager & GetInstance();
 
 private:
-	CInputManager();
+	CInputManager() {};
 	CInputManager( const CInputManager & );
 	CInputManager & operator=( const CInputManager & );
 };
-
