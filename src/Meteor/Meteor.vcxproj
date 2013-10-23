@@ -79,16 +79,20 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputState.h" />
-    <ClInclude Include="IRender.h" />
+    <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IResource.h" />
     <ClInclude Include="IResourceManager.h" />
+    <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="PC.h" />
@@ -102,9 +106,11 @@
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="PC.cpp" />
@@ -121,9 +127,6 @@
   <ItemGroup>
     <Image Include="Meteor.ico" />
     <Image Include="small.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
