@@ -18,6 +18,18 @@
     <ClCompile Include="PrintLog.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PC.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -56,6 +68,18 @@
     </ClInclude>
     <ClInclude Include="PrintLog.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PC.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

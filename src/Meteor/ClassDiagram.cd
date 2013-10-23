@@ -49,6 +49,41 @@
       <FileName>ResourceManager.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="CPrintLog" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAACABAAAAA=</HashCode>
+      <FileName>PrintLog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGameObject" Collapsed="true">
+    <Position X="4.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAIAAAAAAAAAAAAAAQAIAAgAAYBAAAAAAAEA=</HashCode>
+      <FileName>GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPC" Collapsed="true">
+    <Position X="6.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>PC.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Monster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CNPC" Collapsed="true">
+    <Position X="4.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>NPC.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Typedef Name="ResourceId" Collapsed="true">
     <Position X="6" Y="2.75" Width="1.5" />
     <TypeIdentifier>
