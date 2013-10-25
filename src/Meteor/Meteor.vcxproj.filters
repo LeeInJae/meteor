@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Bitmap.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
@@ -36,6 +35,13 @@
     <ClCompile Include="MainWindow.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -99,6 +105,12 @@
     <ClInclude Include="IRenderer.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Meteor.rc" />
@@ -123,5 +135,8 @@
     <Filter Include="Core">
       <UniqueIdentifier>{865dfa89-9a89-4831-b419-fce7420fbe78}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

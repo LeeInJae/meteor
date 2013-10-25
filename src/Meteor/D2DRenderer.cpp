@@ -7,12 +7,32 @@
 
 #include "stdafx.h"
 #include "D2DRenderer.h"
+#include "MainWindow.h"
+#include <d2d1.h>
 
 // ----------------------------------------------------------------
 //	Init
 // ----------------------------------------------------------------
 bool CD2DRenderer::Init()
 {
+	HRESULT hr;
+	hr = D2D1CreateFactory( D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_ipD2DFactory );
+	if( hr!= S_OK )
+	{
+		return false;
+	}
+
+	HWND hwnd = CMainWindow::GetInstance()->GetHWND();
+	RECT rt;
+	GetClientRect( hwnd, &rt );
+	D2D1_SIZE_U size = D2D1::SizeU( rt.right- rt.left, rt.bottom - rt. top );
+
+	hr = m_ipD2DFactory->CreateHwndRenderTarget( D2D1::RenderTargetProperties(), D2D1::HwndRenderTargetProperties( hwnd, size ), &m_ipRenderTarget );
+
+	if( hr != S_OK )
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -21,6 +41,8 @@ bool CD2DRenderer::Init()
 // ----------------------------------------------------------------
 bool CD2DRenderer::Release()
 {
+	//SafeRelease( m_ipD2DFactory );
+	//SafeRelease( m_ipRenderTarget );
 	return true;
 }
 
@@ -29,6 +51,7 @@ bool CD2DRenderer::Release()
 // ----------------------------------------------------------------
 bool CD2DRenderer::Begin()
 {
+	m_ipRenderTarget->BeginDraw();
 	return true;
 }
 
@@ -37,6 +60,7 @@ bool CD2DRenderer::Begin()
 // ----------------------------------------------------------------
 bool CD2DRenderer::End()
 {
+	m_ipRenderTarget->EndDraw();
 	return true;
 }
 
@@ -45,6 +69,7 @@ bool CD2DRenderer::End()
 // ----------------------------------------------------------------
 bool CD2DRenderer::Clear()
 {
+	m_ipRenderTarget->Clear( D2D1::ColorF( D2D1::ColorF::White ));
 	return true;
 }
 
@@ -62,8 +87,8 @@ CD2DRenderer & CD2DRenderer::GetInstance()
 //	Constructor
 // ----------------------------------------------------------------
 CD2DRenderer::CD2DRenderer()
-	: m_D2DFactory(nullptr)
-	, m_RenderTarget(nullptr)
+	: m_ipD2DFactory(nullptr)
+	, m_ipRenderTarget(nullptr)
 {
 }
 

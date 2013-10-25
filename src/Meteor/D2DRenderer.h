@@ -29,12 +29,15 @@ public:
 	// --------------------------------
 	static CD2DRenderer & GetInstance();
 
+	ID2D1Factory* GetD2DFactory()					const { return m_ipD2DFactory; }
+	ID2D1HwndRenderTarget* GetHwndRenderTarget()	const { return m_ipRenderTarget; }
+
 private:
 	CD2DRenderer();
 	~CD2DRenderer();
 	CD2DRenderer( const CD2DRenderer & );
 	CD2DRenderer & operator=( const CD2DRenderer & );
 
-	ID2D1Factory *			m_D2DFactory;
-	ID2D1HwndRenderTarget *	m_RenderTarget;
+	ID2D1Factory *			m_ipD2DFactory;
+	ID2D1HwndRenderTarget *	m_ipRenderTarget;
 };
