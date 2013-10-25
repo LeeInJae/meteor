@@ -1,4 +1,16 @@
 #pragma once
+
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	UP_LEFT,
+	UP_RIGHT,
+	DOWN_LEFT,
+	DOWN_RIGHT
+};
+
 class CGameObject
 {
 public:
@@ -22,6 +34,6 @@ public:
 protected:
 	int m_X;
 	int m_Y;
-
+	Direction m_Direction;
 };
 
