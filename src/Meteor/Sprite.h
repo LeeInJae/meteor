@@ -36,11 +36,12 @@ class CD2DSprite : public CSprite
 public:
 	CD2DSprite();
 	CD2DSprite( std::wstring path );
-
+	virtual ~CD2DSprite();
 	void Destroy();
 	void Render();
 
 private:
 	CD2DRenderer *	m_pD2DRenderer;
 	CD2DBitmap *	m_pD2DBitmap;
+	D2D1::Matrix3x2F m_Matrix;
 };

@@ -15,6 +15,7 @@ class CAnimation
 {
 public:
 	CAnimation();
+
 	virtual ~CAnimation();
 
 	bool Update( float deltaTime );
@@ -23,4 +24,5 @@ public:
 private:
 	std::vector<CSprite *> m_Sprites;
 	float m_ElapsedTime;
+	int   m_FrameNumber;
 };

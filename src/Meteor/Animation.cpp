@@ -16,9 +16,9 @@
 CAnimation::CAnimation()
 	: m_ElapsedTime(0)
 {
-	m_Sprites.push_back( CSprite::Create( L"aaa.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"aaa.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"aaa.png" ) );
+	m_Sprites.push_back( CSprite::Create( L"test1.png" ) );
+	m_Sprites.push_back( CSprite::Create( L"test2.png" ) );
+	m_Sprites.push_back( CSprite::Create( L"test3.png" ) );
 }
 
 // ----------------------------------------------------------------
@@ -29,15 +29,23 @@ CAnimation::~CAnimation()
 }
 
 // ----------------------------------------------------------------
-//	Destructor
+//	Update
 // ----------------------------------------------------------------
 bool CAnimation::Update( float deltaTime )
 {
+	++m_FrameNumber;
+	if( m_FrameNumber >= m_Sprites.size() )
+		m_FrameNumber = 0;
+
+	return true;
 }
 
 // ----------------------------------------------------------------
-//	Destructor
+//	Render
 // ----------------------------------------------------------------
 bool CAnimation::Render()
 {
+	m_Sprites[m_FrameNumber]->Render();
+
+	return true;
 }
