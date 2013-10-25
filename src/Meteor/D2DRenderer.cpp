@@ -38,8 +38,8 @@ bool CD2DRenderer::Init()
 // ----------------------------------------------------------------
 bool CD2DRenderer::Release()
 {
-	//SafeRelease( m_ipD2DFactory );
-	//SafeRelease( m_ipRenderTarget );
+	SafeRelease( m_ipD2DFactory );
+	SafeRelease( m_ipRenderTarget );
 	return true;
 }
 

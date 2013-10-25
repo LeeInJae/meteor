@@ -5,7 +5,13 @@
 #include "Main.h"
 #include "MainWindow.h"
 
+// TODO: Remove test code
+#include "Animation.h"
+
+#include <Mmsystem.h>
+
 #pragma comment(lib, "d2d1")
+#pragma comment(lib, "winmm")
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -22,6 +28,13 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	window.ShowWindow( nCmdShow );
 
+	// TODO: Remove test code
+	CD2DRenderer::GetInstance().Init();
+	CAnimation * animation = new CAnimation();
+
+	DWORD startTime = timeGetTime();
+	DWORD lastTime = startTime;
+
 	MSG msg = {};
 
 	// Main message loop:
@@ -31,6 +44,17 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+		}
+
+		DWORD currentTime = timeGetTime();
+		if ( ( currentTime - lastTime ) > ( 1000 / 60 ) )
+		{
+			animation->Update( static_cast<float>(currentTime - lastTime) );
+			CD2DRenderer::GetInstance().Begin();
+			CD2DRenderer::GetInstance().Clear();
+			animation->Render();
+			CD2DRenderer::GetInstance().End();
+			lastTime = currentTime;
 		}
 	}
 
