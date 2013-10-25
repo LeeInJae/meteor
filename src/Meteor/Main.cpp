@@ -5,6 +5,8 @@
 #include "Main.h"
 #include "MainWindow.h"
 
+#pragma comment(lib, "d2d1")
+
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPTSTR    lpCmdLine,
@@ -13,7 +15,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	CMainWindow window;
+	CMainWindow & window = CMainWindow::GetInstance();
 
 	if ( ! window.Create( L"Meteor", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX ) )
 		return 0;

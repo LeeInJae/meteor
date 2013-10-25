@@ -10,33 +10,20 @@
 
 CMainWindow::CMainWindow(void)
 	: m_SceneManager(nullptr)
-	, m_Renderer(nullptr),m_Hwnd(nullptr),m_hInstance(nullptr),m_Fps(0.f),m_ElapsedTime(0.f),m_DeltaTime(0.f),m_PrevTime(0),m_NowTime(0),m_RendererStatus(UNKNOWN)
+	, m_Renderer(nullptr)
+	, m_Fps(0.f)
+	, m_ElapsedTime(0.f)
+	, m_DeltaTime(0.f)
+	, m_PrevTime(0)
+	, m_NowTime(0)
 {
 }
 
-CMainWindow::~CMainWindow(void)
+CMainWindow & CMainWindow::GetInstance()
 {
-}
+	static CMainWindow instance;
 
-CMainWindow* CMainWindow::GetInstance()
-{
-
-	if( m_pInstance == nullptr )
-	{
-		m_pInstance = new CMainWindow();
-	}
-	return m_pInstance;
-}
-
-void CMainWindow::ReleaseInstance()
-{
-
-	if( m_pInstance != nullptr )
-	{
-
-		delete m_pInstance;
-		m_pInstance = nullptr;
-	}
+	return instance;
 }
 
 LRESULT CMainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)

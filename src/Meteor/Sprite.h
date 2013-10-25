@@ -2,9 +2,9 @@
 #include "GameObject.h"
 #include <string>
 #include "D2DRenderer.h"
-#include "Bitmap.h"
+#include "D2DBitmap.h"
 
-class CSprite : public CGameObject
+class CSprite
 {
 protected:
 	float m_ImageWidth;
@@ -18,7 +18,7 @@ public:
 		m_ColorR(0.f), m_ColorG(0.f), m_ColorB(0.f), m_Opacity(1.f)
 	{}
 	virtual ~CSprite(){}
-	static CSprite* Create( std::wstring path );
+	static CSprite * Create( std::wstring path );
 	virtual void Destroy() {}
 	virtual void Render() {}
 
@@ -41,6 +41,6 @@ public:
 	void Render();
 
 private:
-	CD2DRenderer*	m_pD2DRenderer;
-	CD2DTexture*	m_pD2DTExture;
+	CD2DRenderer *	m_pD2DRenderer;
+	CD2DBitmap *	m_pD2DBitmap;
 };

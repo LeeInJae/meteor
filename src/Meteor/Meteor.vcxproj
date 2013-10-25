@@ -85,7 +85,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BaseWindow.h" />
-    <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="D2DBitmap.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="GameObject.h" />
@@ -96,6 +96,7 @@
     <ClInclude Include="IResource.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="ISceneManager.h" />
+    <ClInclude Include="Macro.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Monster.h" />
@@ -111,7 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Bitmap.cpp" />
+    <ClCompile Include="D2DBitmap.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="GameObject.cpp" />

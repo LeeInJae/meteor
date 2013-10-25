@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Bitmap.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -42,6 +39,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="D2DBitmap.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -56,9 +56,6 @@
     </ClInclude>
     <ClInclude Include="ResourceId.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Bitmap.h">
-      <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Engine</Filter>
@@ -110,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D2DBitmap.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

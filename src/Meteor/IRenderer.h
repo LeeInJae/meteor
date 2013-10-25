@@ -7,12 +7,6 @@
 
 #pragma once
 
-enum RendererStatus
-{
-	UNKNOWN,
-	D2D,
-};
-
 class IRenderer
 {
 public:
