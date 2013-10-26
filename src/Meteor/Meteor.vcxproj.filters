@@ -42,6 +42,9 @@
     <ClCompile Include="D2DBitmap.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -113,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="D2DBitmap.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
