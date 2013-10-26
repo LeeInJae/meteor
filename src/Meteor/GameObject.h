@@ -24,16 +24,17 @@ public:
 		m_X = x;
 		m_Y = y;
 	};
-	bool Move(int x, int y){
-		m_X += x;
-		m_Y += y;
-	};
-	int GetX(){return m_X;};
-	int GetY(){return m_Y;};
+	bool Move(int x, int y);
+	int GetX(){ return m_X;};
+	int GetY(){ return m_Y;};
+	Direction GetDirection(){ return m_Direction;};
 
 protected:
 	int m_X;
 	int m_Y;
 	Direction m_Direction;
+
+	void SetDirection(Direction direction){ m_Direction = direction;};
+	bool CanMove(int x, int y); // 해당 좌표의 이동 가능 여부
 };
 

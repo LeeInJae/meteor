@@ -13,6 +13,7 @@ enum CharacterStatus {
 	CASTING,
 	DEFENCE,
 	AVOID,
+	STUN
 };
 
 class CCharacter :
@@ -29,6 +30,8 @@ public:
 
 protected:
 	int m_HP;
+	int m_Speed;
+
 	CharacterStatus m_Status;
 	std::forward_list<CSkill&> m_Buff;
 
