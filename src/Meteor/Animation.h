@@ -25,6 +25,6 @@ public:
 private:
 	std::vector<CSprite *> m_Sprites;
 	float m_ElapsedTime;
-	int   m_FrameNumber;
+	unsigned int   m_FrameNumber;
 	int   m_FrameSetNumber;
 };

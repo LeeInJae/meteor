@@ -45,6 +45,9 @@
     <ClCompile Include="Skill.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="D2DText.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -119,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="Skill.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="D2DText.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

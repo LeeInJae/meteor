@@ -32,7 +32,7 @@ CD2DSprite::CD2DSprite( std::wstring path )
 
 CSprite * CSprite::Create( std::wstring path )
 {
-	return new CD2DSprite( path);
+	return new CD2DSprite( path );
 }
 
 void CD2DSprite::Render()

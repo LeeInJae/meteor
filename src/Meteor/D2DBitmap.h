@@ -1,5 +1,5 @@
 /**
- * @file	ResourceManager.h
+ * @file	D2DBitmap.h
  * @brief
  * @author	Lee JinWoo
  *
@@ -25,9 +25,9 @@ public:
 	ID2D1Bitmap *	GetD2DBitmap() const { return m_D2DBitmap; }
 
 private:
-	static IWICImagingFactory*	g_pWICFactory;
-	ID2D1Bitmap*				m_D2DBitmap;
-	IWICFormatConverter*		m_FmtConverter;
+	static IWICImagingFactory *	g_pWICFactory;
+	ID2D1Bitmap *				m_D2DBitmap;
+	IWICFormatConverter *		m_FmtConverter;
 
 protected:
 	std::wstring	m_Path;

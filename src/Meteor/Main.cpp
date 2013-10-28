@@ -7,11 +7,13 @@
 
 // TODO: Remove test code
 #include "Animation.h"
+#include "D2DText.h"
 
 #include <Mmsystem.h>
 
-#pragma comment(lib, "d2d1")
 #pragma comment(lib, "winmm")
+#pragma comment(lib, "d2d1")
+#pragma comment(lib, "dwrite.lib")
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -31,6 +33,8 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	// TODO: Remove test code
 	CD2DRenderer::GetInstance().Init();
 	CAnimation * animation = new CAnimation( 5 );
+	CD2DText * text = new CD2DText();
+	text->SetFont( L"±¼¸²", 12.f );
 	
 	DWORD startTime = timeGetTime();
 	DWORD lastTime = startTime;
@@ -47,12 +51,18 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 		}
 
 		DWORD currentTime = timeGetTime();
-		if ( ( currentTime - lastTime ) > ( 1000 / 60 ) )
+		DWORD elapsedTime = currentTime - lastTime;
+		if ( elapsedTime > ( 1000 / 100 ) )
 		{
 			animation->Update( static_cast<float>(currentTime - lastTime) );
 			CD2DRenderer::GetInstance().Begin();
 			CD2DRenderer::GetInstance().Clear();
 			animation->Render();
+//			std::wstring fps = std::to_wstring( 1000.0f / elapsedTime );
+			wchar_t wstrbuf[16];
+			swprintf_s( wstrbuf, L"Fps: %.2f",  1000.0f / elapsedTime );
+			text->SetText( std::wstring(wstrbuf) );
+			text->Render();
 			CD2DRenderer::GetInstance().End();
 			lastTime = currentTime;
 		}
