@@ -35,6 +35,6 @@ protected:
 	Direction m_Direction;
 
 	void SetDirection(Direction direction){ m_Direction = direction;};
-	bool CanMove(int x, int y); // 해당 좌표의 이동 가능 여부
+	bool IsCanMove(int x, int y); // 해당 좌표의 이동 가능 여부
 };
 

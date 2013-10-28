@@ -116,7 +116,9 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceId.h" />
     <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Skill.h" />
+    <ClInclude Include="Skill.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -145,7 +147,9 @@
     </ClCompile>
     <ClCompile Include="PrintLog.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="Skill.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
