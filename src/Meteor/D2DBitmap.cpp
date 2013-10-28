@@ -13,6 +13,7 @@
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
+
 CD2DBitmap::CD2DBitmap()
 	: m_D2DBitmap(nullptr)
 	, m_FmtConverter(nullptr) 
@@ -33,8 +34,14 @@ CD2DBitmap::~CD2DBitmap()
 // ----------------------------------------------------------------
 bool CD2DBitmap::LoadResource( std::wstring path )
 {
-	if( g_pWICFactory == nullptr )
-		CoCreateInstance( CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_pWICFactory) );
+	if ( g_pWICFactory == nullptr)
+	{
+		HRESULT ret = CoCreateInstance( CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_pWICFactory) );
+		if( ret == REGDB_E_CLASSNOTREG ) 
+		{
+			CoCreateInstance( CLSID_WICImagingFactory1, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_pWICFactory) );
+		}
+	}
 
 	m_Path = path;
 	IWICBitmapDecoder * bitmapDecoder = nullptr;

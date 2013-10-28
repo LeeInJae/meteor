@@ -15,6 +15,7 @@ class CAnimation
 {
 public:
 	CAnimation();
+	CAnimation( int frameSetNumber );
 
 	virtual ~CAnimation();
 
@@ -25,4 +26,5 @@ private:
 	std::vector<CSprite *> m_Sprites;
 	float m_ElapsedTime;
 	int   m_FrameNumber;
+	int   m_FrameSetNumber;
 };

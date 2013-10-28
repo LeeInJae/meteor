@@ -30,8 +30,8 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	// TODO: Remove test code
 	CD2DRenderer::GetInstance().Init();
-	CAnimation * animation = new CAnimation();
-
+	CAnimation * animation = new CAnimation( 5 );
+	
 	DWORD startTime = timeGetTime();
 	DWORD lastTime = startTime;
 

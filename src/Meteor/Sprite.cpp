@@ -19,9 +19,14 @@ CD2DSprite::CD2DSprite( std::wstring path )
 	bitmap->LoadResource( path );
 	m_pD2DBitmap = bitmap;
 
-	m_ImageWidth = 100;
-	m_ImageHeight = 100;
 
+	// TODO: test code
+	m_ImageWidth = 100;
+ 	m_ImageHeight = 100;
+
+// Real Code
+//	m_ImageWidth = m_pD2DBitmap->GetD2DBitmap()->GetSize().width;
+//	m_ImageHeight =m_pD2DBitmap->GetD2DBitmap()->GetSize().width;;
 
 }
 
