@@ -5,6 +5,10 @@
 #include "Main.h"
 #include "MainWindow.h"
 
+#ifdef _DEBUG
+#include "PrintLog.h" // 디버그용 콘솔창
+#endif // _DEBUG
+
 // TODO: Remove test code
 #include "Animation.h"
 #include "D2DText.h"
@@ -29,6 +33,12 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 		return 0;
 
 	window.ShowWindow( nCmdShow );
+
+#ifdef _DEBUG // 디버그용 콘솔창
+	CPrintLog pPrintLog;
+	pPrintLog.Init();
+	printf_s("CONSOLE WINDOW OPENED\n");
+#endif // _DEBUG
 
 	// TODO: Remove test code
 	CD2DRenderer::GetInstance().Init();
