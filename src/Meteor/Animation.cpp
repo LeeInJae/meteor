@@ -1,32 +1,24 @@
-/**
- * @file	Animation.cpp
- * @brief
- * @author	Lee InJae
- *
- */
-
 #include "stdafx.h"
 #include "Animation.h"
-
 #include "Sprite.h"
-#include <timeapi.h>
+
 
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
 CAnimation::CAnimation()
 	: m_ElapsedTime(0)
-	, m_FrameSetNumber( 10 )
+	, m_FpsNumber( 10 )
 {
 	m_Sprites.push_back( CSprite::Create( L"test1.png" ) );
 	m_Sprites.push_back( CSprite::Create( L"test2.png" ) );
 	m_Sprites.push_back( CSprite::Create( L"test3.png" ) );
 }
 
-CAnimation::CAnimation( int frameSetNumber )
+CAnimation::CAnimation( int fpsNumber )
 {
 	m_ElapsedTime = 0;
-	m_FrameSetNumber = frameSetNumber;
+	m_FpsNumber = fpsNumber;
 	m_Sprites.push_back( CSprite::Create( L"test1.png" ) );
 	m_Sprites.push_back( CSprite::Create( L"test2.png" ) );
 	m_Sprites.push_back( CSprite::Create( L"test3.png" ) );
@@ -46,7 +38,7 @@ bool CAnimation::Update( float deltaTime )
 {
 	m_ElapsedTime += deltaTime;
 
-	if( m_ElapsedTime >= float( 1000 / m_FrameSetNumber ) )
+	if( m_ElapsedTime >= float( 0.001 * m_FpsNumber ) )
 	{
 		++m_FrameNumber;
 		m_ElapsedTime = 0;

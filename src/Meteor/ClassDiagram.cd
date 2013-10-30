@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CD2DBitmap" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAACEAAAAABCAAIAQAAAIAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>D2DBitmap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CD2DRenderer" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAACAAAAAAAAAAAAABAEAEAIAAEQiABBAACA=</HashCode>
+      <FileName>D2DRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CD2DText" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIAgBAAEAIAgAAAIAAABCwIAAAAgAAAtIAwBAEAAA=</HashCode>
+      <FileName>D2DText.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAnimation" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAAAAAAgAAAAgCAAAAAAAABAAAAAEABA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CBaseWindow&lt;DERIVED_TYPE&gt;" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIABACQCAAAAAAAAAAEAAAAAAAEAAAAAACABAAAA=</HashCode>
+      <FileName>BaseWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CInputManager" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAQAAAAAAAAAAAABAAAAAAACAAgAAAAAAA=</HashCode>
+      <FileName>InputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMainWindow" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEgBAQACAAQAAEEAACAAABBAAACAAABAgAQAAAAA=</HashCode>
+      <FileName>MainWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPrintLog" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAACABAAAAA=</HashCode>
+      <FileName>PrintLog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CResourceManager" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAgCgAAAAA=</HashCode>
+      <FileName>ResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSprite" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAgAAAAAQAACAAAiAABAAAABFAEAAABIQAAAEAAA=</HashCode>
+      <FileName>Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CD2DSprite" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAAAAAAAAAAAAAAAAAABAAAAAGBAAgAAAAAA=</HashCode>
+      <FileName>Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGameObject" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAIAIAAAAAAAAAAAAQAIAAgAAYBGAAAAAAEA=</HashCode>
+      <FileName>gameobject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IInputManager" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IInputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRenderer" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAACABBAAAA=</HashCode>
+      <FileName>IRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IResource" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAA=</HashCode>
+      <FileName>IResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IResourceManager" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgAAAAA=</HashCode>
+      <FileName>IResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ISceneManager" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAgAAAAAAAAAAAAAAAAgAAAAAAAAACABAAAAA=</HashCode>
+      <FileName>ISceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="ResourceId" Collapsed="true">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ResourceId.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="Direction" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABCAAAAAgAAAAAAAQAAAAICAAAgABAAAAAAAAA=</HashCode>
+      <FileName>gameobject.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InputState" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAgAAAAAAAQAAACAAA=</HashCode>
+      <FileName>InputState.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

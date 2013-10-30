@@ -1,21 +1,14 @@
-/**
- * @file	Animation.h
- * @brief
- * @author	Lee InJae
- *
- */
+// author	Lee InJae (2013. 10. 27)
 
 #pragma once
 
 #include "Sprite.h"
 
-#include <vector>
-
 class CAnimation
 {
 public:
 	CAnimation();
-	CAnimation( int frameSetNumber );
+	CAnimation( int fpsNumber );
 
 	virtual ~CAnimation();
 
@@ -24,7 +17,7 @@ public:
 
 private:
 	std::vector<CSprite *> m_Sprites;
-	float m_ElapsedTime;
-	unsigned int   m_FrameNumber;
-	int   m_FrameSetNumber;
+	float	 m_ElapsedTime;
+	UINT	 m_FrameNumber;
+	int		 m_FpsNumber;
 };

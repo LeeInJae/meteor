@@ -12,7 +12,6 @@
 // TODO: Remove test code
 #include "Animation.h"
 #include "D2DText.h"
-
 #include <Mmsystem.h>
 
 #pragma comment(lib, "winmm")

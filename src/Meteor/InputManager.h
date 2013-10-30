@@ -9,6 +9,14 @@
 
 #include "IInputManager.h"
 
+enum KEYSTATE
+{
+	KEY_DOWN,
+	KEY_PRESSED,
+	KEY_UP,
+	KEY_NOTPRESSED,
+};
+
 class CInputManager : public IInputManager
 {
 public:
