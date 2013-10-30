@@ -12,6 +12,7 @@
 // TODO: Remove test code
 #include "Animation.h"
 #include "D2DText.h"
+
 #include <Mmsystem.h>
 
 #pragma comment(lib, "winmm")
@@ -44,9 +45,14 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	CAnimation * animation = new CAnimation( 5 );
 	CD2DText * text = new CD2DText();
 	text->SetFont( L"±¼¸²", 12.f );
-	
+
+	// FPS Calculation
 	DWORD startTime = timeGetTime();
 	DWORD lastTime = startTime;
+
+	DWORD elapsedTimeSum = 0;
+	DWORD logLotateCount = 0;
+	double framePerSecond = 0;
 
 	MSG msg = {};
 
@@ -61,17 +67,28 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 		DWORD currentTime = timeGetTime();
 		DWORD elapsedTime = currentTime - lastTime;
-		if ( elapsedTime > ( 1000 / 100 ) )
+
+		elapsedTimeSum += elapsedTime;
+		logLotateCount++;
+		if ( elapsedTimeSum >= 500 )
+		{
+			framePerSecond = ( logLotateCount * 1000.0f ) / elapsedTimeSum;
+			elapsedTimeSum = 0;
+			logLotateCount = 0;
+		}
+
+		//if ( elapsedTime > ( 1000 / 1000 ) )
 		{
 			animation->Update( static_cast<float>(currentTime - lastTime) );
 			CD2DRenderer::GetInstance().Begin();
 			CD2DRenderer::GetInstance().Clear();
 			animation->Render();
-//			std::wstring fps = std::to_wstring( 1000.0f / elapsedTime );
+
 			wchar_t wstrbuf[16];
-			swprintf_s( wstrbuf, L"Fps: %.2f",  1000.0f / elapsedTime );
+			swprintf_s( wstrbuf, L"Fps: %.2f",  framePerSecond );
 			text->SetText( std::wstring(wstrbuf) );
 			text->Render();
+
 			CD2DRenderer::GetInstance().End();
 			lastTime = currentTime;
 		}
