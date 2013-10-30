@@ -1,7 +1,6 @@
 #pragma once
 #include "gameobject.h"
 #include "stdafx.h"
-#include <forward_list>
 #include "Skill.h"
 
 enum CharacterStatus {
@@ -23,7 +22,7 @@ public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 
-	bool HitCheck(CSkill &skill); // 두 좌표 사이의 영역(스킬범위)에 들어가는지 체크
+	bool HitCheck(CSkill &skill);
 	bool ApplyDamage(int damage);
 	bool SetBuff(CSkill &);
 	bool GetHp() { return m_Hp;};

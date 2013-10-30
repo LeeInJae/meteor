@@ -48,6 +48,9 @@
     <ClCompile Include="D2DText.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionBox.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -125,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="D2DText.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionBox.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
