@@ -23,13 +23,14 @@ public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 
-	bool HitCheck(int x1, int y1, int x2, int y2, CSkill &skill); // 두 좌표 사이의 영역(스킬범위)에 들어가는지 체크
+	bool HitCheck(CSkill &skill); // 두 좌표 사이의 영역(스킬범위)에 들어가는지 체크
 	bool ApplyDamage(int damage);
 	bool SetBuff(CSkill &);
-	bool GetHp() { return m_HP;};
+	bool GetHp() { return m_Hp;};
+	bool IsDead() { return (m_Hp <= 0);};
 
 protected:
-	int m_HP;
+	int m_Hp;
 	int m_Speed;
 
 	CharacterStatus m_Status;

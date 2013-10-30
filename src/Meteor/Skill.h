@@ -8,12 +8,13 @@ public:
 	CSkill(void);
 	~CSkill(void);
 
-	int getDamage() { return m_Damage; };
-	int getDuration() { return m_Duration; };
+	int GetDamage() { return m_Damage; };
+	int GetDuration() { return m_Duration; };
+	void ApplySkill(CGameObject &target);
 
 protected:
 	int m_Damage; // 데미지
 	int m_Duration; // 지속 시간
-	CGameObject & m_Target; // 타겟
+	CGameObject &m_Target; // 타겟
 };
 
