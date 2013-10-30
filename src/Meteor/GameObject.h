@@ -1,3 +1,5 @@
+//@author : 조익성 (2013.10.23)
+
 #pragma once
 
 enum Direction {
@@ -11,6 +13,7 @@ enum Direction {
 	DOWN_RIGHT
 };
 
+// 게임상의 각 개체
 class CGameObject
 {
 public:

@@ -1,6 +1,9 @@
+//@author : 조익성 (2013.10.25)
+
 #pragma once
 #include "gameobject.h"
 
+// 스킬
 class CSkill :
 	public CGameObject
 {

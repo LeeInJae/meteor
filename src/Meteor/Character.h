@@ -1,3 +1,5 @@
+//@author : 조익성 (2013.10.23)
+
 #pragma once
 #include "gameobject.h"
 #include "stdafx.h"
@@ -15,6 +17,7 @@ enum CharacterStatus {
 	STUN
 };
 
+// 각 캐릭터들(PC,NPC,MOB)
 class CCharacter :
 	public CGameObject
 {

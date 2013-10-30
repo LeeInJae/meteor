@@ -1,3 +1,5 @@
+//@author : 炼劳己 (2013.10.30)
+
 #pragma once
 #include "gameobject.h"
 
@@ -6,6 +8,7 @@ enum Shape{
 	SQUARE
 };
 
+// 面倒 康开
 class CCollisionBox :
 	public CGameObject
 {
