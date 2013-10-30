@@ -36,7 +36,7 @@ protected:
 	int m_Speed;
 
 	CharacterStatus m_Status;
-	std::forward_list<CSkill&> m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
+	std::vector< CSkill & > m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
 
 };
 
