@@ -10,5 +10,9 @@ class CPC :
 public:
 	CPC(void);
 	~CPC(void);
+
+	bool LoadAnimation();
+	bool Update( float deltaTime );
+	CAnimation * GetAnimation() const;
 };
 

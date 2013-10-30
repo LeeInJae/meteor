@@ -18,6 +18,6 @@ public:
 protected:
 	int m_Damage; // 데미지
 	int m_Duration; // 지속 시간
-	CGameObject &m_Target; // 타겟
+	CGameObject * m_Target; // 타겟
 };
 

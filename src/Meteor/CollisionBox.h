@@ -1,7 +1,8 @@
 //@author : ¡∂¿Õº∫ (2013.10.30)
 
 #pragma once
-#include "gameobject.h"
+
+#include "GameObject.h"
 
 enum Shape{
 	CIRCLE,

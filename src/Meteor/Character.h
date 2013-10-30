@@ -1,8 +1,8 @@
 //@author : 조익성 (2013.10.23)
 
 #pragma once
-#include "gameobject.h"
-#include "stdafx.h"
+
+#include "GameObject.h"
 #include "Skill.h"
 
 enum CharacterStatus {
@@ -28,15 +28,14 @@ public:
 	bool HitCheck(CSkill &skill);
 	bool ApplyDamage(int damage);
 	bool SetBuff(CSkill &);
-	bool GetHp() { return m_Hp;};
-	bool IsDead() { return (m_Hp <= 0);};
+	int GetHp() { return m_Hp; }
+	bool IsDead() { return (m_Hp <= 0); }
+	void SetStatus( CharacterStatus status ) { m_Status = status; }
 
 protected:
 	int m_Hp;
 	int m_Speed;
 
 	CharacterStatus m_Status;
-	std::vector< CSkill & > m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
-
+	std::vector<CSkill*> m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
 };
-

@@ -10,7 +10,7 @@
 #endif // _DEBUG
 
 // TODO: Remove test code
-#include "Animation.h"
+#include "Scene.h"
 #include "D2DText.h"
 
 #include <Mmsystem.h>
@@ -42,7 +42,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	// TODO: Remove test code
 	CD2DRenderer::GetInstance().Init();
-	CAnimation * animation = new CAnimation( 5 );
+	CScene scene;
 	CD2DText * text = new CD2DText();
 	text->SetFont( L"±¼¸²", 12.f );
 
@@ -79,10 +79,10 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 		//if ( elapsedTime > ( 1000 / 1000 ) )
 		{
-			animation->Update( static_cast<float>(currentTime - lastTime) );
+			scene.Update( static_cast<float>(currentTime - lastTime) );
 			CD2DRenderer::GetInstance().Begin();
 			CD2DRenderer::GetInstance().Clear();
-			animation->Render();
+			scene.Render();
 
 			wchar_t wstrbuf[16];
 			swprintf_s( wstrbuf, L"Fps: %.2f",  framePerSecond );

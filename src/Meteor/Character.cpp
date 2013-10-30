@@ -1,11 +1,10 @@
 #include "stdafx.h"
 #include "Character.h"
 
-
 CCharacter::CCharacter(void)
+	: m_Status(WALK)
 {
 }
-
 
 CCharacter::~CCharacter(void)
 {

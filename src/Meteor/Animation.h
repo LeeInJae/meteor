@@ -4,20 +4,25 @@
 
 #include "Sprite.h"
 
+#include <string>
+#include <vector>
+
 class CAnimation
 {
 public:
-	CAnimation();
-	CAnimation( int fpsNumber );
+	CAnimation( std::string key );
+	CAnimation( std::string key, int fpsNumber );
 
 	virtual ~CAnimation();
-
+	
+	bool LoadSprite();
 	bool Update( float deltaTime );
 	bool Render();
 
 private:
 	std::vector<CSprite *> m_Sprites;
-	float	m_ElapsedTime;
-	UINT	m_FrameNumber;
-	int		m_FpsNumber;
+	std::string m_AnimationKey;
+	UINT		m_FrameNumber;
+	int			m_FpsNumber;
+	float		m_ElapsedTime;
 };

@@ -32,13 +32,14 @@ CD2DSprite::CD2DSprite( std::wstring path )
 
 CSprite * CSprite::Create( std::wstring path )
 {
+	// TODO : Use Resource Manager
 	return new CD2DSprite( path );
 }
 
 void CD2DSprite::Render()
 {
 	m_pD2DRenderer->GetHwndRenderTarget()->SetTransform( m_Matrix );
-	m_pD2DRenderer->GetHwndRenderTarget()->DrawBitmap(m_pD2DBitmap->GetD2DBitmap(), D2D1::RectF(0.f, 0.f, m_ImageWidth,m_ImageHeight), m_Opacity );
+	m_pD2DRenderer->GetHwndRenderTarget()->DrawBitmap(m_pD2DBitmap->GetD2DBitmap(), D2D1::RectF(0.f, 0.f, m_ImageWidth, m_ImageHeight), m_Opacity );
 }
 
 void CD2DSprite::Destroy()

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "GameObject.h"
-#include <string>
 #include "D2DRenderer.h"
 #include "D2DBitmap.h"
+
+#include <string>
 
 class CSprite
 {
@@ -42,7 +42,7 @@ public:
 	void Render();
 
 private:
-	CD2DRenderer *	m_pD2DRenderer;
-	CD2DBitmap *	m_pD2DBitmap;
-	D2D1::Matrix3x2F m_Matrix;
+	CD2DRenderer *		m_pD2DRenderer;
+	CD2DBitmap *		m_pD2DBitmap;
+	D2D1::Matrix3x2F	m_Matrix;
 };

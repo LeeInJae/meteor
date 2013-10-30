@@ -16,8 +16,6 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
-#include <vector>
-
 
 // TODO: reference additional headers your program requires here
 #include "Macro.h"

@@ -23,9 +23,6 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="NPC.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="D2DRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
@@ -52,6 +49,9 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,9 +96,6 @@
     <ClInclude Include="Monster.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="NPC.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="D2DRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
@@ -136,6 +133,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
