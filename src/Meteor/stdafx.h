@@ -16,6 +16,8 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <vector>
+#include <forward_list>
 
 
 // TODO: reference additional headers your program requires here
