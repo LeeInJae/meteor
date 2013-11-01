@@ -1,6 +1,7 @@
 
 #pragma once
 #include "PC.h"
+#include "Zone.h"
 
 class CScene
 {
@@ -12,5 +13,6 @@ public:
 	void Render();
 
 private:
-	CPC m_PlayerCharacter;
+	CPC		m_PlayerCharacter;
+	CZone	m_Zone;
 };

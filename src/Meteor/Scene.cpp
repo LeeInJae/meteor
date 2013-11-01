@@ -72,7 +72,6 @@ void CScene::Update( float deltaTime )
 	default:
 		break;
 	}
-
 	m_PlayerCharacter.Update( deltaTime );
 }
 
