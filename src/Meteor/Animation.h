@@ -10,8 +10,7 @@
 class CAnimation
 {
 public:
-	CAnimation( std::string key );
-	CAnimation( std::string key, int fpsNumber );
+	CAnimation( std::string key, int fpsNumber = 10 );
 
 	virtual ~CAnimation();
 	

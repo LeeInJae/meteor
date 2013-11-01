@@ -10,6 +10,7 @@
 #endif // _DEBUG
 
 // TODO: Remove test code
+#include "InputManager.h"
 #include "Scene.h"
 #include "D2DText.h"
 
@@ -79,6 +80,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 		//if ( elapsedTime > ( 1000 / 1000 ) )
 		{
+			CInputManager::GetInstance().UpdateKeyState();
 			scene.Update( static_cast<float>(currentTime - lastTime) );
 			CD2DRenderer::GetInstance().Begin();
 			CD2DRenderer::GetInstance().Clear();

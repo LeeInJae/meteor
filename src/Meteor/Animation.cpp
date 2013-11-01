@@ -6,14 +6,6 @@
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
-CAnimation::CAnimation( std::string key )
-	: m_AnimationKey( key )
-	, m_FrameNumber( 0 )
-	, m_FpsNumber( 10 )
-	, m_ElapsedTime( 0 )
-{
-}
-
 CAnimation::CAnimation( std::string key, int fpsNumber )
 	: m_AnimationKey( key )
 	, m_FrameNumber( 0 )
@@ -36,7 +28,7 @@ bool CAnimation::Update( float deltaTime )
 {
 	m_ElapsedTime += deltaTime;
 
-	if( m_ElapsedTime >= float( 0.001 * m_FpsNumber ) )
+	if( m_ElapsedTime >= float( 1000.0f / m_FpsNumber ) )
 	{
 		++m_FrameNumber;
 		m_ElapsedTime = 0;

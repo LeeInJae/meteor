@@ -23,6 +23,7 @@ public:
 	// --------------------------------
 	//	IInputManager interface
 	// --------------------------------
+	void UpdateKeyState();
 	InputState GetKeyState( int key );
 	InputState GetMouseState();
 
@@ -35,4 +36,7 @@ private:
 	CInputManager() {};
 	CInputManager( const CInputManager & );
 	CInputManager & operator=( const CInputManager & );
+
+	bool m_PreviousKeyState[256];
+	bool m_CurrentKeyState[256];
 };
