@@ -1,16 +1,16 @@
-/**
- * @file	IResource.h
- * @brief
- * @author	Lee JinWoo
- *
- */
-
+// @author	Lee JinWoo (2013.10.20)
 #pragma once
 
 class IResource
 {
+	friend class IResourceManager;
 public:
-	virtual ~IResource() {};
+	IResource() : m_Loaded(false), m_ReferenceCount(0) {}
+	virtual ~IResource() {}
 
 	virtual void Release() = 0;
+
+private:
+	bool	m_Loaded;
+	UINT	m_ReferenceCount;
 };

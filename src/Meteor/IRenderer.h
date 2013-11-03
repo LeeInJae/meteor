@@ -1,10 +1,4 @@
-/**
- * @file	IRenderer.h
- * @brief
- * @author	Lee JinWoo
- *
- */
-
+// @author	Lee JinWoo (2013.10.20)
 #pragma once
 
 class IRenderer

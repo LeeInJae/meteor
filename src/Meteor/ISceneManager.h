@@ -1,10 +1,4 @@
-/**
- * @file	ISceneManager.h
- * @brief
- * @author	Lee JinWoo
- *
- */
-
+// @author	Lee JinWoo (2013.10.23)
 #pragma once
 
 class ISceneManager
