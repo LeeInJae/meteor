@@ -2,7 +2,7 @@
 #include "Character.h"
 
 CCharacter::CCharacter(void)
-	: m_Status(WALK)
+	: m_Status(STAND)
 {
 }
 

@@ -10,10 +10,10 @@
 class CAnimation
 {
 public:
-	CAnimation( std::string key, int fpsNumber = 10 );
-
+	CAnimation( std::string key );
 	virtual ~CAnimation();
-	
+
+	void SetSpeed( int fps );
 	bool LoadSprite();
 	bool Update( float deltaTime );
 	bool Render();

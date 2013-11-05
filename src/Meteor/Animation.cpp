@@ -6,10 +6,10 @@
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
-CAnimation::CAnimation( std::string key, int fpsNumber )
+CAnimation::CAnimation( std::string key )
 	: m_AnimationKey( key )
 	, m_FrameNumber( 0 )
-	, m_FpsNumber( fpsNumber )
+	, m_FpsNumber( 0 )
 	, m_ElapsedTime( 0 )
 {
 }
@@ -22,10 +22,21 @@ CAnimation::~CAnimation()
 }
 
 // ----------------------------------------------------------------
+//	SetSpeed
+// ----------------------------------------------------------------
+void CAnimation::SetSpeed( int fps )
+{
+	m_FpsNumber = fps;
+}
+
+// ----------------------------------------------------------------
 //	Update
 // ----------------------------------------------------------------
 bool CAnimation::Update( float deltaTime )
 {
+	if( m_FpsNumber == 0 )
+		return true;
+
 	m_ElapsedTime += deltaTime;
 
 	if( m_ElapsedTime >= float( 1000.0f / m_FpsNumber ) )
@@ -45,6 +56,12 @@ bool CAnimation::Update( float deltaTime )
 // ----------------------------------------------------------------
 bool CAnimation::Render()
 {
+	if( m_FpsNumber == 0 )
+	{
+		m_Sprites[0]->Render();
+		return true;
+	}
+
 	m_Sprites[m_FrameNumber]->Render();
 
 	return true;

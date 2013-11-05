@@ -4,10 +4,12 @@
 #include "D2DBitmap.h"
 #include "ResourceManager.h"
 
-CD2DSprite::CD2DSprite() : m_pD2DRenderer(nullptr), m_pD2DBitmap(nullptr)
+CD2DSprite::CD2DSprite()
+	: m_pD2DRenderer(nullptr)
+	, m_pD2DBitmap(nullptr)
 {
-
 }
+
 
 CD2DSprite::CD2DSprite( std::wstring path )
 {
@@ -19,16 +21,15 @@ CD2DSprite::CD2DSprite( std::wstring path )
 	bitmap->LoadResource( path );
 	m_pD2DBitmap = bitmap;
 
-
 	// TODO: test code
-	m_ImageWidth = 100;
+	m_ImageWidth = 80;
  	m_ImageHeight = 100;
 
 // Real Code
 //	m_ImageWidth = m_pD2DBitmap->GetD2DBitmap()->GetSize().width;
-//	m_ImageHeight =m_pD2DBitmap->GetD2DBitmap()->GetSize().width;;
-
+//	m_ImageHeight = m_pD2DBitmap->GetD2DBitmap()->GetSize().width;
 }
+
 
 CSprite * CSprite::Create( std::wstring path )
 {
@@ -36,17 +37,20 @@ CSprite * CSprite::Create( std::wstring path )
 	return new CD2DSprite( path );
 }
 
+
 void CD2DSprite::Render()
 {
 	m_pD2DRenderer->GetHwndRenderTarget()->SetTransform( m_Matrix );
 	m_pD2DRenderer->GetHwndRenderTarget()->DrawBitmap(m_pD2DBitmap->GetD2DBitmap(), D2D1::RectF(0.f, 0.f, m_ImageWidth, m_ImageHeight), m_Opacity );
 }
 
+
 void CD2DSprite::Destroy()
 {
 	m_pD2DBitmap = nullptr;
 	m_pD2DRenderer = nullptr;
 }
+
 
 CD2DSprite::~CD2DSprite()
 {

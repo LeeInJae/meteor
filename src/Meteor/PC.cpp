@@ -15,23 +15,23 @@ bool CPC::LoadAnimation()
 {
 	CAnimation * animation;
 
-	animation = new CAnimation( "CHARACTOR_WALK_LEFT", 5 );
+	animation = new CAnimation( "CHARACTOR_WALK_LEFT" );
+	animation->SetSpeed( 8 );
 	if( animation->LoadSprite() )
 		m_Animation.push_back( animation );
 
-	animation = new CAnimation( "CHARACTOR_WALK_LEFT", 5 );
+	animation = new CAnimation( "CHARACTOR_WALK_RIGHT" );
+	animation->SetSpeed( 8 );
 	if( animation->LoadSprite() )
 		m_Animation.push_back( animation );
 
-	animation = new CAnimation( "CHARACTOR_WALK_RIGHT", 5 );
-	if( animation->LoadSprite() )
-		m_Animation.push_back( animation );
-
-	animation = new CAnimation( "CHARACTOR_WALK_UP", 5 );
+	animation = new CAnimation( "CHARACTOR_WALK_UP" );
+	animation->SetSpeed( 8 );
 	if( animation->LoadSprite() )
 		m_Animation.push_back( animation );
 
 	animation = new CAnimation( "CHARACTOR_WALK_DOWN" );
+	animation->SetSpeed( 8 );
 	if( animation->LoadSprite() )
 		m_Animation.push_back( animation );
 
@@ -72,23 +72,31 @@ bool CPC::Update( float deltaTime )
 
 CAnimation * CPC::GetAnimation() const
 {
-	if ( m_Status == WALK )
+	CAnimation * animation = m_Animation[3];
+
+	switch( m_Direction )
 	{
-		switch( m_Direction )
-		{
-		case LEFT:
-			return m_Animation[1];
+	case LEFT:
+		animation = m_Animation[0];
+		break;
 
-		case RIGHT:
-			return m_Animation[2];
+	case RIGHT:
+		animation = m_Animation[1];
+		break;
 
-		case UP:
-			return m_Animation[3];
+	case UP:
+		animation = m_Animation[2];
+		break;
 
-		case DOWN:
-			return m_Animation[4];
-		}
+	case DOWN:
+		animation = m_Animation[3];
+		break;
 	}
 
-	return m_Animation[0];
+	if ( m_Status == WALK )
+		animation->SetSpeed( 8 );
+	else if ( m_Status == STAND )
+		animation->SetSpeed( 0 );
+
+	return animation;
 }
