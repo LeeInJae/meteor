@@ -2,7 +2,7 @@
 #include "ZoneInfo.h"
 
 
-CZoneInfo::CZoneInfo(void)
+CZoneInfo::CZoneInfo( std::wstring zoneId )
 {
 }
 
