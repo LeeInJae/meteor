@@ -75,6 +75,9 @@
     <ClCompile Include="Fps.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationInfo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Fps.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationInfo.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
