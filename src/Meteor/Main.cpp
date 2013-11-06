@@ -63,6 +63,12 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	// Main message loop:
 	while ( msg.message != WM_QUIT )
 	{
+		if ( msg.message == WM_DESTROY )
+		{
+			SafeDelete( text );
+			SafeDelete( scene );
+		}
+
 		if ( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
 		{
 			TranslateMessage(&msg);
@@ -102,9 +108,6 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 		}
 #endif
 	}
-
-	SafeDelete( text );
-	SafeDelete( scene );
 
 	return (int) msg.wParam;
 }
