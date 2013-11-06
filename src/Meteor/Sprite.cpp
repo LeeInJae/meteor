@@ -47,7 +47,7 @@ void CD2DSprite::Render()
 
 void CD2DSprite::Destroy()
 {
-	m_pD2DBitmap = nullptr;
+	SafeRelease( m_pD2DBitmap );
 	m_pD2DRenderer = nullptr;
 }
 

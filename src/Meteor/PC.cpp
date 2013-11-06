@@ -9,6 +9,9 @@ CPC::CPC(void)
 
 CPC::~CPC(void)
 {
+	for ( auto animation : m_Animation )
+		delete animation;
+	m_Animation.clear();
 }
 
 bool CPC::LoadAnimation()
