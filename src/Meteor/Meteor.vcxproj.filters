@@ -54,26 +54,20 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="MapData.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MapInfo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
     <ClCompile Include="Zone.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="NPC.cpp">
+    <ClCompile Include="ZoneInfo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="ZoneMap.cpp">
       <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="MapInfo.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationInfo.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneInfo.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="MapData.cpp">
-      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,26 +153,20 @@
     <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="MapData.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MapInfo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
     <ClInclude Include="Zone.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="NPC.h">
+    <ClInclude Include="ZoneInfo.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="ZoneMap.h">
       <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="MapInfo.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationInfo.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoneInfo.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="MapData.h">
-      <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +191,6 @@
     </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{865dfa89-9a89-4831-b419-fce7420fbe78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{12b3f800-c011-471b-9d1b-6a6f6bb669df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

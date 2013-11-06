@@ -87,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="AnimationInfo.h" />
     <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="CollisionBox.h" />
     <ClInclude Include="D2DBitmap.h" />
@@ -96,8 +95,6 @@
     </ClInclude>
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="D2DText.h" />
-    <ClInclude Include="MapData.h" />
-    <ClInclude Include="MapInfo.h" />
     <ClInclude Include="GameObject.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -111,10 +108,11 @@
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="MapData.h" />
+    <ClInclude Include="MapInfo.h" />
     <ClInclude Include="Monster.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="NPC.h" />
     <ClInclude Include="PC.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -136,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="AnimationInfo.cpp" />
     <ClCompile Include="CollisionBox.cpp" />
     <ClCompile Include="D2DBitmap.cpp" />
     <ClCompile Include="Character.cpp">
@@ -144,18 +141,17 @@
     </ClCompile>
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="D2DText.cpp" />
-    <ClCompile Include="MapData.cpp" />
-    <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="GameObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="MapData.cpp" />
+    <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="Monster.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="PC.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>

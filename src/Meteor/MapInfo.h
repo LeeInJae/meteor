@@ -47,12 +47,12 @@ private:
 
 	std::wstring m_MapType;
 
-	//	Map Header ( 96 byte )
+	//	Map Header ( 16 byte )
 	MapHeader m_Header;
 
 	//	TileInfo list ( 16 byte * N )
 	std::vector< TileData > m_Tiles;
 
-	//	Map (Tile list) ( 4 byes * M )
+	//	Map (Tile list) ( 4 bytes * M )
 	std::vector< CMapData * > m_Maps;
 };
