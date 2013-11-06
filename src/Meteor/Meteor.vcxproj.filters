@@ -69,6 +69,12 @@
     <ClCompile Include="ZoneMap.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Fps.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -113,9 +119,6 @@
     </ClInclude>
     <ClInclude Include="D2DRenderer.h">
       <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseWindow.h">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="MainWindow.h">
       <Filter>Engine</Filter>
@@ -167,6 +170,18 @@
     </ClInclude>
     <ClInclude Include="ZoneMap.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseWindow.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Fps.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

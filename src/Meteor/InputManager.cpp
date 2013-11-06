@@ -60,6 +60,5 @@ InputState CInputManager::GetMouseState()
 CInputManager & CInputManager::GetInstance()
 {
 	static CInputManager instance;
-
 	return instance;
 }

@@ -95,9 +95,12 @@
     </ClInclude>
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="D2DText.h" />
+    <ClInclude Include="Fps.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="IGameManager.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputState.h" />
@@ -141,6 +144,8 @@
     </ClCompile>
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="D2DText.cpp" />
+    <ClCompile Include="Fps.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
