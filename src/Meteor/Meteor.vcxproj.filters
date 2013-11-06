@@ -78,6 +78,9 @@
     <ClCompile Include="AnimationInfo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="BaseWindow.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="IGameManager.h">
       <Filter>Core</Filter>
