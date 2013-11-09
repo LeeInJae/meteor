@@ -41,18 +41,22 @@ public:
 	bool LoadResource();
 	void Release();
 
+	MapHeader GetHeader() { return m_Header; };
+	std::vector< TileData > GetTiles() { return m_Tiles; };
+	CMapData * GetMapData( UINT mapNo ){
+		if( mapNo < m_Header.m_MapCount )
+			return m_Maps[mapNo];
+		else
+			return nullptr;
+	}
+
 private:
 	bool LoadTileData();
 	bool LoadMaps();
 
-	std::wstring m_MapType;
+	std::wstring				m_MapType;
 
-	//	Map Header ( 16 byte )
-	MapHeader m_Header;
-
-	//	TileInfo list ( 16 byte * N )
-	std::vector< TileData > m_Tiles;
-
-	//	Map (Tile list) ( 4 bytes * M )
-	std::vector< CMapData * > m_Maps;
+	MapHeader					m_Header;	//	Map Header		( 16 byte		)
+	std::vector< TileData >		m_Tiles;	//	TileInfo list	(  8 byte * N	)
+	std::vector< CMapData * >	m_Maps;		//	Map (Tile list)	(  4 byte * M	)
 };

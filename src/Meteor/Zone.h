@@ -5,21 +5,24 @@
 
 #include "GameObject.h"
 #include <string>
+#include "ZoneMap.h"
+#include "ZoneInfo.h"
 
 class CZone
 {
 public:
 	CZone(void);
-	CZone( std::string key );
+	CZone( std::wstring id );
 	virtual ~CZone(void);
+	
+	bool LoadZone();
 	std::list< CGameObject * > GetObject() { return m_Object; }
-	bool LoadZone(); 
-	//TODO: GetMapData() 
+	CZoneMap * GetMapData() { return m_Map; }
 
 private:
-	int m_Width, m_Height;
-	std::list< CGameObject * > m_Object;
-	std::string m_ZoneKey;
-//TODO : 
-	//Map Data관련 변수
+	int							m_Width, 
+								m_Height;
+	std::list< CGameObject * >	m_Object;
+	std::wstring				m_ZoneId;
+	CZoneMap *					m_Map;
 };

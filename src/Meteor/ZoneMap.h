@@ -11,13 +11,19 @@
 class CZoneMap
 {
 public:
-	CZoneMap( std::string key );
+	CZoneMap( std::wstring mapType, UINT mapNo );
 	~CZoneMap(void);
 
-	bool LoadSprite();
+	bool LoadMap();
 	void Update( float x, float y );
 	bool Render();
 
 private:
+	int						m_X, 
+							m_Y;
 	std::vector<CSprite *>	m_Sprites;
+	CMapInfo *				m_MapInfo;
+	std::wstring			m_MapType;
+	UINT					m_MapNo;
+	CMapData *				m_MapData;
 };

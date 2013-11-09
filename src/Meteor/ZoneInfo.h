@@ -1,6 +1,9 @@
 #pragma once
 
 #include "IResource.h"
+#include "ZoneMap.h"
+
+#include <string>
 
 struct ZoneHeader
 {
@@ -15,8 +18,10 @@ struct ObjectData
 	char objectId[32];
 	USHORT objectX;
 	USHORT objectY;
+	USHORT objectDirection;
 	USHORT Reserved;
 };
+
 // ----------------------------------------------------------------
 //	CZoneInfo
 // ----------------------------------------------------------------
@@ -29,16 +34,16 @@ public:
 	bool LoadResource();
 	void Release();
 
+	ZoneHeader * GetHeader() { return &m_Header; }
+	std::list< ObjectData > * GetObjects() { return &m_Objects; }
+
 private:
 	bool LoadMap();
 	bool LoadObjects();
 
-	std::wstring m_ZoneId;
+	std::wstring			m_ZoneId;
 
-	//  Zone Header ( 40 byte )
-	ZoneHeader m_Header;
-
-	//  Object list ( 60 byte )
-	std::list< ObjectData > m_Objects;
+	ZoneHeader				m_Header;	//	Zone Header	( 40 byte )
+	std::list< ObjectData >	m_Objects;	//	Object list	( 56 byte )
 };
 
