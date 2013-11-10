@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PC.h"
+#include "ResourceManager.h"
 
 #define WALK_SPEED 128
 
@@ -10,33 +11,16 @@ CPC::CPC(void)
 CPC::~CPC(void)
 {
 	for ( auto animation : m_Animation )
-		delete animation;
+		animation->Release();
 	m_Animation.clear();
 }
 
 bool CPC::LoadAnimation()
 {
-	CAnimation * animation;
-
-	animation = new CAnimation( "CHARACTOR_WALK_LEFT" );
-	animation->SetSpeed( 8 );
-	if( animation->LoadSprite() )
-		m_Animation.push_back( animation );
-
-	animation = new CAnimation( "CHARACTOR_WALK_RIGHT" );
-	animation->SetSpeed( 8 );
-	if( animation->LoadSprite() )
-		m_Animation.push_back( animation );
-
-	animation = new CAnimation( "CHARACTOR_WALK_UP" );
-	animation->SetSpeed( 8 );
-	if( animation->LoadSprite() )
-		m_Animation.push_back( animation );
-
-	animation = new CAnimation( "CHARACTOR_WALK_DOWN" );
-	animation->SetSpeed( 8 );
-	if( animation->LoadSprite() )
-		m_Animation.push_back( animation );
+	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_LEFT" ) );
+	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_RIGHT" ) );
+	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_UP" ) );
+	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_DOWN" ) );
 
 	return true;
 }

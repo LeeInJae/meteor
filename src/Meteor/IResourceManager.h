@@ -11,6 +11,7 @@ class IResourceManager
 public:
 	virtual ~IResourceManager() {};
 
-	virtual ResourceId	CreateResource( std::string path ) = 0;
+	virtual bool LoadResource( ResourceId id ) = 0;
 	virtual IResource *	GetResource( ResourceId id ) = 0;
+	virtual void ReleaseResource( IResource * resource ) = 0;
 };

@@ -1,4 +1,8 @@
 // @author	Lee JinWoo (2013.10.20)
 #pragma once
 
-typedef unsigned int ResourceId;
+#include <string>
+
+typedef std::wstring ResourceId;
+
+const ResourceId MAP_VILLAGE = L"MAP_VILLAGE";

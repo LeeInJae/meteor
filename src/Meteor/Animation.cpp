@@ -1,14 +1,13 @@
 #include "stdafx.h"
 #include "Animation.h"
 #include "Sprite.h"
-
+#include "ResourceManager.h"
 
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
-CAnimation::CAnimation( std::string key )
-	: m_AnimationKey( key )
-	, m_FrameNumber( 0 )
+CAnimation::CAnimation()
+	: m_FrameNumber( 0 )
 	, m_FpsNumber( 0 )
 	, m_ElapsedTime( 0 )
 {
@@ -19,8 +18,6 @@ CAnimation::CAnimation( std::string key )
 // ----------------------------------------------------------------
 CAnimation::~CAnimation()
 {
-	for ( auto sprite : m_Sprites )
-		delete sprite;
 	m_Sprites.clear();
 }
 
@@ -35,40 +32,9 @@ void CAnimation::SetSpeed( int fps )
 // ----------------------------------------------------------------
 //	LoadSprite
 // ----------------------------------------------------------------
-bool CAnimation::LoadSprite()
+void CAnimation::AddSprite( CSprite * sprite )
 {
-	// TODO:
-	//	vector<Sprite &> sprites = ResourceManager::GetInstance().GetSprite( m_AnimationKey );
-
-	if( m_AnimationKey == "CHARACTOR_WALK_LEFT" )
-	{
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_LEFT_01.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_LEFT_02.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_LEFT_03.png" ) );
-	}
-
-	if( m_AnimationKey == "CHARACTOR_WALK_RIGHT" )
-	{
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_RIGHT_01.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_RIGHT_02.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_RIGHT_03.png" ) );
-	}
-
-	if( m_AnimationKey == "CHARACTOR_WALK_UP" )
-	{
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_UP_01.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_UP_02.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_UP_03.png" ) );
-	}
-
-	if( m_AnimationKey == "CHARACTOR_WALK_DOWN" )
-	{
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_DOWN_01.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_DOWN_02.png" ) );
-		m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_DOWN_03.png" ) );
-	}
-
-	return true;
+	m_Sprites.push_back( sprite );
 }
 
 // ----------------------------------------------------------------
@@ -96,15 +62,18 @@ bool CAnimation::Update( float deltaTime )
 // ----------------------------------------------------------------
 //	Render
 // ----------------------------------------------------------------
-bool CAnimation::Render()
+void CAnimation::Render()
 {
 	if( m_FpsNumber == 0 )
-	{
 		m_Sprites[0]->Render();
-		return true;
-	}
+	else
+		m_Sprites[m_FrameNumber]->Render();
+}
 
-	m_Sprites[m_FrameNumber]->Render();
-
-	return true;
+// ----------------------------------------------------------------
+//	Release
+// ----------------------------------------------------------------
+void CAnimation::Release()
+{
+	CResourceManager::GetInstance().ReleaseResource(this);
 }

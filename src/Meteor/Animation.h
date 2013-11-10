@@ -2,25 +2,37 @@
 
 #pragma once
 
-#include "Sprite.h"
+#include "IResource.h"
 
 #include <string>
 #include <vector>
 
-class CAnimation
+class CSprite;
+
+class CAnimation : public IResource
 {
 public:
-	CAnimation( std::string key );
-	virtual ~CAnimation();
-
+	// --------------------------------
+	//	CAnimation function
+	// --------------------------------
 	void SetSpeed( int fps );
-	bool LoadSprite();
 	bool Update( float deltaTime );
-	bool Render();
+	void Render();
+
+	// --------------------------------
+	//	IResourceManager interface
+	// --------------------------------
+	void Release();
 
 private:
+	friend class CResourceManager;
+
+	CAnimation();
+	virtual ~CAnimation();
+
+	void AddSprite( CSprite * sprite );
+
 	std::vector<CSprite *> m_Sprites;
-	std::string m_AnimationKey;
 	UINT		m_FrameNumber;
 	int			m_FpsNumber;
 	float		m_ElapsedTime;
