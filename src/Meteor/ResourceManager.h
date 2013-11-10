@@ -21,13 +21,13 @@ public:
 	// --------------------------------
 	//	IResourceManager interface
 	// --------------------------------
-	bool LoadResource( ResourceId id );
 	IResource *	GetResource( ResourceId id );
 	void ReleaseResource( IResource * resource );
 
 	// --------------------------------
 	//	IResourceManager interface
 	// --------------------------------
+	CSprite *		GetSprite( ResourceId spriteId );
 	CAnimation *	GetAnimation( ResourceId animationId );
 	CZoneMap *		GetMap( ResourceId mapId );
 
@@ -41,6 +41,8 @@ private:
 	CResourceManager( const CResourceManager & );
 	CResourceManager & operator=( const CResourceManager & );
 	~CResourceManager();
+
+	bool LoadResource( ResourceId id );
 
 	std::map<ResourceId, IResource *> m_ResourceMap;
 };

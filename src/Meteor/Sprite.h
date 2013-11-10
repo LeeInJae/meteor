@@ -1,11 +1,12 @@
 #pragma once
 
+#include "IResource.h"
 #include "D2DRenderer.h"
 #include "D2DBitmap.h"
 
 #include <string>
 
-class CSprite
+class CSprite : public IResource
 {
 protected:
 	float m_ImageWidth;
@@ -20,7 +21,7 @@ public:
 	{}
 	virtual ~CSprite(){}
 	static CSprite * Create( std::wstring path );
-	virtual void Destroy() {}
+	virtual void Release() {}
 	virtual void Render() {}
 
 	float GetImageWidth()	const { return m_ImageWidth; }
@@ -38,11 +39,10 @@ public:
 	CD2DSprite();
 	CD2DSprite( std::wstring path );
 	virtual ~CD2DSprite();
-	void Destroy();
+	void Release();
 	void Render();
 
 private:
-	CD2DRenderer *		m_pD2DRenderer;
 	CD2DBitmap *		m_pD2DBitmap;
 	D2D1::Matrix3x2F	m_Matrix;
 };

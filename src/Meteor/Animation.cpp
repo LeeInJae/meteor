@@ -18,7 +18,7 @@ CAnimation::CAnimation()
 // ----------------------------------------------------------------
 CAnimation::~CAnimation()
 {
-	m_Sprites.clear();
+	Release();
 }
 
 // ----------------------------------------------------------------
@@ -75,5 +75,9 @@ void CAnimation::Render()
 // ----------------------------------------------------------------
 void CAnimation::Release()
 {
+	for ( auto sprite : m_Sprites )
+		sprite->Release();
+	m_Sprites.clear();
+
 	CResourceManager::GetInstance().ReleaseResource(this);
 }
