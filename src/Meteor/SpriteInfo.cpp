@@ -30,19 +30,23 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	// TODO: Temporary Code
 	if( id == L"character_walk_left_01" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_LEFT_01.png";
+		m_BitmapId = L"CHARACTER_WALK_RIGHT_01.png";
+		m_Width = -1.0f;
+		m_OriginX = -4.0f;
 		m_SpriteWidth = 50.0f;
 		m_SpriteHeight = 100.0f;
 	}
 	if( id == L"character_walk_left_02" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_LEFT_02.png";
+		m_BitmapId = L"CHARACTER_WALK_RIGHT_02.png";
+		m_Width = -1.0f;
 		m_SpriteWidth = 60.0f;
 		m_SpriteHeight = 98.0f;
 	}
 	if( id == L"character_walk_left_03" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_LEFT_03.png";
+		m_BitmapId = L"CHARACTER_WALK_RIGHT_03.png";
+		m_Width = -1.0f;
 		m_SpriteWidth = 60.0f;
 		m_SpriteHeight = 98.0f;
 	}
@@ -50,6 +54,7 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	if( id == L"character_walk_right_01" )
 	{
 		m_BitmapId = L"CHARACTER_WALK_RIGHT_01.png";
+		m_OriginX = 4.0f;
 		m_SpriteWidth = 50.0f;
 		m_SpriteHeight = 100.0f;
 	}
@@ -69,6 +74,7 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	if( id == L"character_walk_up_01" )
 	{
 		m_BitmapId = L"CHARACTER_WALK_UP_01.png";
+		m_OriginX = 2.0f;
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 100.0f;
 	}
@@ -116,7 +122,7 @@ CSprite * CSpriteInfo::CreateSprite()
 	CD2DSprite * sprite = new CD2DSprite();
 	CD2DBitmap * bitmap = static_cast<CD2DBitmap *>( CResourceManager::GetInstance().GetResource( m_BitmapId ) );
 
-	sprite->m_BaseMatrix	= D2D1::Matrix3x2F::Translation( m_OriginX, m_OriginY );
+	sprite->m_BaseMatrix	= D2D1::Matrix3x2F::Scale( m_Width, m_Height, D2D1::Point2F( m_SpriteWidth * 0.5f, m_SpriteHeight * 0.5f ) ) * D2D1::Matrix3x2F::Translation( -m_OriginX, -m_OriginY );
 	sprite->m_ImageWidth	= m_SpriteWidth;
 	sprite->m_ImageHeight	= m_SpriteHeight;
 	sprite->m_pD2DBitmap	= bitmap;

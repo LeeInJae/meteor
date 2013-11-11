@@ -30,7 +30,7 @@ void CD2DSprite::Render()
 	}
 
 	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Translation( left, top );
-	CD2DRenderer::GetInstance().GetHwndRenderTarget()->SetTransform( matrix * m_BaseMatrix );
+	CD2DRenderer::GetInstance().GetHwndRenderTarget()->SetTransform( m_BaseMatrix * matrix );
 	CD2DRenderer::GetInstance().GetHwndRenderTarget()->DrawBitmap(m_pD2DBitmap->GetD2DBitmap(), D2D1::RectF(0.f, 0.f, m_ImageWidth, m_ImageHeight), m_Opacity );
 }
 
