@@ -9,10 +9,10 @@ public:
 	CScene(void);
 	virtual ~CScene(void);
 
-	void Update( float deltaTime );
+	bool Update( float deltaTime );
 	void Render();
 
 private:
 	CPC		m_PlayerCharacter;
-	CZone	m_Zone;
+	CZone *	m_Zone;
 };

@@ -7,101 +7,20 @@
 
 #include "stdafx.h"
 #include "ResourceManager.h"
+#include "D2DBitmap.h"
+#include "SpriteInfo.h"
+#include "AnimationInfo.h"
+#include "ZoneInfo.h"
+#include "MapInfo.h"
 
 // ----------------------------------------------------------------
 //	Desrtuctor
 // ----------------------------------------------------------------
 CResourceManager::~CResourceManager()
 {
-	for ( auto resource : m_ResourceMap )
-		delete resource.second;
+	Clear();
 }
 
-
-// ----------------------------------------------------------------
-//	LoadResource
-// ----------------------------------------------------------------
-bool CResourceManager::LoadResource( ResourceId id )
-{
-	IResource * resource = nullptr;
-
-	if ( m_ResourceMap[id] )
-		return true;
-
-	if( id == L"CHARACTOR_WALK_LEFT" )
-	{
-		CAnimation * animation = new CAnimation();
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_LEFT_01" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_LEFT_02" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_LEFT_03" ) );
-		resource = animation;
-	}
-
-	if( id == L"CHARACTOR_WALK_LEFT_01" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_LEFT_01.png" );
-	if( id == L"CHARACTOR_WALK_LEFT_02" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_LEFT_02.png" );
-	if( id == L"CHARACTOR_WALK_LEFT_03" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_LEFT_03.png" );
-
-	if( id == L"CHARACTOR_WALK_RIGHT" )
-	{
-		CAnimation * animation = new CAnimation();
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_RIGHT_01" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_RIGHT_02" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_RIGHT_03" ) );
-		resource = animation;
-	}
-
-	if( id == L"CHARACTOR_WALK_RIGHT_01" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_RIGHT_01.png" );
-	if( id == L"CHARACTOR_WALK_RIGHT_02" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_RIGHT_02.png" );
-	if( id == L"CHARACTOR_WALK_RIGHT_03" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_RIGHT_03.png" );
-
-	if( id == L"CHARACTOR_WALK_UP" )
-	{
-		CAnimation * animation = new CAnimation();
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_UP_01" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_UP_02" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_UP_03" ) );
-		resource = animation;
-	}
-
-	if( id == L"CHARACTOR_WALK_UP_01" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_UP_01.png" );
-	if( id == L"CHARACTOR_WALK_UP_02" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_UP_02.png" );
-	if( id == L"CHARACTOR_WALK_UP_03" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_UP_03.png" );
-
-	if( id == L"CHARACTOR_WALK_DOWN" )
-	{
-		CAnimation * animation = new CAnimation();
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_DOWN_01" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_DOWN_02" ) );
-		animation->AddSprite( GetSprite( L"CHARACTOR_WALK_DOWN_03" ) );
-		resource = animation;
-	}
-
-	if( id == L"CHARACTOR_WALK_DOWN_01" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_DOWN_01.png" );
-	if( id == L"CHARACTOR_WALK_DOWN_02" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_DOWN_02.png" );
-	if( id == L"CHARACTOR_WALK_DOWN_03" )
-		resource = CSprite::Create( L"CHARACTOR_WALK_DOWN_03.png" );
-
-
-	if ( resource )
-	{
-		m_ResourceMap[id] = resource;
-		resource->m_Key = id;
-		return true;
-	}
-
-	return false;
-}
 
 // ----------------------------------------------------------------
 //	GetResource
@@ -120,31 +39,44 @@ IResource * CResourceManager::GetResource( ResourceId id )
 // ----------------------------------------------------------------
 //	GetSprite
 // ----------------------------------------------------------------
-CSprite * CResourceManager::GetSprite( ResourceId spriteId )
+CSpriteInfo * CResourceManager::GetSpriteInfo( ResourceId spriteId )
 {
 	IResource * resource = GetResource( spriteId );
 
-	return static_cast<CSprite *>( resource );
+	return static_cast<CSpriteInfo *>( resource );
 }
 
 
 // ----------------------------------------------------------------
 //	GetAnimation
 // ----------------------------------------------------------------
-CAnimation * CResourceManager::GetAnimation( ResourceId animationId )
+CAnimationInfo * CResourceManager::GetAnimationInfo( ResourceId animationId )
 {
 	IResource * resource = GetResource( animationId );
 
-	return static_cast<CAnimation *>( resource );
+	return static_cast<CAnimationInfo *>( resource );
 }
 
 
 // ----------------------------------------------------------------
-//	GetMap
+//	GetMapInfo
 // ----------------------------------------------------------------
-CZoneMap * CResourceManager::GetMap( ResourceId mapId )
+CMapInfo * CResourceManager::GetMapInfo( ResourceId mapId )
 {
-	return nullptr;
+	IResource * resource = GetResource( mapId );
+
+	return static_cast<CMapInfo *>( resource );
+}
+
+
+// ----------------------------------------------------------------
+//	GetZoneInfo
+// ----------------------------------------------------------------
+CZoneInfo * CResourceManager::GetZoneInfo( ResourceId zoneId )
+{
+	IResource * resource = GetResource( zoneId );
+
+	return static_cast<CZoneInfo *>( resource );
 }
 
 
@@ -168,6 +100,101 @@ void CResourceManager::ReleaseResource( IResource * resource )
 	if ( resource->m_ReferenceCount > 0 )
 		return;
 
-	m_ResourceMap.erase( resource->m_Key );
-	delete resource;
+	if ( m_ResourceMap.erase( resource->m_Key ) > 0 )
+		delete resource;
+}
+
+
+// ----------------------------------------------------------------
+//	LoadResource
+// ----------------------------------------------------------------
+bool CResourceManager::LoadResource( ResourceId id )
+{
+	IResource * resource = nullptr;
+
+	if ( m_ResourceMap[id] )
+		return true;
+
+	if ( ( id == L"CHARACTER_WALK_LEFT_01.png" )
+		|| ( id == L"CHARACTER_WALK_LEFT_02.png" )
+		|| ( id == L"CHARACTER_WALK_LEFT_03.png" )
+		|| ( id == L"CHARACTER_WALK_RIGHT_01.png" )
+		|| ( id == L"CHARACTER_WALK_RIGHT_02.png" )
+		|| ( id == L"CHARACTER_WALK_RIGHT_03.png" )
+		|| ( id == L"CHARACTER_WALK_UP_01.png" )
+		|| ( id == L"CHARACTER_WALK_UP_02.png" )
+		|| ( id == L"CHARACTER_WALK_UP_03.png" )
+		|| ( id == L"CHARACTER_WALK_DOWN_01.png" )
+		|| ( id == L"CHARACTER_WALK_DOWN_02.png" )
+		|| ( id == L"CHARACTER_WALK_DOWN_03.png" )
+		|| ( id == L"test_tile.png" )
+		|| ( id == L"test_tile2.png" ) )
+
+	{
+		CD2DBitmap * bitmap = new CD2DBitmap();
+		bitmap->LoadResource( id );
+		resource = bitmap;
+	}
+
+	if ( ( id == L"character_walk_left_01" )
+		|| ( id == L"character_walk_left_02" )
+		|| ( id == L"character_walk_left_03" )
+		|| ( id == L"character_walk_right_01" )
+		|| ( id == L"character_walk_right_02" )
+		|| ( id == L"character_walk_right_03" )
+		|| ( id == L"character_walk_up_01" )
+		|| ( id == L"character_walk_up_02" )
+		|| ( id == L"character_walk_up_03" )
+		|| ( id == L"character_walk_down_01" )
+		|| ( id == L"character_walk_down_02" )
+		|| ( id == L"character_walk_down_03" ) )
+	{
+		CSpriteInfo * spriteInfo = new CSpriteInfo();
+		spriteInfo->LoadResource( id );
+		resource = spriteInfo;
+	}
+
+	if ( ( id == L"character_walk_left" )
+		|| ( id == L"character_walk_right" )
+		|| ( id == L"character_walk_up" )
+		|| ( id == L"character_walk_down" ) )
+	{
+		CAnimationInfo * animationInfo = new CAnimationInfo();
+		animationInfo->LoadResource( id );
+		resource = animationInfo;
+	}
+
+	if ( id == L"zone_village" )
+	{
+		CZoneInfo * zoneInfo = new CZoneInfo();
+		zoneInfo->LoadResource( L"zone_village" );
+		resource = zoneInfo;
+	}
+
+	if( id == L"map_village" )
+	{
+		CMapInfo * mapInfo = new CMapInfo();
+		mapInfo->LoadResource( L"map_village" );
+		resource = mapInfo;
+	}
+
+	if ( resource )
+	{
+		m_ResourceMap[id] = resource;
+		resource->m_Key = id;
+		return true;
+	}
+
+	return false;
+}
+
+
+// ----------------------------------------------------------------
+//	Clear
+// ----------------------------------------------------------------
+void CResourceManager::Clear()
+{
+	for ( auto resource : m_ResourceMap )
+		delete resource.second;
+	m_ResourceMap.clear();
 }

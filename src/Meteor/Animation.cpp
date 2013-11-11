@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------
 CAnimation::CAnimation()
 	: m_FrameNumber( 0 )
-	, m_FpsNumber( 0 )
+	, m_Fps( 0 )
 	, m_ElapsedTime( 0 )
 {
 }
@@ -21,13 +21,6 @@ CAnimation::~CAnimation()
 	Release();
 }
 
-// ----------------------------------------------------------------
-//	SetSpeed
-// ----------------------------------------------------------------
-void CAnimation::SetSpeed( int fps )
-{
-	m_FpsNumber = fps;
-}
 
 // ----------------------------------------------------------------
 //	LoadSprite
@@ -37,17 +30,18 @@ void CAnimation::AddSprite( CSprite * sprite )
 	m_Sprites.push_back( sprite );
 }
 
+
 // ----------------------------------------------------------------
 //	Update
 // ----------------------------------------------------------------
 bool CAnimation::Update( float deltaTime )
 {
-	if( m_FpsNumber == 0 )
+	if( m_Fps == 0 )
 		return true;
 
 	m_ElapsedTime += deltaTime;
 
-	if( m_ElapsedTime >= float( 1000.0f / m_FpsNumber ) )
+	if( m_ElapsedTime >= float( 1000.0f / m_Fps ) )
 	{
 		++m_FrameNumber;
 		m_ElapsedTime = 0;
@@ -64,10 +58,15 @@ bool CAnimation::Update( float deltaTime )
 // ----------------------------------------------------------------
 void CAnimation::Render()
 {
-	if( m_FpsNumber == 0 )
-		m_Sprites[0]->Render();
+	CSprite * sprite;
+
+	if( m_Fps == 0 )
+		sprite = m_Sprites[0];
 	else
-		m_Sprites[m_FrameNumber]->Render();
+		sprite = m_Sprites[m_FrameNumber];
+
+	sprite->SetPosition( m_Position );
+	sprite->Render();
 }
 
 // ----------------------------------------------------------------
@@ -75,9 +74,4 @@ void CAnimation::Render()
 // ----------------------------------------------------------------
 void CAnimation::Release()
 {
-	for ( auto sprite : m_Sprites )
-		sprite->Release();
-	m_Sprites.clear();
-
-	CResourceManager::GetInstance().ReleaseResource(this);
 }

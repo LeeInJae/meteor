@@ -17,6 +17,11 @@ public:
 	bool Process();
 	void Release();
 
+	void SetWidth( long width ) { m_Width = width; }
+	void SetHeight( long height ) { m_Height = height; }
+	long GetWidth() const { return m_Width; }
+	long GetHeight() const { return m_Height; }
+
 	// --------------------------------
 	//	GetInstance
 	// --------------------------------
@@ -33,5 +38,9 @@ private:
 	// Time and Fps
 	DWORD	m_StartTime;
 	DWORD	m_LastTime;
+
+	// Window Size
+	long	m_Width;
+	long	m_Height;
 };
 

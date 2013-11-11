@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "PC.h"
 #include "ResourceManager.h"
+#include "GameManager.h"
+#include "AnimationInfo.h"
 
 #define WALK_SPEED 128
 
@@ -17,10 +19,20 @@ CPC::~CPC(void)
 
 bool CPC::LoadAnimation()
 {
-	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_LEFT" ) );
-	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_RIGHT" ) );
-	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_UP" ) );
-	m_Animation.push_back( CResourceManager::GetInstance().GetAnimation( L"CHARACTOR_WALK_DOWN" ) );
+	std::wstring animationIdList[] = { L"character_walk_left", L"character_walk_right", L"character_walk_up", L"character_walk_down" };
+
+	for each ( std::wstring animationId in animationIdList )
+	{
+		CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
+		CAnimation * animation = animationInfo->CreateAnimation();
+		Position position = {
+			static_cast<float>( CGameManager::GetInstance().GetWidth() ) / 2,
+			static_cast<float>( CGameManager::GetInstance().GetHeight() ) / 2,
+			BASE_CENTER, DOWN };
+		animation->SetPosition( position );
+		m_Animation.push_back( animation );
+		SafeRelease( animationInfo );
+	}
 
 	return true;
 }
@@ -31,22 +43,22 @@ bool CPC::Update( float deltaTime )
 
 	if ( m_Status == WALK )
 	{
-		switch( m_Direction )
+		switch( m_Position.direction )
 		{
 		case LEFT:
-			Move( ( int )( ( -WALK_SPEED ) * deltaTime * 0.001f ), 0 );
+			Move( ( -WALK_SPEED ) * deltaTime * 0.001f, 0 );
 			break;
 
 		case RIGHT:
-			Move( ( int )( ( WALK_SPEED ) * deltaTime * 0.001f ), 0 );
+			Move( ( WALK_SPEED ) * deltaTime * 0.001f, 0 );
 			break;
 
 		case UP:
-			Move( 0, ( int )( ( -WALK_SPEED ) * deltaTime * 0.001f ) );
+			Move( 0, ( -WALK_SPEED ) * deltaTime * 0.001f );
 			break;
 
 		case DOWN:
-			Move( 0, ( int )( ( WALK_SPEED ) * deltaTime * 0.001f ) );
+			Move( 0, ( WALK_SPEED ) * deltaTime * 0.001f );
 			break;
 
 		default:
@@ -61,7 +73,7 @@ CAnimation * CPC::GetAnimation() const
 {
 	CAnimation * animation = m_Animation[3];
 
-	switch( m_Direction )
+	switch( m_Position.direction )
 	{
 	case LEFT:
 		animation = m_Animation[0];

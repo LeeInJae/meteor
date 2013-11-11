@@ -1,10 +1,10 @@
 #include "stdafx.h"
+
+#include "Sprite.h"
 #include "ZoneMap.h"
+#include "MapInfo.h"
 
-
-CZoneMap::CZoneMap( std::wstring mapType, UINT mapNo )
-	: m_MapType( mapType )
-	, m_MapNo( mapNo )
+CZoneMap::CZoneMap()
 {
 }
 
@@ -12,33 +12,66 @@ CZoneMap::~CZoneMap(void)
 {
 }
 
-bool CZoneMap::LoadMap()
+// ----------------------------------------------------------------
+//	SetSize
+// ----------------------------------------------------------------
+void CZoneMap::SetSize( UINT x, UINT y )
 {
-	// TODO:
-	//	vector<Sprite &> sprites = ResourceManager::GetInstance().GetSprite( m_MapInfo );
+	m_SizeX = x;
+	m_SizeY = y;
 
-	CMapInfo mapInfo ( m_MapType );
-	MapHeader mapHeader = mapInfo.GetHeader();
-	m_MapData = mapInfo.GetMapData( m_MapNo );
+	std::vector<CSprite *> row;
+	for ( UINT i = 0; i < x; ++i )
+		m_Sprites.push_back( row );
+}
 
-	/*
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_LEFT_01.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_LEFT_02.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_LEFT_03.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_RIGHT_01.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_RIGHT_02.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_RIGHT_03.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_UP_01.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_UP_02.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_UP_03.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_DOWN_01.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_DOWN_02.png" ) );
-	m_Sprites.push_back( CSprite::Create( L"CHARACTOR_WALK_DOWN_03.png" ) );
-	*/
+
+// ----------------------------------------------------------------
+//	AddSprite
+// ----------------------------------------------------------------
+void CZoneMap::AddSprite( int row, CSprite * sprite )
+{
+	m_Sprites[row].push_back( sprite );
+}
+
+
+// ----------------------------------------------------------------
+//	Update
+// ----------------------------------------------------------------
+bool CZoneMap::Update( float x, float y )
+{
+	m_PositionX = x;
+	m_PositionY = y;
+
 	return true;
 }
 
-bool CZoneMap::Render()
+
+// ----------------------------------------------------------------
+//	Render
+// ----------------------------------------------------------------
+void CZoneMap::Render()
 {
-	return false;
+	Position position = { 512.0f - m_PositionX, 384.0f - m_PositionY, BASE_TOPLEFT, DOWN };
+	for ( auto & row : m_Sprites )
+	{
+		for ( auto sprite : row )
+		{
+			sprite->SetPosition( position );
+			sprite->Render();
+		}
+	}
+}
+
+
+// ----------------------------------------------------------------
+//	Release
+// ----------------------------------------------------------------
+void CZoneMap::Release()
+{
+	for ( auto & row : m_Sprites )
+		for ( auto sprite : row )
+			SafeRelease( sprite );
+
+	m_Sprites.clear();
 }

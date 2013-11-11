@@ -12,4 +12,7 @@ public:
 	virtual bool Begin() = 0;
 	virtual bool End() = 0;
 	virtual bool Clear() = 0;
+
+	virtual long GetWidth() const = 0;
+	virtual long GetHeight() const = 0;
 };

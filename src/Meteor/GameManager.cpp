@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameManager.h"
 #include "InputManager.h"
+#include "ResourceManager.h"
 #include "D2DRenderer.h"
 #include "D2DText.h"
 #include <Mmsystem.h>
@@ -12,6 +13,8 @@ CGameManager::CGameManager(void)
 	: m_Scene(nullptr)
 	, m_StartTime(0)
 	, m_LastTime(0)
+	, m_Width(0)
+	, m_Height(0)
 {
 }
 
@@ -30,7 +33,11 @@ CGameManager::~CGameManager(void)
 // ----------------------------------------------------------------
 bool CGameManager::Init()
 {
-	CD2DRenderer::GetInstance().Init();
+	IRenderer & renderer = CD2DRenderer::GetInstance();
+
+	renderer.Init();
+	m_Width = renderer.GetWidth();
+	m_Height = renderer.GetHeight();
 
 	m_Scene = new CScene();
 	m_LastTime = m_StartTime = timeGetTime();
@@ -85,6 +92,7 @@ bool CGameManager::Process()
 // ----------------------------------------------------------------
 void CGameManager::Release()
 {
+	CResourceManager::GetInstance().Clear();
 	SafeDelete( m_Scene );
 	SafeDelete( m_Fps );
 }

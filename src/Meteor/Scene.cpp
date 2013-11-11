@@ -1,17 +1,25 @@
 #include "stdafx.h"
 #include "Scene.h"
 #include "InputManager.h"
+#include "ResourceManager.h"
 
 CScene::CScene(void)
+	: m_Zone( nullptr )
 {
 	m_PlayerCharacter.LoadAnimation();
+
+	CZoneInfo * zoneInfo = CResourceManager::GetInstance().GetZoneInfo( L"zone_village" );
+	m_Zone = zoneInfo->CreateZone();
+	m_Zone->Enter( &m_PlayerCharacter, nullptr );
+	SafeRelease( zoneInfo );
 }
 
 CScene::~CScene(void)
 {
+	SafeDelete( m_Zone );
 }
 	
-void CScene::Update( float deltaTime )
+bool CScene::Update( float deltaTime )
 {
 	switch ( CInputManager::GetInstance().GetKeyState( VK_LEFT ) )
 	{
@@ -72,10 +80,15 @@ void CScene::Update( float deltaTime )
 	default:
 		break;
 	}
+
 	m_PlayerCharacter.Update( deltaTime );
+	m_Zone->Update( deltaTime, static_cast<float>( m_PlayerCharacter.GetX() ), static_cast<float>( m_PlayerCharacter.GetY() ) );
+
+	return true;
 }
 
 void CScene::Render()
 {
+	m_Zone->Render();
 	m_PlayerCharacter.Render();
 }

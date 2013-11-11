@@ -1,9 +1,12 @@
 #pragma once
 
-#include "Sprite.h"
-#include "MapInfo.h"
+#include "IResource.h"
 #include <vector>
 #include <string>
+
+class CSprite;
+class CMapInfo;
+class CMapData;
 
 // ================================================================
 //	CZoneMap
@@ -11,19 +14,23 @@
 class CZoneMap
 {
 public:
-	CZoneMap( std::wstring mapType, UINT mapNo );
+	CZoneMap();
 	~CZoneMap(void);
 
-	bool LoadMap();
-	void Update( float x, float y );
-	bool Render();
+	void SetSize( UINT x, UINT y );
+	void AddSprite( int row, CSprite * sprite );
+	bool Update( float x, float y );
+	void Render();
+
+	// --------------------------------
+	//	IResource interface
+	// --------------------------------
+	void Release();
 
 private:
-	int						m_X, 
-							m_Y;
-	std::vector<CSprite *>	m_Sprites;
-	CMapInfo *				m_MapInfo;
-	std::wstring			m_MapType;
-	UINT					m_MapNo;
-	CMapData *				m_MapData;
+	UINT					m_SizeX;
+	UINT					m_SizeY;
+	float					m_PositionX;
+	float					m_PositionY;
+	std::vector<std::vector<CSprite *>>	m_Sprites;
 };

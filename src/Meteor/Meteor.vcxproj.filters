@@ -54,19 +54,7 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="MapData.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="MapInfo.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Zone.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneInfo.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneMap.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
@@ -75,11 +63,26 @@
     <ClCompile Include="Fps.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationInfo.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationInfo.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MapInfo.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneInfo.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MapData.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteInfo.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneMap.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,19 +165,7 @@
     <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="MapData.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="MapInfo.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Zone.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoneInfo.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoneMap.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="BaseWindow.h">
@@ -193,7 +184,25 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="AnimationInfo.h">
-      <Filter>Game</Filter>
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MapInfo.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneInfo.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MapData.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteInfo.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneMap.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +227,9 @@
     </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{865dfa89-9a89-4831-b419-fce7420fbe78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{0f1df1e8-7280-40ef-a375-43f456f33d31}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

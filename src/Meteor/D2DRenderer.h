@@ -24,6 +24,9 @@ public:
 	bool End();
 	bool Clear();
 
+	long GetWidth() const { return m_Width; }
+	long GetHeight() const { return m_Height; }
+
 	// --------------------------------
 	//	GetInstance
 	// --------------------------------
@@ -40,4 +43,6 @@ private:
 
 	ID2D1Factory *			m_ipD2DFactory;
 	ID2D1HwndRenderTarget *	m_ipRenderTarget;
+	long					m_Width;
+	long					m_Height;
 };

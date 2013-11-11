@@ -3,17 +3,7 @@
 #pragma once
 
 #include "Animation.h"
-
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-	UP_LEFT,
-	UP_RIGHT,
-	DOWN_LEFT,
-	DOWN_RIGHT
-};
+#include "Position.h"
 
 // 게임상의 각 개체
 class CGameObject
@@ -25,22 +15,19 @@ public:
 	virtual bool Update( float deltaTime );
 	bool Render();
 	
-	bool SetPosition(int x, int y) {
-		m_X = x;
-		m_Y = y;
-	}
+	void SetPosition( float x, float y ) { m_Position.x = x; m_Position.y = y; }
+	void SetDirection( Direction direction ) { m_Position.direction = direction; }
+	void SetPosition( float x, float y, Direction direction ) { SetPosition( x, y ); SetDirection( direction ); }
 
-	bool Move(int x, int y) { return false; }
-	int GetX() const { return m_X; }
-	int GetY() const { return m_Y; }
-	Direction GetDirection() { return m_Direction; }
-	void SetDirection( Direction direction ) { m_Direction = direction; }
+	float GetX() const { return m_Position.x; }
+	float GetY() const { return m_Position.y; }
+	Direction GetDirection() const { return m_Position.direction; }
+	Position GetPosition() const { return m_Position; }
+	virtual bool Move(float x, float y);
 	virtual CAnimation * GetAnimation() const = 0;
 
 protected:
-	int m_X;
-	int m_Y;
-	Direction m_Direction;
+	Position m_Position;
 	std::vector<CAnimation *> m_Animation;
 
 	bool IsCanMove(int x, int y); // 해당 좌표의 이동 가능 여부

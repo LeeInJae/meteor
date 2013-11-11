@@ -4,5 +4,6 @@
 #include <string>
 
 typedef std::wstring ResourceId;
+typedef int InstanceId;
 
 const ResourceId MAP_VILLAGE = L"MAP_VILLAGE";

@@ -10,10 +10,13 @@
 #include "IResource.h"
 #include "IResourceManager.h"
 
-#include "Animation.h"
-#include "ZoneMap.h"
 #include <vector>
 #include <map>
+
+class CSpriteInfo;
+class CAnimationInfo;
+class CMapInfo;
+class CZoneInfo;
 
 class CResourceManager : public IResourceManager
 {
@@ -27,9 +30,10 @@ public:
 	// --------------------------------
 	//	IResourceManager interface
 	// --------------------------------
-	CSprite *		GetSprite( ResourceId spriteId );
-	CAnimation *	GetAnimation( ResourceId animationId );
-	CZoneMap *		GetMap( ResourceId mapId );
+	CSpriteInfo *		GetSpriteInfo( ResourceId spriteId );
+	CAnimationInfo *	GetAnimationInfo( ResourceId animationId );
+	CZoneInfo *			GetZoneInfo( ResourceId zoneId );
+	CMapInfo *			GetMapInfo( ResourceId mapId );
 
 	// --------------------------------
 	//	GetInstance
@@ -37,12 +41,15 @@ public:
 	static CResourceManager & GetInstance();
 
 private:
+	friend class CGameManager;
 	CResourceManager() {};
 	CResourceManager( const CResourceManager & );
 	CResourceManager & operator=( const CResourceManager & );
 	~CResourceManager();
 
 	bool LoadResource( ResourceId id );
+	void Clear();
 
 	std::map<ResourceId, IResource *> m_ResourceMap;
+	std::map<InstanceId, IResource *> m_InstanceMap;
 };

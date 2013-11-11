@@ -3,10 +3,10 @@
 
 #include "IResource.h"
 #include "MapData.h"
-#include "Sprite.h"
-
 #include <string>
 #include <vector>
+
+class CZoneMap;
 
 // ----------------------------------------------------------------
 //	MapHeader
@@ -35,11 +35,11 @@ struct TileData
 class CMapInfo : public IResource
 {
 public:
-	CMapInfo( std::wstring mapType );
+	CMapInfo();
 	~CMapInfo(void);
 
-	bool LoadResource();
-	void Release();
+	bool LoadResource( std::wstring mapType );
+	CZoneMap * CreateMap();
 
 	MapHeader GetHeader() { return m_Header; };
 	std::vector< TileData > GetTiles() { return m_Tiles; };
@@ -50,11 +50,15 @@ public:
 			return nullptr;
 	}
 
+	// --------------------------------
+	//	IResource interface
+	// --------------------------------
+	void Release();
+
 private:
+	friend class CResourceManager;
 	bool LoadTileData();
 	bool LoadMaps();
-
-	std::wstring				m_MapType;
 
 	MapHeader					m_Header;	//	Map Header		( 16 byte		)
 	std::vector< TileData >		m_Tiles;	//	TileInfo list	(  8 byte * N	)

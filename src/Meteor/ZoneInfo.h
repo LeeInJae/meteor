@@ -2,8 +2,9 @@
 
 #include "IResource.h"
 #include "ZoneMap.h"
-
 #include <string>
+
+class CZone;
 
 struct ZoneHeader
 {
@@ -28,20 +29,22 @@ struct ObjectData
 class CZoneInfo : public IResource
 {
 public:
-	CZoneInfo( std::wstring zoneId );
+	CZoneInfo();
 	~CZoneInfo(void);
 
-	bool LoadResource();
-	void Release();
+	bool LoadResource( std::wstring zoneId );
+	CZone * CreateZone();
+	//ZoneHeader * GetHeader() { return &m_Header; }
+	//std::list< ObjectData * > * GetObjects() { return &m_Objects; }
 
-	ZoneHeader * GetHeader() { return &m_Header; }
-	std::list< ObjectData > * GetObjects() { return &m_Objects; }
+	// --------------------------------
+	//	IResource interface
+	// --------------------------------
+	void Release();
 
 private:
 	bool LoadMap();
 	bool LoadObjects();
-
-	std::wstring			m_ZoneId;
 
 	ZoneHeader				m_Header;	//	Zone Header	( 40 byte )
 	std::list< ObjectData >	m_Objects;	//	Object list	( 56 byte )
