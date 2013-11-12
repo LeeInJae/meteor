@@ -13,6 +13,7 @@ CGameObject::~CGameObject(void)
 
 bool CGameObject::Update( float deltaTime )
 {
+	// agebreak : 애니메이션 객체가 없을 경우의 방어처리가 되어 있지 않음. 
 	CAnimation * animation = GetAnimation();
 	animation->Update( deltaTime );
 
@@ -21,6 +22,7 @@ bool CGameObject::Update( float deltaTime )
 
 bool CGameObject::Render()
 {
+	// agebreak : 애니메이션 객체가 없을 경우의 방어처리가 되어 있지 않음. 
 	CAnimation * animation = GetAnimation();
 	animation->Render();
 

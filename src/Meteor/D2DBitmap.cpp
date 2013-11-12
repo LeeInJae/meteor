@@ -26,6 +26,8 @@ CD2DBitmap::CD2DBitmap()
 CD2DBitmap::~CD2DBitmap()
 {
 	Release();
+	
+	// agebreak : static 변수로 만들었는데, 소멸자에서 Release를 해줘버리면??
 	SafeRelease( g_pWICFactory );
 }
 

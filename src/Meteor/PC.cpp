@@ -42,10 +42,11 @@ bool CPC::Update( float deltaTime )
 	CGameObject::Update( deltaTime );
 
 	if ( m_Status == WALK )
-	{
+	{	
 		switch( m_Position.direction )
 		{
 		case LEFT:
+			// agebreak : 굳이 1000을 나눠줄 필요 없어, deltaTime의 초단위로 받으면 더 간명해짐
 			Move( ( -WALK_SPEED ) * deltaTime * 0.001f, 0 );
 			break;
 
@@ -71,6 +72,9 @@ bool CPC::Update( float deltaTime )
 
 CAnimation * CPC::GetAnimation() const
 {
+
+	// agebreak : 애니메이션 리스트에 순서대로 방향이 들어가 있다고 가정하는 코드는 좋지 못함
+	// 키값을 가진 Map의 형태로 만드는것이 더 좋음 
 	CAnimation * animation = m_Animation[3];
 
 	switch( m_Position.direction )

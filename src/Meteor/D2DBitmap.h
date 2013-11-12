@@ -8,6 +8,8 @@
 #pragma once
 
 #include "IResource.h"
+
+// agebreak : 윈도우 기본 헤더들은 stdafx.h에 넣으면, 프리컴파일이 되기 때문에 컴파일 속도가 향상됨
 #include <string>
 #include <wincodec.h>
 #include <d2d1.h>
