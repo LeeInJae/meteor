@@ -115,21 +115,7 @@ bool CResourceManager::LoadResource( ResourceId id )
 	if ( m_ResourceMap[id] )
 		return true;
 
-	if ( ( id == L"CHARACTER_WALK_LEFT_01.png" )
-		|| ( id == L"CHARACTER_WALK_LEFT_02.png" )
-		|| ( id == L"CHARACTER_WALK_LEFT_03.png" )
-		|| ( id == L"CHARACTER_WALK_RIGHT_01.png" )
-		|| ( id == L"CHARACTER_WALK_RIGHT_02.png" )
-		|| ( id == L"CHARACTER_WALK_RIGHT_03.png" )
-		|| ( id == L"CHARACTER_WALK_UP_01.png" )
-		|| ( id == L"CHARACTER_WALK_UP_02.png" )
-		|| ( id == L"CHARACTER_WALK_UP_03.png" )
-		|| ( id == L"CHARACTER_WALK_DOWN_01.png" )
-		|| ( id == L"CHARACTER_WALK_DOWN_02.png" )
-		|| ( id == L"CHARACTER_WALK_DOWN_03.png" )
-		|| ( id == L"test_tile.png" )
-		|| ( id == L"test_tile2.png" ) )
-
+	if ( id.find( L".png" ) != std::wstring::npos )
 	{
 		CD2DBitmap * bitmap = new CD2DBitmap();
 		bitmap->LoadResource( id );

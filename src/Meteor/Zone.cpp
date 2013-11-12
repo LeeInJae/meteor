@@ -37,7 +37,7 @@ void CZone::Render()
 
 void CZone::Enter( CPC * player, CZone * from )
 {
-	player->SetPosition( 300.0f, 300.0f );
+	player->SetPosition( 512.0f, 384.0f );
 }
 
 

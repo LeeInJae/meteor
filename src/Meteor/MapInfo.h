@@ -24,8 +24,9 @@ struct MapHeader
 // ----------------------------------------------------------------
 struct TileData
 {
-	float	m_TileX;
-	float	m_TileY;
+	wchar_t m_FileName[32];
+	//float	m_TileX;
+	//float	m_TileY;
 };
 
 
@@ -38,7 +39,7 @@ public:
 	CMapInfo();
 	~CMapInfo(void);
 
-	bool LoadResource( std::wstring mapType );
+	bool LoadResource( ResourceId mapId );
 	CZoneMap * CreateMap();
 
 	MapHeader GetHeader() { return m_Header; };
@@ -55,11 +56,22 @@ public:
 	// --------------------------------
 	void Release();
 
+
+	// --------------------------------
+	//	For MapEditor
+	// --------------------------------
+	void SampleData();
+	void SetTileSize( UINT tileWidth, UINT tileHeight );
+	void AddTile( std::wstring fileName );
+	void CreateMapData( UINT column, UINT row );
+	bool SaveResource( std::wstring fileName );
+
 private:
 	friend class CResourceManager;
 	bool LoadTileData();
 	bool LoadMaps();
 
+	ResourceId					m_MapId;
 	MapHeader					m_Header;	//	Map Header		( 16 byte		)
 	std::vector< TileData >		m_Tiles;	//	TileInfo list	(  8 byte * N	)
 	std::vector< CMapData * >	m_Maps;		//	Map (Tile list)	(  4 byte * M	)
