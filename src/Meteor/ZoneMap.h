@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IResource.h"
+#include "Position.h"
 #include <vector>
 #include <string>
 
@@ -19,7 +20,7 @@ public:
 
 	void SetSize( UINT x, UINT y );
 	void AddSprite( int row, CSprite * sprite );
-	bool Update( float x, float y );
+	bool Update( Position & playerPosition );
 	void Render();
 
 	// --------------------------------
@@ -30,7 +31,6 @@ public:
 private:
 	UINT					m_SizeX;
 	UINT					m_SizeY;
-	float					m_PositionX;
-	float					m_PositionY;
+	Position				m_Position;
 	std::vector<std::vector<CSprite *>>	m_Sprites;
 };

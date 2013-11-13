@@ -18,8 +18,8 @@ public:
 	CZone( std::wstring id );
 	virtual ~CZone(void);
 	
-	bool Update( float deltaTime, float x, float y );
-	void Render();
+	bool Update( float deltaTime, Position & PlayerPosition );
+	void Render( Position & cameraPosition );
 
 	bool LoadZone();
 	void Enter( CPC * player, CZone * from );

@@ -6,6 +6,9 @@
 CScene::CScene(void)
 	: m_Zone( nullptr )
 {
+	m_CameraPosition.x = 0.0f;
+	m_CameraPosition.y = 0.0f;
+
 	m_PlayerCharacter.LoadAnimation();
 
 	CZoneInfo * zoneInfo = CResourceManager::GetInstance().GetZoneInfo( L"zone_village" );
@@ -14,11 +17,13 @@ CScene::CScene(void)
 	SafeRelease( zoneInfo );
 }
 
+
 CScene::~CScene(void)
 {
 	SafeDelete( m_Zone );
 }
-	
+
+
 bool CScene::Update( float deltaTime )
 {
 	switch ( CInputManager::GetInstance().GetKeyState( VK_LEFT ) )
@@ -82,13 +87,14 @@ bool CScene::Update( float deltaTime )
 	}
 
 	m_PlayerCharacter.Update( deltaTime );
-	m_Zone->Update( deltaTime, static_cast<float>( m_PlayerCharacter.GetX() ), static_cast<float>( m_PlayerCharacter.GetY() ) );
+	m_CameraPosition = m_PlayerCharacter.GetPosition();
+	m_Zone->Update( deltaTime, m_CameraPosition );
 
 	return true;
 }
 
 void CScene::Render()
 {
-	m_Zone->Render();
-	m_PlayerCharacter.Render();
+	m_Zone->Render( m_CameraPosition );
+	m_PlayerCharacter.Render( m_CameraPosition );
 }

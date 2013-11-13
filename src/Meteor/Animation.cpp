@@ -22,6 +22,17 @@ CAnimation::~CAnimation()
 
 
 // ----------------------------------------------------------------
+//	SetPosition
+// ----------------------------------------------------------------
+void CAnimation::SetPosition( Position & position, Position & cameraPosition )
+{
+	m_Position = position;
+	m_Position.x -= cameraPosition.x;
+	m_Position.y -= cameraPosition.y;
+}
+
+
+// ----------------------------------------------------------------
 //	LoadSprite
 // ----------------------------------------------------------------
 void CAnimation::AddSprite( CSprite * sprite )

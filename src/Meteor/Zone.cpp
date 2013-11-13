@@ -21,17 +21,21 @@ CZone::~CZone(void)
 }
 
 
-bool CZone::Update( float deltaTime, float x, float y )
+bool CZone::Update( float deltaTime, Position & playerPosition )
 {
-	return m_Map->Update( x, y );
+	m_Map->Update( playerPosition );
+	for ( auto object : m_Object )
+		object->Update( deltaTime, playerPosition );
+
+	return true;
 }
 
 
-void CZone::Render()
+void CZone::Render( Position & cameraPosition )
 {
 	m_Map->Render();
 	for ( auto object : m_Object )
-		object->Render();
+		object->Render( cameraPosition );
 }
 
 

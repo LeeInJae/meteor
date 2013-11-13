@@ -12,18 +12,18 @@ CD2DSprite::CD2DSprite()
 
 void CD2DSprite::Render()
 {
-	float left;
-	float top;
+	float left = CD2DRenderer::GetInstance().GetWidth() * 0.5f;
+	float top = CD2DRenderer::GetInstance().GetHeight() * 0.5f;
 
 	switch ( m_Position.mode )
 	{
 	case BASE_CENTER:
-		left = m_Position.x - m_ImageWidth / 2;
-		top = m_Position.y - m_ImageHeight / 2;
+		left += m_Position.x - m_ImageWidth / 2;
+		top += m_Position.y - m_ImageHeight / 2;
 		break;
 	case BASE_TOPLEFT:
-		left = m_Position.x;
-		top = m_Position.y;
+		left += m_Position.x;
+		top += m_Position.y;
 		break;
 	default:
 		break;

@@ -38,10 +38,11 @@ void CZoneMap::AddSprite( int row, CSprite * sprite )
 // ----------------------------------------------------------------
 //	Update
 // ----------------------------------------------------------------
-bool CZoneMap::Update( float x, float y )
+bool CZoneMap::Update( Position & playerPosition )
 {
-	m_PositionX = x;
-	m_PositionY = y;
+	m_Position.x = -playerPosition.x;
+	m_Position.y = -playerPosition.y;
+	m_Position.mode = BASE_TOPLEFT;
 
 	return true;
 }
@@ -52,12 +53,11 @@ bool CZoneMap::Update( float x, float y )
 // ----------------------------------------------------------------
 void CZoneMap::Render()
 {
-	Position position = { 512.0f - m_PositionX, 384.0f - m_PositionY, BASE_TOPLEFT, DOWN };
 	for ( auto & row : m_Sprites )
 	{
 		for ( auto sprite : row )
 		{
-			sprite->SetPosition( position );
+			sprite->SetPosition( m_Position );
 			sprite->Render();
 		}
 	}

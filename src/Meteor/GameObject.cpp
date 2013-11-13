@@ -4,6 +4,7 @@
 
 CGameObject::CGameObject(void)
 {
+	m_Position.mode = BASE_CENTER;
 	m_Position.direction = DOWN;
 }
 
@@ -11,9 +12,8 @@ CGameObject::~CGameObject(void)
 {
 }
 
-bool CGameObject::Update( float deltaTime )
+bool CGameObject::Update( float deltaTime, Position & playerPosition )
 {
-	// agebreak : 애니메이션 객체가 없을 경우의 방어처리가 되어 있지 않음. 
 	CAnimation * animation = GetAnimation();
 	assert( animation );
 
@@ -23,20 +23,22 @@ bool CGameObject::Update( float deltaTime )
 	return true;
 }
 
-bool CGameObject::Render()
+bool CGameObject::Render( Position & cameraPosition )
 {
-	// agebreak : 애니메이션 객체가 없을 경우의 방어처리가 되어 있지 않음. 
 	CAnimation * animation = GetAnimation();
 	assert( animation );
 
 	if ( animation )
+	{
+		animation->SetPosition( m_Position, cameraPosition );
 		animation->Render();
+	}
 
 	return true;
 }
 
 
-bool CGameObject::Move(float x, float y)
+bool CGameObject::Move( float x, float y )
 {
 	m_Position.x += x;
 	m_Position.y += y;

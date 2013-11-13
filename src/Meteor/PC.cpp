@@ -29,7 +29,7 @@ bool CPC::LoadAnimation()
 			static_cast<float>( CGameManager::GetInstance().GetWidth() ) / 2,
 			static_cast<float>( CGameManager::GetInstance().GetHeight() ) / 2,
 			BASE_CENTER, DOWN };
-		animation->SetPosition( position );
+		animation->SetPosition( position, position );
 		m_Animation.push_back( animation );
 		SafeRelease( animationInfo );
 	}
@@ -39,7 +39,7 @@ bool CPC::LoadAnimation()
 
 bool CPC::Update( float deltaTime )
 {
-	CGameObject::Update( deltaTime );
+	CGameObject::Update( deltaTime, m_Position );
 
 	if ( m_Status == WALK )
 	{	

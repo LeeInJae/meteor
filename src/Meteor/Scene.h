@@ -13,6 +13,7 @@ public:
 	void Render();
 
 private:
+	Position m_CameraPosition;
 	CPC		m_PlayerCharacter;
 	CZone *	m_Zone;
 };

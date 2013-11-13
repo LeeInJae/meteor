@@ -19,7 +19,7 @@ public:
 	//	CAnimation function
 	// --------------------------------
 	void SetSpeed( int fps ) { m_Fps = fps; }
-	void SetPosition( Position position ) { m_Position = position; }
+	void SetPosition( Position & position, Position & cameraPosition );
 	void AddSprite( CSprite * sprite );
 	bool Update( float deltaTime );
 	void Render();
