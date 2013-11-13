@@ -32,7 +32,6 @@ public:
 	CZoneInfo();
 	~CZoneInfo(void);
 
-	bool LoadResource( std::wstring zoneId );
 	CZone * CreateZone();
 	//ZoneHeader * GetHeader() { return &m_Header; }
 	//std::list< ObjectData * > * GetObjects() { return &m_Objects; }
@@ -40,6 +39,7 @@ public:
 	// --------------------------------
 	//	IResource interface
 	// --------------------------------
+	bool LoadResource( ResourceId id );
 	void Release();
 
 private:

@@ -96,11 +96,15 @@ CResourceManager & CResourceManager::GetInstance()
 // ----------------------------------------------------------------
 void CResourceManager::ReleaseResource( IResource * resource )
 {
+	assert( resource );
+	if ( resource == nullptr )
+		return;
+
 	resource->m_ReferenceCount--;
 	if ( resource->m_ReferenceCount > 0 )
 		return;
 
-	if ( m_ResourceMap.erase( resource->m_Key ) > 0 )
+	if ( m_ResourceMap.erase( resource->m_Id ) > 0 )
 		delete resource;
 }
 
@@ -121,8 +125,7 @@ bool CResourceManager::LoadResource( ResourceId id )
 		bitmap->LoadResource( id );
 		resource = bitmap;
 	}
-
-	if ( ( id == L"character_walk_left_01" )
+	else if ( ( id == L"character_walk_left_01" )
 		|| ( id == L"character_walk_left_02" )
 		|| ( id == L"character_walk_left_03" )
 		|| ( id == L"character_walk_right_01" )
@@ -139,8 +142,7 @@ bool CResourceManager::LoadResource( ResourceId id )
 		spriteInfo->LoadResource( id );
 		resource = spriteInfo;
 	}
-
-	if ( ( id == L"character_walk_left" )
+	else if ( ( id == L"character_walk_left" )
 		|| ( id == L"character_walk_right" )
 		|| ( id == L"character_walk_up" )
 		|| ( id == L"character_walk_down" ) )
@@ -149,25 +151,23 @@ bool CResourceManager::LoadResource( ResourceId id )
 		animationInfo->LoadResource( id );
 		resource = animationInfo;
 	}
-
-	if ( id == L"zone_village" )
+	else if ( id == L"zone_village" )
 	{
 		CZoneInfo * zoneInfo = new CZoneInfo();
-		zoneInfo->LoadResource( L"zone_village" );
+		zoneInfo->LoadResource( id );
 		resource = zoneInfo;
 	}
-
-	if( id == L"map_village" )
+	else if( id == L"map_village" )
 	{
 		CMapInfo * mapInfo = new CMapInfo();
-		mapInfo->LoadResource( L"map_village" );
+		mapInfo->LoadResource( id );
 		resource = mapInfo;
 	}
 
 	if ( resource )
 	{
+		resource->m_Id= id;
 		m_ResourceMap[id] = resource;
-		resource->m_Key = id;
 		return true;
 	}
 

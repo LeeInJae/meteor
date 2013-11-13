@@ -13,20 +13,18 @@ class CSprite;
 class CAnimation
 {
 public:
+	CAnimation();
+	virtual ~CAnimation();
 	// --------------------------------
 	//	CAnimation function
 	// --------------------------------
 	void SetSpeed( int fps ) { m_Fps = fps; }
 	void SetPosition( Position position ) { m_Position = position; }
+	void AddSprite( CSprite * sprite );
 	bool Update( float deltaTime );
 	void Render();
-	void Release();
 
 private:
-	friend class CAnimationInfo;
-	CAnimation();
-	virtual ~CAnimation();
-	void AddSprite( CSprite * sprite );
 
 	std::vector<CSprite *> m_Sprites;
 	UINT		m_FrameNumber;

@@ -21,14 +21,17 @@ class CZoneInfo;
 class CResourceManager : public IResourceManager
 {
 public:
+	void Clear();
+
 	// --------------------------------
 	//	IResourceManager interface
 	// --------------------------------
+	bool LoadResource( ResourceId id );
 	IResource *	GetResource( ResourceId id );
 	void ReleaseResource( IResource * resource );
 
 	// --------------------------------
-	//	IResourceManager interface
+	//	Additional methods
 	// --------------------------------
 	CSpriteInfo *		GetSpriteInfo( ResourceId spriteId );
 	CAnimationInfo *	GetAnimationInfo( ResourceId animationId );
@@ -41,15 +44,10 @@ public:
 	static CResourceManager & GetInstance();
 
 private:
-	friend class CGameManager;
 	CResourceManager() {};
 	CResourceManager( const CResourceManager & );
 	CResourceManager & operator=( const CResourceManager & );
 	~CResourceManager();
 
-	bool LoadResource( ResourceId id );
-	void Clear();
-
 	std::map<ResourceId, IResource *> m_ResourceMap;
-	std::map<InstanceId, IResource *> m_InstanceMap;
 };

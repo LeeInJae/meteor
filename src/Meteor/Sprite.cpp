@@ -35,14 +35,7 @@ void CD2DSprite::Render()
 }
 
 
-void CD2DSprite::Release()
-{
-	SafeRelease( m_pD2DBitmap );
-	CResourceManager::GetInstance().ReleaseResource( this );
-}
-
-
 CD2DSprite::~CD2DSprite()
 {
-	Release();
+	SafeRelease( m_pD2DBitmap );
 }

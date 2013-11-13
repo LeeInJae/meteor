@@ -39,7 +39,6 @@ public:
 	CMapInfo();
 	~CMapInfo(void);
 
-	bool LoadResource( ResourceId mapId );
 	CZoneMap * CreateMap();
 
 	MapHeader GetHeader() { return m_Header; };
@@ -54,8 +53,8 @@ public:
 	// --------------------------------
 	//	IResource interface
 	// --------------------------------
+	bool LoadResource( ResourceId id );
 	void Release();
-
 
 	// --------------------------------
 	//	For MapEditor

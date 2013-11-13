@@ -7,7 +7,7 @@
 
 #include <string>
 
-class CSprite : public IResource
+class CSprite
 {
 public:
 	CSprite()
@@ -44,13 +44,14 @@ class CD2DSprite : public CSprite
 {
 public:
 	CD2DSprite();
-	virtual ~CD2DSprite();
-	void Release();
+	~CD2DSprite();
+
 	void Render();
 
+	void SetBaseMatrix( D2D1::Matrix3x2F baseMatrix ) { m_BaseMatrix = baseMatrix; }
+	void SetBitmap( CD2DBitmap * bitmap ) { m_pD2DBitmap = bitmap; }
+
 private:
-	friend class CSpriteInfo;
-	friend class CMapInfo;
 	CD2DBitmap *		m_pD2DBitmap;
 	D2D1::Matrix3x2F	m_BaseMatrix;
 };

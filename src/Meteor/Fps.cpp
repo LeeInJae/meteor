@@ -12,6 +12,7 @@ CFps::CFps(void)
 	, m_FrameCount1(0)
 	, m_FramePerSecond( 0.0f )
 {
+	m_Text.LoadResource( L"FPS" );
 	m_Text.SetFont( L"±¼¸²", 12.f );
 }
 

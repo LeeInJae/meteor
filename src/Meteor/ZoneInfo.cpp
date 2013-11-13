@@ -15,7 +15,7 @@ CZoneInfo::~CZoneInfo(void)
 }
 
 //  Zone 데이터 파일 로드
-bool CZoneInfo::LoadResource( ResourceId zoneId )
+bool CZoneInfo::LoadResource( ResourceId id )
 {
 	// TODO: Restore original code.
 

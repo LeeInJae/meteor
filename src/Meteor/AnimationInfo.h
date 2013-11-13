@@ -14,13 +14,13 @@ public:
 	CAnimationInfo(void);
 	~CAnimationInfo(void);
 
-	bool CAnimationInfo::LoadResource( ResourceId id );
 	CAnimation * CreateAnimation();
 
 	// --------------------------------
 	//	IResource interface
 	// --------------------------------
-	virtual void Release();
+	bool LoadResource( ResourceId id );
+	void Release();
 
 private:
 	UINT					m_Fps;

@@ -122,10 +122,10 @@ CSprite * CSpriteInfo::CreateSprite()
 	CD2DSprite * sprite = new CD2DSprite();
 	CD2DBitmap * bitmap = static_cast<CD2DBitmap *>( CResourceManager::GetInstance().GetResource( m_BitmapId ) );
 
-	sprite->m_BaseMatrix	= D2D1::Matrix3x2F::Scale( m_Width, m_Height, D2D1::Point2F( m_SpriteWidth * 0.5f, m_SpriteHeight * 0.5f ) ) * D2D1::Matrix3x2F::Translation( -m_OriginX, -m_OriginY );
-	sprite->m_ImageWidth	= m_SpriteWidth;
-	sprite->m_ImageHeight	= m_SpriteHeight;
-	sprite->m_pD2DBitmap	= bitmap;
+	sprite->SetBaseMatrix( D2D1::Matrix3x2F::Scale( m_Width, m_Height, D2D1::Point2F( m_SpriteWidth * 0.5f, m_SpriteHeight * 0.5f ) ) * D2D1::Matrix3x2F::Translation( -m_OriginX, -m_OriginY ) );
+	sprite->SetImageWidth( m_SpriteWidth );
+	sprite->SetImageHeight( m_SpriteHeight );
+	sprite->SetBitmap( bitmap );
 
 	return sprite;
 }

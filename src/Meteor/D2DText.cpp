@@ -28,8 +28,6 @@ CD2DText::CD2DText(void)
 	, m_PosX(0)
 	, m_PosY(0)
 {
-	DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED, __uuidof(m_DWriteFactory), reinterpret_cast<IUnknown**>(&m_DWriteFactory) );
-	m_pD2DRenderer->GetHwndRenderTarget()->CreateSolidColorBrush( D2D1::ColorF(m_ColorR,m_ColorG,m_ColorB), &m_Brush );
 }
 
 // ----------------------------------------------------------------
@@ -98,6 +96,19 @@ void CD2DText::Render()
 			m_pD2DRenderer->GetHwndRenderTarget()->GetSize().height),
 		m_Brush );
 }
+
+
+// ----------------------------------------------------------------
+//	LoadResource
+// ----------------------------------------------------------------
+bool CD2DText::LoadResource( ResourceId id )
+{
+	DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED, __uuidof(m_DWriteFactory), reinterpret_cast<IUnknown**>(&m_DWriteFactory) );
+	m_pD2DRenderer->GetHwndRenderTarget()->CreateSolidColorBrush( D2D1::ColorF(m_ColorR,m_ColorG,m_ColorB), &m_Brush );
+
+	return true;
+}
+
 
 // ----------------------------------------------------------------
 //	Release

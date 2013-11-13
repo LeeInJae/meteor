@@ -9,6 +9,7 @@
 
 #include "IRenderer.h"
 
+#include <wincodec.h>
 #include <d2d1.h>
 
 class CD2DRenderer : public IRenderer
@@ -32,8 +33,9 @@ public:
 	// --------------------------------
 	static CD2DRenderer & GetInstance();
 
-	ID2D1Factory * GetD2DFactory() const				{ return m_ipD2DFactory; }
-	ID2D1HwndRenderTarget * GetHwndRenderTarget() const	{ return m_ipRenderTarget; }
+	ID2D1Factory * GetD2DFactory() const				{ return m_D2DFactory; }
+	ID2D1HwndRenderTarget * GetHwndRenderTarget() const	{ return m_RenderTarget; }
+	IWICImagingFactory* GetImagingFactory() const		{ return m_ImagingFactory; }
 
 private:
 	CD2DRenderer();
@@ -41,8 +43,10 @@ private:
 	CD2DRenderer( const CD2DRenderer & );
 	CD2DRenderer & operator=( const CD2DRenderer & );
 
-	ID2D1Factory *			m_ipD2DFactory;
-	ID2D1HwndRenderTarget *	m_ipRenderTarget;
+	ID2D1Factory *			m_D2DFactory;
+	ID2D1HwndRenderTarget *	m_RenderTarget;
 	long					m_Width;
 	long					m_Height;
+
+	IWICImagingFactory *	m_ImagingFactory;
 };

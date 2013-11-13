@@ -21,16 +21,15 @@ public:
 	CD2DBitmap();
 	virtual ~CD2DBitmap();
 
-	bool			LoadResource( std::wstring path );
-	void			Release();
-
 	ID2D1Bitmap *	GetD2DBitmap() const { return m_D2DBitmap; }
 
+	// --------------------------------
+	//	IResource interface
+	// --------------------------------
+	bool LoadResource( ResourceId id );
+	void Release();
+
 private:
-	static IWICImagingFactory *	g_pWICFactory;
 	ID2D1Bitmap *				m_D2DBitmap;
 	IWICFormatConverter *		m_FmtConverter;
-
-protected:
-	std::wstring	m_Path;
 };

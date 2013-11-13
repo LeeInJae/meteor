@@ -10,12 +10,12 @@ public:
 	CSpriteInfo();
 	~CSpriteInfo();
 
-	bool LoadResource( ResourceId id );
 	CSprite * CreateSprite();
 
 	// --------------------------------
 	//	IResource interface
 	// --------------------------------
+	bool LoadResource( ResourceId id );
 	void Release();
 
 private:

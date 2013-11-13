@@ -13,7 +13,7 @@ CPC::CPC(void)
 CPC::~CPC(void)
 {
 	for ( auto animation : m_Animation )
-		animation->Release();
+		SafeDelete( animation );
 	m_Animation.clear();
 }
 
@@ -46,20 +46,19 @@ bool CPC::Update( float deltaTime )
 		switch( m_Position.direction )
 		{
 		case LEFT:
-			// agebreak : 굳이 1000을 나눠줄 필요 없어, deltaTime의 초단위로 받으면 더 간명해짐
-			Move( ( -WALK_SPEED ) * deltaTime * 0.001f, 0 );
+			Move( ( -WALK_SPEED ) * deltaTime, 0 );
 			break;
 
 		case RIGHT:
-			Move( ( WALK_SPEED ) * deltaTime * 0.001f, 0 );
+			Move( ( WALK_SPEED ) * deltaTime, 0 );
 			break;
 
 		case UP:
-			Move( 0, ( -WALK_SPEED ) * deltaTime * 0.001f );
+			Move( 0, ( -WALK_SPEED ) * deltaTime );
 			break;
 
 		case DOWN:
-			Move( 0, ( WALK_SPEED ) * deltaTime * 0.001f );
+			Move( 0, ( WALK_SPEED ) * deltaTime );
 			break;
 
 		default:

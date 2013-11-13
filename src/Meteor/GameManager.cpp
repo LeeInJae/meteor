@@ -24,7 +24,6 @@ CGameManager::CGameManager(void)
 // ----------------------------------------------------------------
 CGameManager::~CGameManager(void)
 {
-	Release();
 }
 
 
@@ -54,7 +53,7 @@ bool CGameManager::Init()
 bool CGameManager::Process()
 {
 	if ( ! m_Scene )
-		return false;
+		return true;
 
 	DWORD currentTime = timeGetTime();
 	DWORD elapsedTime = currentTime - m_LastTime;
@@ -67,7 +66,7 @@ bool CGameManager::Process()
 		CInputManager::GetInstance().UpdateKeyState();
 
 		m_Fps->Update( elapsedTime );
-		m_Scene->Update( static_cast<float>(currentTime - m_LastTime) );
+		m_Scene->Update( static_cast<float>( (currentTime - m_LastTime) ) / 1000 );
 
 		m_LastTime = currentTime;
 
@@ -89,10 +88,11 @@ bool CGameManager::Process()
 
 // ----------------------------------------------------------------
 //	Release
-// ----------------------------------------------------------------
+// ---------------------------------------------------------------
 void CGameManager::Release()
 {
 	CResourceManager::GetInstance().Clear();
+	CD2DRenderer::GetInstance().Release();
 	SafeDelete( m_Scene );
 	SafeDelete( m_Fps );
 }

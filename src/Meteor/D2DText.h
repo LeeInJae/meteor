@@ -19,12 +19,17 @@ public:
 	CD2DText(void);
 	virtual ~CD2DText(void);
 
-	void				SetPosition( float x, float y );
-	void				SetText( std::wstring text );
-	void				SetFont( std::wstring fontFace, float fontSize );
-	void				SetTextFormat();
-	void				Render();
-	void				Release();
+	void SetPosition( float x, float y );
+	void SetText( std::wstring text );
+	void SetFont( std::wstring fontFace, float fontSize );
+	void SetTextFormat();
+	void Render();
+
+	// --------------------------------
+	//	IResource interface
+	// --------------------------------
+	bool LoadResource( ResourceId id );
+	void Release();
 
 private:
 	CD2DRenderer *		m_pD2DRenderer;

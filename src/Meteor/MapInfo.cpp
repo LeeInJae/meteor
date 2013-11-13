@@ -30,7 +30,7 @@ CMapInfo::~CMapInfo(void)
 // ----------------------------------------------------------------
 //	LoadResource
 // ----------------------------------------------------------------
-bool CMapInfo::LoadResource( ResourceId mapId )
+bool CMapInfo::LoadResource( ResourceId id )
 {
 	// TODO: Restore original code.
 	SampleData();
@@ -112,10 +112,10 @@ CZoneMap * CMapInfo::CreateMap()
 			CD2DSprite * sprite = new CD2DSprite();
 			CD2DBitmap * bitmap = static_cast<CD2DBitmap *>( CResourceManager::GetInstance().GetResource( m_Tiles[tileNo].m_FileName ) );
 
-			sprite->m_BaseMatrix	= D2D1::Matrix3x2F::Translation( col * 128.0f, row * 128.0f );
-			sprite->m_ImageWidth	= bitmap->GetD2DBitmap()->GetSize().width;
-			sprite->m_ImageHeight	= bitmap->GetD2DBitmap()->GetSize().width;
-			sprite->m_pD2DBitmap	= bitmap;
+			sprite->SetBaseMatrix( D2D1::Matrix3x2F::Translation( col * 128.0f, row * 128.0f ) );
+			sprite->SetImageWidth( bitmap->GetD2DBitmap()->GetSize().width );
+			sprite->SetImageHeight( bitmap->GetD2DBitmap()->GetSize().width );
+			sprite->SetBitmap( bitmap );
 
 			map->AddSprite( row, sprite );
 		}

@@ -18,7 +18,6 @@ CAnimation::CAnimation()
 // ----------------------------------------------------------------
 CAnimation::~CAnimation()
 {
-	Release();
 }
 
 
@@ -41,7 +40,7 @@ bool CAnimation::Update( float deltaTime )
 
 	m_ElapsedTime += deltaTime;
 
-	if( m_ElapsedTime >= float( 1000.0f / m_Fps ) )
+	if( m_ElapsedTime >= float( 1.0f / m_Fps ) )
 	{
 		++m_FrameNumber;
 		m_ElapsedTime = 0;
@@ -67,11 +66,4 @@ void CAnimation::Render()
 
 	sprite->SetPosition( m_Position );
 	sprite->Render();
-}
-
-// ----------------------------------------------------------------
-//	Release
-// ----------------------------------------------------------------
-void CAnimation::Release()
-{
 }

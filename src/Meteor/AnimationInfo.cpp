@@ -12,6 +12,7 @@ CAnimationInfo::CAnimationInfo(void)
 
 CAnimationInfo::~CAnimationInfo(void)
 {
+	m_SpriteId.clear();
 }
 
 
