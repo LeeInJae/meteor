@@ -125,43 +125,30 @@ bool CResourceManager::LoadResource( ResourceId id )
 		bitmap->LoadResource( id );
 		resource = bitmap;
 	}
-	else if ( ( id == L"character_walk_left_01" )
-		|| ( id == L"character_walk_left_02" )
-		|| ( id == L"character_walk_left_03" )
-		|| ( id == L"character_walk_right_01" )
-		|| ( id == L"character_walk_right_02" )
-		|| ( id == L"character_walk_right_03" )
-		|| ( id == L"character_walk_up_01" )
-		|| ( id == L"character_walk_up_02" )
-		|| ( id == L"character_walk_up_03" )
-		|| ( id == L"character_walk_down_01" )
-		|| ( id == L"character_walk_down_02" )
-		|| ( id == L"character_walk_down_03" ) )
-	{
-		CSpriteInfo * spriteInfo = new CSpriteInfo();
-		spriteInfo->LoadResource( id );
-		resource = spriteInfo;
-	}
-	else if ( ( id == L"character_walk_left" )
-		|| ( id == L"character_walk_right" )
-		|| ( id == L"character_walk_up" )
-		|| ( id == L"character_walk_down" ) )
-	{
-		CAnimationInfo * animationInfo = new CAnimationInfo();
-		animationInfo->LoadResource( id );
-		resource = animationInfo;
-	}
-	else if ( id == L"zone_village" )
+	else if ( id.find( L"zone_" ) != std::wstring::npos )
 	{
 		CZoneInfo * zoneInfo = new CZoneInfo();
 		zoneInfo->LoadResource( id );
 		resource = zoneInfo;
 	}
-	else if( id == L"map_village" )
+	else if( id.find( L"map_" ) != std::wstring::npos )
 	{
 		CMapInfo * mapInfo = new CMapInfo();
 		mapInfo->LoadResource( id );
 		resource = mapInfo;
+	}
+	else if ( id.find( L"_0" ) != std::wstring::npos )
+	{
+		CSpriteInfo * spriteInfo = new CSpriteInfo();
+		spriteInfo->LoadResource( id );
+		resource = spriteInfo;
+	}
+	else if ( id.find( L"character_" ) != std::wstring::npos
+		|| id.find( L"skeleton_" ) != std::wstring::npos )
+	{
+		CAnimationInfo * animationInfo = new CAnimationInfo();
+		animationInfo->LoadResource( id );
+		resource = animationInfo;
 	}
 
 	if ( resource )

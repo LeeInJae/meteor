@@ -9,7 +9,14 @@ class CMonster :
 	public CCharacter
 {
 public:
-	CMonster(void);
+	CMonster( std::wstring monsterId );
 	~CMonster(void);
+
+	bool LoadAnimation();
+	bool Update( float deltaTime, Position & playerPosition );
+	CAnimation * GetAnimation() const;
+
+private:
+	std::wstring	m_MonsterId;
 };
 

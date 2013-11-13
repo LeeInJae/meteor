@@ -2,6 +2,7 @@
 #include "ZoneInfo.h"
 #include "Zone.h"
 #include "MapInfo.h"
+#include "Monster.h"
 #include "ResourceManager.h"
 
 
@@ -75,6 +76,13 @@ CZone * CZoneInfo::CreateZone()
 	CMapInfo * mapInfo = CResourceManager::GetInstance().GetMapInfo( L"map_village" );
 	zone->m_Map = mapInfo->CreateMap();
 	SafeRelease( mapInfo );
+
+	CMonster * monster = new CMonster( L"skeleton_mage" );
+	monster->LoadAnimation();
+	monster->SetPosition( 100, 50 );
+	monster->SetDirection( RIGHT );
+
+	zone->m_Object.push_back( monster );
 
 	return zone;
 }
