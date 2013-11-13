@@ -8,15 +8,15 @@ class CZone;
 
 struct ZoneHeader
 {
-	char mapType[32];
+	wchar_t mapType[32];
 	UINT mapNo;
 	UINT numOfObject;
 };
 
 struct ObjectData
 {
-	char objectType[16];
-	char objectId[32];
+	wchar_t objectType[16];
+	wchar_t objectId[32];
 	USHORT objectX;
 	USHORT objectY;
 	USHORT objectDirection;
