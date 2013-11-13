@@ -8,6 +8,7 @@
 #pragma once
 
 #include "IRenderer.h"
+#include "Position.h"
 
 #include <wincodec.h>
 #include <d2d1.h>
@@ -27,6 +28,8 @@ public:
 
 	long GetWidth() const { return m_Width; }
 	long GetHeight() const { return m_Height; }
+	void SetCameraPosition( float x, float y ) { m_CameraPosition.x = x; m_CameraPosition.y = y; }
+	const Position & CameraPosition() const { return m_CameraPosition; }
 
 	// --------------------------------
 	//	GetInstance
@@ -47,6 +50,7 @@ private:
 	ID2D1HwndRenderTarget *	m_RenderTarget;
 	long					m_Width;
 	long					m_Height;
+	Position				m_CameraPosition;
 
 	IWICImagingFactory *	m_ImagingFactory;
 };

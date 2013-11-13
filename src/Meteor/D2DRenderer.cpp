@@ -112,6 +112,8 @@ CD2DRenderer::CD2DRenderer()
 	, m_RenderTarget(nullptr)
 	, m_ImagingFactory(nullptr)
 {
+	m_CameraPosition.x = 0.0f;
+	m_CameraPosition.y = 0.0f;
 }
 
 // ----------------------------------------------------------------
