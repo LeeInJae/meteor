@@ -13,7 +13,7 @@ CPC::CPC(void)
 CPC::~CPC(void)
 {
 	for ( auto animation : m_Animation )
-		SafeDelete( animation );
+		SafeDelete( animation.second );
 	m_Animation.clear();
 }
 
@@ -30,7 +30,8 @@ bool CPC::LoadAnimation()
 			static_cast<float>( CGameManager::GetInstance().GetHeight() ) / 2,
 			BASE_CENTER, DOWN };
 		animation->SetPosition( position, position );
-		m_Animation.push_back( animation );
+		//m_Animation.push_back( animation );
+		m_Animation[animationId] = animation;
 		SafeRelease( animationInfo );
 	}
 
@@ -71,29 +72,26 @@ bool CPC::Update( float deltaTime )
 
 CAnimation * CPC::GetAnimation() const
 {
-
-	// agebreak : 애니메이션 리스트에 순서대로 방향이 들어가 있다고 가정하는 코드는 좋지 못함
-	// 키값을 가진 Map의 형태로 만드는것이 더 좋음 
-	CAnimation * animation = m_Animation[3];
-
+	std::wstring animationId;
 	switch( m_Position.direction )
 	{
 	case LEFT:
-		animation = m_Animation[0];
+		animationId = L"character_walk_left";
 		break;
 
 	case RIGHT:
-		animation = m_Animation[1];
+		animationId = L"character_walk_right";
 		break;
 
 	case UP:
-		animation = m_Animation[2];
+		animationId = L"character_walk_up";
 		break;
 
 	case DOWN:
-		animation = m_Animation[3];
+		animationId = L"character_walk_down";
 		break;
 	}
+	CAnimation * animation = m_Animation.find(animationId)->second;
 
 	if ( m_Status == WALK )
 		animation->SetSpeed( 8 );

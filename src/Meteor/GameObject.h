@@ -26,7 +26,7 @@ public:
 
 protected:
 	Position m_Position;
-	std::vector<CAnimation *> m_Animation;
+	std::map<std::wstring, CAnimation *> m_Animation;
 
 	bool IsCanMove(int x, int y); // 해당 좌표의 이동 가능 여부
 };
