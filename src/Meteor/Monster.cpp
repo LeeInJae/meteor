@@ -54,7 +54,7 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 	//  시야내에 있을시 플레이어 쫓기
 	if( distance_PC < SIGHT ){
 		m_Status = WALK;
-
+		
 		if( abs( distance_PC_X ) > abs( distance_PC_Y ) ){
 			if( distance_PC_X < 0 )	m_Position.direction = LEFT;
 			else					m_Position.direction = RIGHT;
@@ -67,6 +67,9 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 		float speed_X = ( distance_PC_X / distance_PC ) * WALK_SPEED;
 		float speed_Y = ( distance_PC_Y / distance_PC ) * WALK_SPEED;
 		Move( speed_X * deltaTime, speed_Y * deltaTime );
+	}
+	else{
+		m_Status = STAND;
 	}
 
 	return true;
