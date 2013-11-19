@@ -25,7 +25,7 @@ bool CGameObject::Update( float deltaTime, Position & playerPosition )
 	return true;
 }
 
-bool CGameObject::Render( Position & cameraPosition )
+void CGameObject::Render( Position & cameraPosition )
 {
 	CAnimation * animation = GetAnimation();
 	assert( animation );
@@ -35,8 +35,6 @@ bool CGameObject::Render( Position & cameraPosition )
 		animation->SetPosition( m_Position, cameraPosition );
 		animation->Render();
 	}
-
-	return true;
 }
 
 

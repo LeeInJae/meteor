@@ -23,7 +23,7 @@ public:
 	virtual ~CGameObject(void);
 
 	virtual bool Update( float deltaTime, Position & playerPosition );
-	bool Render( Position & cameraPosition );
+	void Render( Position & cameraPosition );
 	
 	void SetPosition( float x, float y ) { m_Position.x = x; m_Position.y = y; }
 	void SetDirection( Direction direction ) { m_Position.direction = direction; }

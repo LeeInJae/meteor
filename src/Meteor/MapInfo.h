@@ -45,7 +45,7 @@ public:
 	std::vector< TileData > GetTiles() { return m_Tiles; };
 	CMapData * GetMapData( UINT mapNo ){
 		if( mapNo < m_Header.m_MapCount )
-			return m_Maps[mapNo];
+			return m_Maps[(int)mapNo];
 		else
 			return nullptr;
 	}

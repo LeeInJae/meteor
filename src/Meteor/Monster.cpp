@@ -6,8 +6,9 @@
 
 #include <cmath>
 
-#define WALK_SPEED	64
-#define SIGHT		256 // 몬스터 시야
+#define SKELETON_MAGE_WALK_SPEED	64
+#define SKELETON_MAGE_SIGHT			256
+#define SKELETON_MAGE_ATTACK_RANGE	64
 
 CMonster::CMonster( std::wstring monsterId )
 	:	m_MonsterId( monsterId )
@@ -53,10 +54,10 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 	float distance_PC = sqrt( pow( distance_PC_X, 2 ) + pow( distance_PC_Y, 2 ) );
 
 	//  시야내에 있을시 플레이어 쫓기
-	if( distance_PC < SIGHT ){
+	if( distance_PC <= SKELETON_MAGE_SIGHT && distance_PC > SKELETON_MAGE_ATTACK_RANGE) {
 		m_Status = WALK;
 		
-		if( abs( distance_PC_X ) > abs( distance_PC_Y ) ){
+		if( abs( distance_PC_X ) > abs( distance_PC_Y ) ) {
 			if( distance_PC_X < 0 )	m_Position.direction = LEFT;
 			else					m_Position.direction = RIGHT;
 		}
@@ -65,11 +66,17 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 			else					m_Position.direction = DOWN;
 		}
 
-		float speed_X = ( distance_PC_X / distance_PC ) * WALK_SPEED;
-		float speed_Y = ( distance_PC_Y / distance_PC ) * WALK_SPEED;
+		float speed_X = ( distance_PC_X / distance_PC ) * SKELETON_MAGE_WALK_SPEED;
+		float speed_Y = ( distance_PC_Y / distance_PC ) * SKELETON_MAGE_WALK_SPEED;
 		Move( speed_X * deltaTime, speed_Y * deltaTime );
 	}
-	else{
+	else if( m_Status == STAND && distance_PC <= SKELETON_MAGE_ATTACK_RANGE ) {
+		m_Status = STAND;
+	}
+	else if( m_Status == WALK && distance_PC <= SKELETON_MAGE_ATTACK_RANGE - 10 ){
+		m_Status = STAND;
+	}
+	else {
 		m_Status = STAND;
 	}
 
