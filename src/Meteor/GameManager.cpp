@@ -4,15 +4,14 @@
 #include "ResourceManager.h"
 #include "D2DRenderer.h"
 #include "D2DText.h"
-#include <Mmsystem.h>
 
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
 CGameManager::CGameManager(void)
 	: m_Scene(nullptr)
-	, m_StartTime(0)
-	, m_LastTime(0)
+	, m_StartTime(std::chrono::system_clock::now())
+	, m_LastTime(std::chrono::system_clock::now())
 	, m_Width(0)
 	, m_Height(0)
 {
@@ -39,7 +38,7 @@ bool CGameManager::Init()
 	m_Height = renderer.GetHeight();
 
 	m_Scene = new CScene();
-	m_LastTime = m_StartTime = timeGetTime();
+	m_LastTime = m_StartTime = std::chrono::system_clock::now();
 
 	m_Fps = new CFps();
 
@@ -55,8 +54,8 @@ bool CGameManager::Process()
 	if ( ! m_Scene )
 		return true;
 
-	DWORD currentTime = timeGetTime();
-	DWORD elapsedTime = currentTime - m_LastTime;
+	std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
+	std::chrono::duration<float> elapsedTime = currentTime - m_LastTime;
 
 	//if ( elapsedTime > ( 1000 / 60 ) )
 	{
@@ -65,8 +64,8 @@ bool CGameManager::Process()
 		// --------------------------------
 		CInputManager::GetInstance().UpdateKeyState();
 
-		m_Fps->Update( elapsedTime );
-		m_Scene->Update( static_cast<float>( (currentTime - m_LastTime) ) / 1000 );
+		m_Fps->Update( elapsedTime.count() );
+		m_Scene->Update( elapsedTime.count() );
 
 		m_LastTime = currentTime;
 

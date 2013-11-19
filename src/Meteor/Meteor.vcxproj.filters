@@ -84,6 +84,9 @@
     <ClCompile Include="ZoneMap.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Square.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -202,6 +205,21 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Position.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventListener.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSubject.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventSubject.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

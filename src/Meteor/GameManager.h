@@ -4,6 +4,7 @@
 #include "IGamemanager.h"
 #include "Scene.h"
 #include "Fps.h"
+#include <chrono>
 
 class CGameManager : public IGameManager
 {
@@ -36,8 +37,8 @@ private:
 	CFps *		m_Fps;
 
 	// Time and Fps
-	DWORD	m_StartTime;
-	DWORD	m_LastTime;
+	std::chrono::system_clock::time_point	m_StartTime;
+	std::chrono::system_clock::time_point	m_LastTime;
 
 	// Window Size
 	long	m_Width;

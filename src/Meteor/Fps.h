@@ -9,15 +9,15 @@ public:
 	~CFps(void);
 
 	double	GetFps() { return m_FramePerSecond; }
-	bool	Update( int elapsedTime );
+	bool	Update( float elapsedTime );
 	void	Render();
 
 private:
-	DWORD	m_ElapsedTimeSum;
-	DWORD	m_ElapsedTimeSum1;
-	DWORD	m_FrameCount;
-	DWORD	m_FrameCount1;
-	double	m_FramePerSecond;
+	float	m_ElapsedTimeSum;
+	float	m_ElapsedTimeSum1;
+	float	m_FrameCount;
+	float	m_FrameCount1;
+	float	m_FramePerSecond;
 
 	CD2DText	m_Text;
 };

@@ -96,11 +96,15 @@
     </ClInclude>
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="D2DText.h" />
+    <ClInclude Include="IEventListener.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="EventSubject.h" />
+    <ClInclude Include="IEventSubject.h" />
     <ClInclude Include="IGameManager.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="InputManager.h" />
@@ -133,6 +137,7 @@
     </ClInclude>
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteInfo.h" />
+    <ClInclude Include="Square.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Zone.h" />
@@ -175,6 +180,7 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteInfo.cpp" />
+    <ClCompile Include="Square.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

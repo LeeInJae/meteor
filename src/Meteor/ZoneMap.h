@@ -18,10 +18,12 @@ public:
 	CZoneMap();
 	~CZoneMap(void);
 
-	void SetSize( UINT x, UINT y );
+	void SetSize( UINT x, UINT y, float width, float height );
 	void AddSprite( int row, CSprite * sprite );
 	bool Update( Position & playerPosition );
 	void Render();
+
+	bool CanMove( const Position & position ) const; // 해당 좌표의 이동 가능 여부
 
 	// --------------------------------
 	//	IResource interface
@@ -31,6 +33,8 @@ public:
 private:
 	UINT					m_SizeX;
 	UINT					m_SizeY;
+	float					m_Width;
+	float					m_Height;
 	Position				m_Position;
 	std::vector<std::vector<CSprite *>>	m_Sprites;
 };

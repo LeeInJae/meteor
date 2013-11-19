@@ -28,13 +28,13 @@ CFps::~CFps(void)
 // ----------------------------------------------------------------
 //	Update
 // ----------------------------------------------------------------
-bool CFps::Update( int elapsedTime )
+bool CFps::Update( float elapsedTime )
 {
 	m_ElapsedTimeSum += elapsedTime;
 	m_FrameCount++;
-	if ( m_ElapsedTimeSum >= 1000 )
+	if ( m_ElapsedTimeSum >= 1.0f )
 	{
-		m_FramePerSecond = ( m_FrameCount + m_FrameCount1 ) * 1000.0f / ( m_ElapsedTimeSum + m_ElapsedTimeSum1 );
+		m_FramePerSecond = ( m_FrameCount + m_FrameCount1 ) / ( m_ElapsedTimeSum + m_ElapsedTimeSum1 );
 		m_ElapsedTimeSum1 = m_ElapsedTimeSum;
 		m_ElapsedTimeSum = 0;
 		m_FrameCount1 = m_FrameCount;

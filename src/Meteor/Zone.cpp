@@ -17,7 +17,9 @@ CZone::CZone( std::wstring id )
 
 CZone::~CZone(void)
 {
-	Release();
+	SafeDelete( m_Map );
+	for ( auto object : m_Object )
+		SafeDelete( object );
 }
 
 
@@ -39,45 +41,33 @@ void CZone::Render( Position & cameraPosition )
 }
 
 
+void CZone::SetMap( CZoneMap * map )
+{
+	SafeDelete( m_Map );
+	m_Map = map;
+}
+
+
+void CZone::AddObject( CGameObject * object )
+{
+	Register( object );
+	object->SetSubject( this );
+	m_Object.push_back( object );
+}
+
+
 void CZone::Enter( CPC * player, CZone * from )
 {
+	Register( player );
+	player->SetSubject( this );
 	player->SetPosition( 512.0f, 384.0f );
 }
 
-
-bool CZone::LoadZone()
+void CZone::SendEvent( CGameObject * event )
 {
-	// TODO: Move this to ZoneInfo
-	//CZoneInfo * zoneInfo = new CZoneInfo();
-	//if( ! zoneInfo->LoadResource() )
-	//{
-	//	wprintf_s(L"%s : LoadResource Fail\n", m_ZoneId);
-	//	false;
-	//}
-	////ZoneHeader * header = zoneInfo->GetHeader();
+	CEventSubject::SendEvent( event );
 
-	//// header->mapType을 wstring으로 전환
-	//size_t originalLength = strlen(header->mapType) + 1;
-	//wchar_t *_Dest = new wchar_t[32];
-	//wmemset(_Dest, 0, 32);
-	//mbstowcs_s(NULL , _Dest, originalLength, header->mapType, _TRUNCATE);
-	//std::wstring mapType = _Dest;
-	//delete []_Dest;
-
-	//m_Map = new CZoneMap( mapType , header->mapNo );
-
-	////std::list< ObjectData > * objects = zoneInfo->GetObjects();
-
-	return true;
-}
-
-
-// ----------------------------------------------------------------
-//	Release
-// ----------------------------------------------------------------
-void CZone::Release()
-{
-	SafeDelete( m_Map );
-	for ( auto object : m_Object )
-		SafeDelete( object );
+	if ( event->GetEventType() == EVENT_MOVE
+		&& ! m_Map->CanMove( event->GetPosition() ) )
+		event->SetEventType( EVENT_CANCEL );
 }

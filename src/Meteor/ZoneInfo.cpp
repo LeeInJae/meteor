@@ -74,15 +74,14 @@ CZone * CZoneInfo::CreateZone()
 	CZone * zone = new CZone();
 
 	CMapInfo * mapInfo = CResourceManager::GetInstance().GetMapInfo( L"map_village" );
-	zone->m_Map = mapInfo->CreateMap();
+	zone->SetMap( mapInfo->CreateMap() );
 	SafeRelease( mapInfo );
 
 	CMonster * monster = new CMonster( L"skeleton_mage" );
 	monster->LoadAnimation();
-	monster->SetPosition( 100, 50 );
+	monster->SetPosition( 150, 150 );
 	monster->SetDirection( RIGHT );
-
-	zone->m_Object.push_back( monster );
+	zone->AddObject( monster );
 
 	return zone;
 }

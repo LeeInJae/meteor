@@ -102,7 +102,7 @@ CZoneMap * CMapInfo::CreateMap()
 	UINT	rowSize = m_Maps[0]->m_NumOfColumn;
 	UINT	colSize = m_Maps[0]->m_NumOfRow;
 
-	map->SetSize( rowSize, colSize );
+	map->SetSize( rowSize, colSize, 128.0f, 128.0f );
 
 	for( UINT row = 0; row < rowSize; ++row )
 	{

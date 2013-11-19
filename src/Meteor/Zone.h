@@ -4,6 +4,7 @@
 #pragma once
 
 #include "IResource.h"
+#include "EventSubject.h"
 #include "GameObject.h"
 #include <string>
 #include "ZoneMap.h"
@@ -11,7 +12,7 @@
 
 class CPC;
 
-class CZone
+class CZone : public CEventSubject<CGameObject>
 {
 public:
 	CZone(void);
@@ -21,16 +22,15 @@ public:
 	bool Update( float deltaTime, Position & PlayerPosition );
 	void Render( Position & cameraPosition );
 
-	bool LoadZone();
+	void SetMap( CZoneMap * map );
+	void AddObject( CGameObject * object );
 	void Enter( CPC * player, CZone * from );
-	void SetMap( CZoneMap * map) { m_Map = map; }
 	std::list< CGameObject * > GetObject() { return m_Object; }
 	CZoneMap * GetMapData() { return m_Map; }
 
-	void Release();
+	void SendEvent( CGameObject * event );
 
 private:
-	friend class CZoneInfo;
 	int							m_Width, 
 								m_Height;
 	CPC *						m_Player;

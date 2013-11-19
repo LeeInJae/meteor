@@ -4,7 +4,7 @@
 #include "GameManager.h"
 #include "AnimationInfo.h"
 
-#define WALK_SPEED 128
+#define WALK_SPEED 192
 
 CPC::CPC(void)
 {
@@ -25,12 +25,6 @@ bool CPC::LoadAnimation()
 	{
 		CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
 		CAnimation * animation = animationInfo->CreateAnimation();
-		Position position = {
-			static_cast<float>( CGameManager::GetInstance().GetWidth() ) / 2,
-			static_cast<float>( CGameManager::GetInstance().GetHeight() ) / 2,
-			BASE_CENTER, DOWN };
-		animation->SetPosition( position, position );
-		//m_Animation.push_back( animation );
 		m_Animation[animationId] = animation;
 		SafeRelease( animationInfo );
 	}

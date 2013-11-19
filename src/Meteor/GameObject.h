@@ -4,14 +4,24 @@
 
 #include "Animation.h"
 #include "Position.h"
+#include "Square.h"
+#include "IEventSubject.h"
+#include "IEventListener.h"
+
+// TODO: Redesign with lambda and closure to cancel event
+enum EventType
+{
+	EVENT_CANCEL,
+	EVENT_MOVE,
+};
 
 // 게임상의 각 개체
-class CGameObject
+class CGameObject : public IEventListener<CGameObject>
 {
 public:
 	CGameObject(void);
 	virtual ~CGameObject(void);
-	
+
 	virtual bool Update( float deltaTime, Position & playerPosition );
 	bool Render( Position & cameraPosition );
 	
@@ -24,9 +34,20 @@ public:
 	virtual bool Move(float x, float y);
 	virtual CAnimation * GetAnimation() const = 0;
 
-protected:
-	Position m_Position;
-	std::map<std::wstring, CAnimation *> m_Animation;
+	void SetSubject( IEventSubject<CGameObject> * subject );
+	void SetEventType( EventType type ) { m_EventType = type; }
+	EventType GetEventType() const { return m_EventType; }
+	CSquare GetCollision() const { return m_Collision + m_Position; }
 
-	bool IsCanMove(int x, int y); // 해당 좌표의 이동 가능 여부
+	// --------------------------------
+	//	IEventListener
+	// --------------------------------
+	void EventHandler( CGameObject * event );
+	
+protected:
+	Position		m_Position;
+	CSquare			m_Collision;
+	EventType		m_EventType;
+	std::map<std::wstring, CAnimation *> m_Animation;
+	IEventSubject<CGameObject> * m_EventSubject;
 };

@@ -5,6 +5,10 @@
 #include "MapInfo.h"
 
 CZoneMap::CZoneMap()
+	: m_SizeX(0)
+	, m_SizeY(0)
+	, m_Width(0.0f)
+	, m_Height(0.0f)
 {
 }
 
@@ -15,10 +19,12 @@ CZoneMap::~CZoneMap(void)
 // ----------------------------------------------------------------
 //	SetSize
 // ----------------------------------------------------------------
-void CZoneMap::SetSize( UINT x, UINT y )
+void CZoneMap::SetSize( UINT x, UINT y, float width, float height )
 {
 	m_SizeX = x;
 	m_SizeY = y;
+	m_Width = x * width;
+	m_Height = y * height;
 
 	std::vector<CSprite *> row;
 	for ( UINT i = 0; i < x; ++i )
@@ -45,6 +51,15 @@ bool CZoneMap::Update( Position & playerPosition )
 	m_Position.mode = BASE_TOPLEFT;
 
 	return true;
+}
+
+
+// ----------------------------------------------------------------
+//	CanMove
+// ----------------------------------------------------------------
+bool CZoneMap::CanMove( const Position & position ) const
+{
+	return ( position.x > 128.0f && position.y > 128.0f && position.x < m_Width && position.y < m_Height );
 }
 
 
