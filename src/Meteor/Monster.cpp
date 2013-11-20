@@ -55,7 +55,7 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 
 	//  시야내에 있을시 플레이어 쫓기
 	if( distance_PC <= SKELETON_MAGE_SIGHT && distance_PC > SKELETON_MAGE_ATTACK_RANGE) {
-		m_Status = WALK;
+		m_Status = CHARACTER_WALK;
 		
 		if( abs( distance_PC_X ) > abs( distance_PC_Y ) ) {
 			if( distance_PC_X < 0 )	m_Position.direction = LEFT;
@@ -70,14 +70,14 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 		float speed_Y = ( distance_PC_Y / distance_PC ) * SKELETON_MAGE_WALK_SPEED;
 		Move( speed_X * deltaTime, speed_Y * deltaTime );
 	}
-	else if( m_Status == STAND && distance_PC <= SKELETON_MAGE_ATTACK_RANGE ) {
-		m_Status = STAND;
+	else if( m_Status == CHARACTER_STAND && distance_PC <= SKELETON_MAGE_ATTACK_RANGE ) {
+		m_Status = CHARACTER_STAND;
 	}
-	else if( m_Status == WALK && distance_PC <= SKELETON_MAGE_ATTACK_RANGE - 10 ){
-		m_Status = STAND;
+	else if( m_Status == CHARACTER_WALK && distance_PC <= SKELETON_MAGE_ATTACK_RANGE - 10 ){
+		m_Status = CHARACTER_STAND;
 	}
 	else {
-		m_Status = STAND;
+		m_Status = CHARACTER_STAND;
 	}
 
 	return true;
@@ -106,9 +106,9 @@ CAnimation * CMonster::GetAnimation() const
 	}
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
-	if ( m_Status == WALK )
+	if ( m_Status == CHARACTER_WALK )
 		animation->SetSpeed( 8 );
-	else if ( m_Status == STAND )
+	else if ( m_Status == CHARACTER_STAND )
 		animation->SetSpeed( 0 );
 
 	return animation;

@@ -36,7 +36,7 @@ bool CPC::Update( float deltaTime )
 {
 	CGameObject::Update( deltaTime, m_Position );
 
-	if ( m_Status == WALK )
+	if ( m_Status == CHARACTER_WALK )
 	{	
 		switch( m_Position.direction )
 		{
@@ -87,9 +87,9 @@ CAnimation * CPC::GetAnimation() const
 	}
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
-	if ( m_Status == WALK )
+	if ( m_Status == CHARACTER_WALK )
 		animation->SetSpeed( 8 );
-	else if ( m_Status == STAND )
+	else if ( m_Status == CHARACTER_STAND )
 		animation->SetSpeed( 0 );
 
 	return animation;

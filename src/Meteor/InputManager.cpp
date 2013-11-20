@@ -32,7 +32,7 @@ InputState CInputManager::GetKeyState( int key )
 {
 	if ( m_PreviousKeyState[key] == false && m_CurrentKeyState[key] == true )
 	{
-		return INPUT_DOWN;
+		return INPUT_PRESSED | INPUT_DOWN;
 	}
 	else if ( m_PreviousKeyState[key] == true && m_CurrentKeyState[key] == true )
 	{
@@ -40,7 +40,7 @@ InputState CInputManager::GetKeyState( int key )
 	}
 	else if ( m_PreviousKeyState[key] == true && m_CurrentKeyState[key] == false )
 	{
-		return INPUT_UP;
+		return INPUT_NOTPRESSED | INPUT_UP;
 	}
 	
 	return INPUT_NOTPRESSED;

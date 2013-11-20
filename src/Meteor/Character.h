@@ -6,15 +6,15 @@
 #include "Skill.h"
 
 enum CharacterStatus {
-	DEAD,
-	STAND,
-	WALK,
-	RUN,
-	ATTACK,
-	CASTING,
-	DEFENCE,
-	AVOID,
-	STUN
+	CHARACTER_DEAD,
+	CHARACTER_STAND,
+	CHARACTER_WALK,
+	CHARACTER_RUN,
+	CHARACTER_ATTACK,
+	CHARACTER_CASTING,
+	CHARACTER_DEFENCE,
+	CHARACTER_AVOID,
+	CHARACTER_STUN,
 };
 
 // 각 캐릭터들(PC,NPC,MOB)
@@ -31,6 +31,9 @@ public:
 	int GetHp() { return m_Hp; }
 	bool IsDead() { return (m_Hp <= 0); }
 	void SetStatus( CharacterStatus status ) { m_Status = status; }
+
+	// Override
+	virtual bool Move(float x, float y);
 
 protected:
 	int m_Hp;

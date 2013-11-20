@@ -26,65 +26,33 @@ CScene::~CScene(void)
 
 bool CScene::Update( float deltaTime )
 {
-	switch ( CInputManager::GetInstance().GetKeyState( VK_LEFT ) )
+	if ( CInputManager::GetInstance().GetKeyState( VK_LEFT ) & INPUT_PRESSED )
 	{
-	case INPUT_DOWN:
 		m_PlayerCharacter.SetDirection( LEFT );
-		m_PlayerCharacter.SetStatus( WALK );
-		break;
-
-	case INPUT_UP:
-		m_PlayerCharacter.SetStatus( STAND );
-		break;
-
-	default:
-		break;
+		m_PlayerCharacter.SetStatus( CHARACTER_WALK );
 	}
-
-	switch ( CInputManager::GetInstance().GetKeyState( VK_RIGHT ) )
+	else if ( CInputManager::GetInstance().GetKeyState( VK_RIGHT ) & INPUT_PRESSED )
 	{
-	case INPUT_DOWN:
 		m_PlayerCharacter.SetDirection( RIGHT );
-		m_PlayerCharacter.SetStatus( WALK );
-		break;
-
-	case INPUT_UP:
-		m_PlayerCharacter.SetStatus( STAND );
-		break;
-
-	default:
-		break;
+		m_PlayerCharacter.SetStatus( CHARACTER_WALK );
 	}
 
-	switch ( CInputManager::GetInstance().GetKeyState( VK_UP ) )
+	else if ( CInputManager::GetInstance().GetKeyState( VK_UP ) & INPUT_PRESSED )
 	{
-	case INPUT_DOWN:
 		m_PlayerCharacter.SetDirection( UP );
-		m_PlayerCharacter.SetStatus( WALK );
-		break;
-
-	case INPUT_UP:
-		m_PlayerCharacter.SetStatus( STAND );
-		break;
-
-	default:
-		break;
+		m_PlayerCharacter.SetStatus( CHARACTER_WALK );
 	}
 
-	switch( CInputManager::GetInstance().GetKeyState( VK_DOWN ) )
+	else if ( CInputManager::GetInstance().GetKeyState( VK_DOWN ) & INPUT_PRESSED )
 	{
-	case INPUT_DOWN:
 		m_PlayerCharacter.SetDirection( DOWN );
-		m_PlayerCharacter.SetStatus( WALK );
-		break;
-
-	case INPUT_UP:
-		m_PlayerCharacter.SetStatus( STAND );
-		break;
-
-	default:
-		break;
+		m_PlayerCharacter.SetStatus( CHARACTER_WALK );
 	}
+	else
+	{
+		m_PlayerCharacter.SetStatus( CHARACTER_STAND );
+	}
+
 
 	m_PlayerCharacter.Update( deltaTime );
 	m_CameraPosition = m_PlayerCharacter.GetPosition();
