@@ -27,9 +27,6 @@ enum Direction
 	DOWN_RIGHT
 };
 
-struct ObjectPosition : public Position
-{
-};
 
 // 게임상의 각 개체
 class CGameObject : public IEventListener<CGameObject>
