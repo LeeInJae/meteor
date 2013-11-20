@@ -64,5 +64,4 @@ bool CScene::Update( float deltaTime )
 void CScene::Render()
 {
 	m_Zone->Render( m_CameraPosition );
-	m_PlayerCharacter.Render( m_CameraPosition );
 }

@@ -89,6 +89,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationInfo.h" />
     <ClInclude Include="BaseWindow.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="CollisionBox.h" />
     <ClInclude Include="D2DBitmap.h" />
     <ClInclude Include="Character.h">
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationInfo.cpp" />
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CollisionBox.cpp" />
     <ClCompile Include="D2DBitmap.cpp" />
     <ClCompile Include="Character.cpp">

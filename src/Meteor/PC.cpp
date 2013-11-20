@@ -38,7 +38,7 @@ bool CPC::Update( float deltaTime )
 
 	if ( m_Status == CHARACTER_WALK )
 	{	
-		switch( m_Position.direction )
+		switch( m_Direction )
 		{
 		case LEFT:
 			Move( ( -WALK_SPEED ) * deltaTime, 0 );
@@ -67,7 +67,7 @@ bool CPC::Update( float deltaTime )
 CAnimation * CPC::GetAnimation() const
 {
 	std::wstring animationId;
-	switch( m_Position.direction )
+	switch( m_Direction )
 	{
 	case LEFT:
 		animationId = L"character_walk_left";

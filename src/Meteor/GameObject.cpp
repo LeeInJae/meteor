@@ -4,10 +4,9 @@
 
 CGameObject::CGameObject(void)
 	: m_EventSubject( nullptr )
+	, m_Direction( DOWN )
+	, m_Boundary( 0.0f, 10.0f, 30.0f )
 {
-	m_Position.mode = BASE_CENTER;
-	m_Position.direction = DOWN;
-	m_Collision = CSquare( -20, -40, 20, 40 );
 }
 
 CGameObject::~CGameObject(void)
@@ -71,6 +70,6 @@ void CGameObject::EventHandler( CGameObject * event )
 	if ( this == event ) return;
 
 	if ( ( event->GetEventType() == EVENT_MOVE )
-		&& GetCollision().isIntersected( event->GetCollision() ) )
+		&& GetBoundary().isIntersected( event->GetBoundary() ) )
 		event->SetEventType( EVENT_CANCEL );
 }

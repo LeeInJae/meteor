@@ -81,11 +81,14 @@
     <ClCompile Include="SpriteInfo.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="ZoneMap.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Square.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneMap.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +204,6 @@
     <ClInclude Include="SpriteInfo.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="ZoneMap.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Position.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -221,6 +221,12 @@
     </ClInclude>
     <ClInclude Include="IEventSubject.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneMap.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

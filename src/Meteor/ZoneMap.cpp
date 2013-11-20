@@ -48,7 +48,6 @@ bool CZoneMap::Update( Position & playerPosition )
 {
 	m_Position.x = -playerPosition.x;
 	m_Position.y = -playerPosition.y;
-	m_Position.mode = BASE_TOPLEFT;
 
 	return true;
 }

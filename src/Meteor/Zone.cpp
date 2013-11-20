@@ -35,9 +35,13 @@ bool CZone::Update( float deltaTime, Position & playerPosition )
 
 void CZone::Render( Position & cameraPosition )
 {
+	// TODO: sort object and player by Y-axis
 	m_Map->Render();
+
 	for ( auto object : m_Object )
 		object->Render( cameraPosition );
+
+	m_Player->Render( cameraPosition );
 }
 
 
@@ -61,6 +65,7 @@ void CZone::Enter( CPC * player, CZone * from )
 	Register( player );
 	player->SetSubject( this );
 	player->SetPosition( 512.0f, 384.0f );
+	m_Player = player;
 }
 
 void CZone::SendEvent( CGameObject * event )

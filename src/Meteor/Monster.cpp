@@ -58,12 +58,12 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 		m_Status = CHARACTER_WALK;
 		
 		if( abs( distance_PC_X ) > abs( distance_PC_Y ) ) {
-			if( distance_PC_X < 0 )	m_Position.direction = LEFT;
-			else					m_Position.direction = RIGHT;
+			if( distance_PC_X < 0 )	m_Direction = LEFT;
+			else					m_Direction = RIGHT;
 		}
 		else{
-			if( distance_PC_Y < 0 )	m_Position.direction = UP;
-			else					m_Position.direction = DOWN;
+			if( distance_PC_Y < 0 )	m_Direction = UP;
+			else					m_Direction = DOWN;
 		}
 
 		float speed_X = ( distance_PC_X / distance_PC ) * SKELETON_MAGE_WALK_SPEED;
@@ -86,7 +86,7 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 CAnimation * CMonster::GetAnimation() const
 {
 	std::wstring animationId;
-	switch( m_Position.direction )
+	switch( m_Direction )
 	{
 	case LEFT:
 		animationId = L"skeleton_mage_walk_left";
