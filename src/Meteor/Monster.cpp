@@ -5,10 +5,13 @@
 #include "AnimationInfo.h"
 
 #include <cmath>
+#include <iostream>
 
 #define SKELETON_MAGE_WALK_SPEED	64
 #define SKELETON_MAGE_SIGHT			256
 #define SKELETON_MAGE_ATTACK_RANGE	64
+
+const static float PI = 3.14159265359f;
 
 CMonster::CMonster( std::wstring monsterId )
 	:	m_MonsterId( monsterId )
@@ -49,38 +52,88 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 	CGameObject::Update( deltaTime, playerPosition );
 
 	//  플레이어와의 거리 체크
-	float distance_PC_X = playerPosition.x - m_Position.x;
-	float distance_PC_Y = playerPosition.y - m_Position.y;
-	float distance_PC = sqrt( pow( distance_PC_X, 2 ) + pow( distance_PC_Y, 2 ) );
+	Position diff = playerPosition - m_Position;
+	float distance = sqrt( pow( diff.x, 2 ) + pow( diff.y, 2 ) );
 
 	//  시야내에 있을시 플레이어 쫓기
-	if( distance_PC <= SKELETON_MAGE_SIGHT && distance_PC > SKELETON_MAGE_ATTACK_RANGE) {
+	if( distance <= SKELETON_MAGE_SIGHT && distance > SKELETON_MAGE_ATTACK_RANGE) {
 		m_Status = CHARACTER_WALK;
-		
-		if( abs( distance_PC_X ) > abs( distance_PC_Y ) ) {
-			if( distance_PC_X < 0 )	m_Direction = LEFT;
-			else					m_Direction = RIGHT;
-		}
-		else{
-			if( distance_PC_Y < 0 )	m_Direction = UP;
-			else					m_Direction = DOWN;
+
+		float slope = atan2( -diff.y, diff.x );
+		int slopeLevel = static_cast<int>( ( slope + PI ) * 8.0f / PI );	// 0 ~ 16 level
+		//switch ( slopeLevel )
+		//{
+		//case 1:
+		//case 2:
+		//	m_Direction = DOWN_LEFT;
+		//	break;
+		//case 3:
+		//case 4:
+		//	m_Direction = DOWN;
+		//	break;
+		//case 5:
+		//case 6:
+		//	m_Direction = DOWN_RIGHT;
+		//	break;
+		//case 7:
+		//case 8:
+		//	m_Direction = RIGHT;
+		//	break;
+		//case 9:
+		//case 10:
+		//	m_Direction = UP_RIGHT;
+		//	break;
+		//case 11:
+		//case 12:
+		//	m_Direction = UP;
+		//	break;
+		//case 13:
+		//case 14:
+		//	m_Direction = UP_LEFT;
+		//	break;
+		//default:	// 0, 15, 16
+		//	m_Direction = LEFT;
+		//	break;
+		//}
+
+		switch ( slopeLevel )
+		{
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			m_Direction = DOWN;
+			break;
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			m_Direction = RIGHT;
+			break;
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+			m_Direction = UP;
+			break;
+		default:	// 0, 1, 14, 15, 16
+			m_Direction = LEFT;
+			break;
 		}
 
-		float speed_X = ( distance_PC_X / distance_PC ) * SKELETON_MAGE_WALK_SPEED;
-		float speed_Y = ( distance_PC_Y / distance_PC ) * SKELETON_MAGE_WALK_SPEED;
-		Move( speed_X * deltaTime, speed_Y * deltaTime );
+		Walk( m_Direction, deltaTime * SKELETON_MAGE_WALK_SPEED );
 	}
-	else if( m_Status == CHARACTER_STAND && distance_PC <= SKELETON_MAGE_ATTACK_RANGE ) {
+	else if( m_Status == CHARACTER_STAND && distance <= SKELETON_MAGE_ATTACK_RANGE ) {
 		m_Status = CHARACTER_STAND;
 	}
-	else if( m_Status == CHARACTER_WALK && distance_PC <= SKELETON_MAGE_ATTACK_RANGE - 10 ){
+	else if( m_Status == CHARACTER_WALK && distance <= SKELETON_MAGE_ATTACK_RANGE - 10 ){
 		m_Status = CHARACTER_STAND;
 	}
 	else {
 		m_Status = CHARACTER_STAND;
 	}
 
-	return true;
+	return false;
 }
 
 CAnimation * CMonster::GetAnimation() const

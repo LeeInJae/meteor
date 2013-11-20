@@ -37,29 +37,7 @@ bool CPC::Update( float deltaTime )
 	CGameObject::Update( deltaTime, m_Position );
 
 	if ( m_Status == CHARACTER_WALK )
-	{	
-		switch( m_Direction )
-		{
-		case LEFT:
-			Move( ( -WALK_SPEED ) * deltaTime, 0 );
-			break;
-
-		case RIGHT:
-			Move( ( WALK_SPEED ) * deltaTime, 0 );
-			break;
-
-		case UP:
-			Move( 0, ( -WALK_SPEED ) * deltaTime );
-			break;
-
-		case DOWN:
-			Move( 0, ( WALK_SPEED ) * deltaTime );
-			break;
-
-		default:
-			break;
-		}
-	}
+		Walk( m_Direction, WALK_SPEED * deltaTime );
 
 	return true;
 }

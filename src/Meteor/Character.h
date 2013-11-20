@@ -34,6 +34,7 @@ public:
 
 	// Override
 	virtual bool Move(float x, float y);
+	virtual bool Walk( Direction direction, float speed );
 
 protected:
 	int m_Hp;

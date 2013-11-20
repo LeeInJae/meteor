@@ -54,6 +54,12 @@ bool CScene::Update( float deltaTime )
 	}
 
 
+	if ( CInputManager::GetInstance().GetKeyState( VK_SPACE ) & INPUT_PRESSED )
+	{
+		// m_PlayerCharacter.Action();
+	}
+
+
 	m_PlayerCharacter.Update( deltaTime );
 	m_CameraPosition = m_PlayerCharacter.GetPosition();
 	m_Zone->Update( deltaTime, m_CameraPosition );
