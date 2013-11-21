@@ -32,7 +32,11 @@ bool CMonster::LoadAnimation()
 		m_MonsterId + L"_walk_left", 
 		m_MonsterId + L"_walk_right", 
 		m_MonsterId + L"_walk_up", 
-		m_MonsterId + L"_walk_down" 
+		m_MonsterId + L"_walk_up_left", 
+		m_MonsterId + L"_walk_up_right", 
+		m_MonsterId + L"_walk_down", 
+		m_MonsterId + L"_walk_down_left", 
+		m_MonsterId + L"_walk_down_right", 
 	};
 
 	for each ( std::wstring animationId in animationIdList )
@@ -61,65 +65,65 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 
 		float slope = atan2( -diff.y, diff.x );
 		int slopeLevel = static_cast<int>( ( slope + PI ) * 8.0f / PI );	// 0 ~ 16 level
-		//switch ( slopeLevel )
-		//{
-		//case 1:
-		//case 2:
-		//	m_Direction = DOWN_LEFT;
-		//	break;
-		//case 3:
-		//case 4:
-		//	m_Direction = DOWN;
-		//	break;
-		//case 5:
-		//case 6:
-		//	m_Direction = DOWN_RIGHT;
-		//	break;
-		//case 7:
-		//case 8:
-		//	m_Direction = RIGHT;
-		//	break;
-		//case 9:
-		//case 10:
-		//	m_Direction = UP_RIGHT;
-		//	break;
-		//case 11:
-		//case 12:
-		//	m_Direction = UP;
-		//	break;
-		//case 13:
-		//case 14:
-		//	m_Direction = UP_LEFT;
-		//	break;
-		//default:	// 0, 15, 16
-		//	m_Direction = LEFT;
-		//	break;
-		//}
-
 		switch ( slopeLevel )
 		{
+		case 1:
 		case 2:
+			m_Direction = DOWN_LEFT;
+			break;
 		case 3:
 		case 4:
-		case 5:
 			m_Direction = DOWN;
 			break;
+		case 5:
 		case 6:
+			m_Direction = DOWN_RIGHT;
+			break;
 		case 7:
 		case 8:
-		case 9:
 			m_Direction = RIGHT;
 			break;
+		case 9:
 		case 10:
+			m_Direction = UP_RIGHT;
+			break;
 		case 11:
 		case 12:
-		case 13:
 			m_Direction = UP;
 			break;
-		default:	// 0, 1, 14, 15, 16
+		case 13:
+		case 14:
+			m_Direction = UP_LEFT;
+			break;
+		default:	// 0, 15, 16
 			m_Direction = LEFT;
 			break;
 		}
+
+		//switch ( slopeLevel )
+		//{
+		//case 2:
+		//case 3:
+		//case 4:
+		//case 5:
+		//	m_Direction = DOWN;
+		//	break;
+		//case 6:
+		//case 7:
+		//case 8:
+		//case 9:
+		//	m_Direction = RIGHT;
+		//	break;
+		//case 10:
+		//case 11:
+		//case 12:
+		//case 13:
+		//	m_Direction = UP;
+		//	break;
+		//default:	// 0, 1, 14, 15, 16
+		//	m_Direction = LEFT;
+		//	break;
+		//}
 
 		Walk( m_Direction, deltaTime * SKELETON_MAGE_WALK_SPEED );
 	}
@@ -153,8 +157,24 @@ CAnimation * CMonster::GetAnimation() const
 		animationId = L"skeleton_mage_walk_up";
 		break;
 
+	case UP_LEFT:
+		animationId = L"skeleton_mage_walk_up_left";
+		break;
+
+	case UP_RIGHT:
+		animationId = L"skeleton_mage_walk_up_right";
+		break;
+
 	case DOWN:
 		animationId = L"skeleton_mage_walk_down";
+		break;
+
+	case DOWN_LEFT:
+		animationId = L"skeleton_mage_walk_down_left";
+		break;
+
+	case DOWN_RIGHT:
+		animationId = L"skeleton_mage_walk_down_right";
 		break;
 	}
 	CAnimation * animation = m_Animation.find(animationId)->second;

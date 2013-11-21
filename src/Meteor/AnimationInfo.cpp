@@ -39,6 +39,20 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 		m_SpriteId.push_back( L"character_walk_up_03" );
 	}
 
+	if ( id == L"character_walk_up_left" )
+	{
+		m_SpriteId.push_back( L"character_walk_up_left_01" );
+		m_SpriteId.push_back( L"character_walk_up_left_02" );
+		m_SpriteId.push_back( L"character_walk_up_left_03" );
+	}
+
+	if ( id == L"character_walk_up_right" )
+	{
+		m_SpriteId.push_back( L"character_walk_up_right_01" );
+		m_SpriteId.push_back( L"character_walk_up_right_02" );
+		m_SpriteId.push_back( L"character_walk_up_right_03" );
+	}
+
 	if ( id == L"character_walk_down" )
 	{
 		m_SpriteId.push_back( L"character_walk_down_01" );
@@ -46,8 +60,50 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 		m_SpriteId.push_back( L"character_walk_down_03" );
 	}
 
+	if ( id == L"character_walk_down_left" )
+	{
+		m_SpriteId.push_back( L"character_walk_down_left_01" );
+		m_SpriteId.push_back( L"character_walk_down_left_02" );
+		m_SpriteId.push_back( L"character_walk_down_left_03" );
+	}
+
+	if ( id == L"character_walk_down_right" )
+	{
+		m_SpriteId.push_back( L"character_walk_down_right_01" );
+		m_SpriteId.push_back( L"character_walk_down_right_02" );
+		m_SpriteId.push_back( L"character_walk_down_right_03" );
+	}
+
+	if ( id == L"character_attack_left" )
+	{
+		m_SpriteId.push_back( L"character_attack_left_01" );
+		m_SpriteId.push_back( L"character_attack_left_02" );
+		m_SpriteId.push_back( L"character_attack_left_03" );
+	}
+
+	if ( id == L"character_attack_right" )
+	{
+		m_SpriteId.push_back( L"character_attack_right_01" );
+		m_SpriteId.push_back( L"character_attack_right_02" );
+		m_SpriteId.push_back( L"character_attack_right_03" );
+	}
+
+	if ( id == L"character_attack_up" )
+	{
+		m_SpriteId.push_back( L"character_attack_up_01" );
+		m_SpriteId.push_back( L"character_attack_up_02" );
+		m_SpriteId.push_back( L"character_attack_up_03" );
+	}
+
+	if ( id == L"character_attack_down" )
+	{
+		m_SpriteId.push_back( L"character_attack_down_01" );
+		m_SpriteId.push_back( L"character_attack_down_02" );
+		m_SpriteId.push_back( L"character_attack_down_03" );
+	}
 
 
+// skeleton_mage
 	if ( id == L"skeleton_mage_walk_left" )
 	{
 		m_SpriteId.push_back( L"skeleton_mage_walk_left_01" );
@@ -69,11 +125,39 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 		m_SpriteId.push_back( L"skeleton_mage_walk_up_03" );
 	}
 
+	if ( id == L"skeleton_mage_walk_up_left" )
+	{
+		m_SpriteId.push_back( L"skeleton_mage_walk_up_left_01" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_up_left_02" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_up_left_03" );
+	}
+
+	if ( id == L"skeleton_mage_walk_up_right" )
+	{
+		m_SpriteId.push_back( L"skeleton_mage_walk_up_right_01" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_up_right_02" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_up_right_03" );
+	}
+
 	if ( id == L"skeleton_mage_walk_down" )
 	{
 		m_SpriteId.push_back( L"skeleton_mage_walk_down_01" );
 		m_SpriteId.push_back( L"skeleton_mage_walk_down_02" );
 		m_SpriteId.push_back( L"skeleton_mage_walk_down_03" );
+	}
+
+	if ( id == L"skeleton_mage_walk_down_left" )
+	{
+		m_SpriteId.push_back( L"skeleton_mage_walk_down_left_01" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_down_left_02" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_down_left_03" );
+	}
+
+	if ( id == L"skeleton_mage_walk_down_right" )
+	{
+		m_SpriteId.push_back( L"skeleton_mage_walk_down_right_01" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_down_right_02" );
+		m_SpriteId.push_back( L"skeleton_mage_walk_down_right_03" );
 	}
 
 	return true;

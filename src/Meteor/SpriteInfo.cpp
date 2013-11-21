@@ -30,7 +30,7 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	// TODO: Temporary Code
 	if( id == L"character_walk_left_01" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_RIGHT_01.png";
+		m_BitmapId = L".\\Player\\character_walk_right_01.png";
 		m_Width = -1.0f;
 		m_OriginX = -4.0f;
 		m_SpriteWidth = 50.0f;
@@ -38,14 +38,14 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	}
 	if( id == L"character_walk_left_02" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_RIGHT_02.png";
+		m_BitmapId = L".\\Player\\character_walk_right_02.png";
 		m_Width = -1.0f;
 		m_SpriteWidth = 60.0f;
 		m_SpriteHeight = 98.0f;
 	}
 	if( id == L"character_walk_left_03" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_RIGHT_03.png";
+		m_BitmapId = L".\\Player\\character_walk_right_03.png";
 		m_Width = -1.0f;
 		m_SpriteWidth = 60.0f;
 		m_SpriteHeight = 98.0f;
@@ -53,88 +53,172 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 
 	if( id == L"character_walk_right_01" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_RIGHT_01.png";
+		m_BitmapId = L".\\Player\\character_walk_right_01.png";
 		m_OriginX = 4.0f;
 		m_SpriteWidth = 50.0f;
 		m_SpriteHeight = 100.0f;
 	}
 	if( id == L"character_walk_right_02" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_RIGHT_02.png";
+		m_BitmapId = L".\\Player\\character_walk_right_02.png";
 		m_SpriteWidth = 60.0f;
 		m_SpriteHeight = 98.0f;
 	}
 	if( id == L"character_walk_right_03" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_RIGHT_03.png";
+		m_BitmapId = L".\\Player\\character_walk_right_03.png";
 		m_SpriteWidth = 60.0f;
 		m_SpriteHeight = 98.0f;
 	}
 
 	if( id == L"character_walk_up_01" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_UP_01.png";
+		m_BitmapId = L".\\Player\\character_walk_up_01.png";
 		m_OriginX = 2.0f;
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 100.0f;
 	}
 	if( id == L"character_walk_up_02" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_UP_02.png";
+		m_BitmapId = L".\\Player\\character_walk_up_02.png";
 		m_SpriteWidth = 48.0f;
 		m_SpriteHeight = 102.0f;
 	}
 	if( id == L"character_walk_up_03" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_UP_03.png";
+		m_BitmapId = L".\\Player\\character_walk_up_03.png";
 		m_SpriteWidth = 48.0f;
+		m_SpriteHeight = 102.0f;
+	}
+
+	if( id == L"character_walk_up_left_01" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_up_right_01.png";
+		m_OriginX = 2.0f;
+		m_Width = -1.0f;
+		m_SpriteWidth = 48.0f;
+		m_SpriteHeight = 100.0f;
+	}
+	if( id == L"character_walk_up_left_02" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_up_right_02.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 52.0f;
+		m_SpriteHeight = 102.0f;
+	}
+	if( id == L"character_walk_up_left_03" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_up_right_03.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 52.0f;
+		m_SpriteHeight = 102.0f;
+	}
+
+	if( id == L"character_walk_up_right_01" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_up_right_01.png";
+		m_OriginX = 2.0f;
+		m_SpriteWidth = 48.0f;
+		m_SpriteHeight = 100.0f;
+	}
+	if( id == L"character_walk_up_right_02" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_up_right_02.png";
+		m_SpriteWidth = 52.0f;
+		m_SpriteHeight = 102.0f;
+	}
+	if( id == L"character_walk_up_right_03" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_up_right_03.png";
+		m_SpriteWidth = 52.0f;
 		m_SpriteHeight = 102.0f;
 	}
 
 	if( id == L"character_walk_down_01" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_DOWN_01.png";
+		m_BitmapId = L".\\Player\\character_walk_down_01.png";
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 100.0f;
 	}
 	if( id == L"character_walk_down_02" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_DOWN_02.png";
+		m_BitmapId = L".\\Player\\character_walk_down_02.png";
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
 	}
 	if( id == L"character_walk_down_03" )
 	{
-		m_BitmapId = L"CHARACTER_WALK_DOWN_03.png";
+		m_BitmapId = L".\\Player\\character_walk_down_03.png";
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
+	}
+
+	if( id == L"character_walk_down_left_01" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_down_left_01.png";
+		m_SpriteWidth = 50.0f;
+		m_SpriteHeight = 100.0f;
+	}
+	if( id == L"character_walk_down_left_02" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_down_left_02.png";
+		m_SpriteWidth = 58.0f;
+		m_SpriteHeight = 100.0f;
+	}
+	if( id == L"character_walk_down_left_03" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_down_left_03.png";
+		m_SpriteWidth = 58.0f;
+		m_SpriteHeight = 100.0f;
+	}
+
+	if( id == L"character_walk_down_right_01" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_down_left_01.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 50.0f;
+		m_SpriteHeight = 100.0f;
+	}
+	if( id == L"character_walk_down_right_02" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_down_left_02.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 58.0f;
+		m_SpriteHeight = 100.0f;
+	}
+	if( id == L"character_walk_down_right_03" )
+	{
+		m_BitmapId = L".\\Player\\character_walk_down_left_03.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 58.0f;
+		m_SpriteHeight = 100.0f;
 	}
 
 
 // skeleton mage
 	if( id == L"skeleton_mage_walk_left_01" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_left_01.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_01.png";
 		m_OriginX = 4.0f;
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
 	}
 	if( id == L"skeleton_mage_walk_left_02" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_left_02.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_02.png";
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
 	}
 	if( id == L"skeleton_mage_walk_left_03" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_left_03.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_03.png";
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
 	}
 
 	if( id == L"skeleton_mage_walk_right_01" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_left_01.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_01.png";
 		m_Width = -1.0f;
 		m_OriginX = -4.0f;
 		m_SpriteWidth = 56.0f;
@@ -142,14 +226,14 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	}
 	if( id == L"skeleton_mage_walk_right_02" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_left_02.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_02.png";
 		m_Width = -1.0f;
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
 	}
 	if( id == L"skeleton_mage_walk_right_03" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_left_03.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_03.png";
 		m_Width = -1.0f;
 		m_SpriteWidth = 56.0f;
 		m_SpriteHeight = 104.0f;
@@ -157,40 +241,124 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 
 	if( id == L"skeleton_mage_walk_up_01" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_up_01.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_01.png";
 		m_OriginX = 2.0f;
 		m_SpriteWidth = 64.0f;
 		m_SpriteHeight = 108.0f;
 	}
 	if( id == L"skeleton_mage_walk_up_02" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_up_02.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_02.png";
 		m_SpriteWidth = 64.0f;
 		m_SpriteHeight = 108.0f;
 	}
 	if( id == L"skeleton_mage_walk_up_03" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_up_03.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_03.png";
 		m_SpriteWidth = 64.0f;
 		m_SpriteHeight = 108.0f;
 	}
 
+	if( id == L"skeleton_mage_walk_up_right_01" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_01.png";
+		m_OriginX = 2.0f;
+		m_SpriteWidth = 66.0f;
+		m_SpriteHeight = 106.0f;
+	}
+	if( id == L"skeleton_mage_walk_up_right_02" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_02.png";
+		m_SpriteWidth = 66.0f;
+		m_SpriteHeight = 106.0f;
+	}
+	if( id == L"skeleton_mage_walk_up_right_03" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_03.png";
+		m_SpriteWidth = 66.0f;
+		m_SpriteHeight = 106.0f;
+	}
+
+	if( id == L"skeleton_mage_walk_up_left_01" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_01.png";
+		m_OriginX = 2.0f;
+		m_Width = -1.0f;
+		m_SpriteWidth = 66.0f;
+		m_SpriteHeight = 106.0f;
+	}
+	if( id == L"skeleton_mage_walk_up_left_02" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_02.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 66.0f;
+		m_SpriteHeight = 106.0f;
+	}
+	if( id == L"skeleton_mage_walk_up_left_03" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_03.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 66.0f;
+		m_SpriteHeight = 106.0f;
+	}
+
 	if( id == L"skeleton_mage_walk_down_01" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_down_01.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_01.png";
 		m_SpriteWidth = 78.0f;
 		m_SpriteHeight = 110.0f;
 	}
 	if( id == L"skeleton_mage_walk_down_02" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_down_02.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_02.png";
 		m_SpriteWidth = 78.0f;
 		m_SpriteHeight = 110.0f;
 	}
 	if( id == L"skeleton_mage_walk_down_03" )
 	{
-		m_BitmapId = L"skeleton_mage_walk_down_03.png";
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_03.png";
 		m_SpriteWidth = 78.0f;
+		m_SpriteHeight = 110.0f;
+	}
+
+	if( id == L"skeleton_mage_walk_down_left_01" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_01.png";
+		m_SpriteWidth = 62.0f;
+		m_SpriteHeight = 110.0f;
+	}
+	if( id == L"skeleton_mage_walk_down_left_02" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_02.png";
+		m_SpriteWidth = 62.0f;
+		m_SpriteHeight = 110.0f;
+	}
+	if( id == L"skeleton_mage_walk_down_left_03" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_03.png";
+		m_SpriteWidth = 62.0f;
+		m_SpriteHeight = 110.0f;
+	}
+
+	if( id == L"skeleton_mage_walk_down_right_01" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_01.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 62.0f;
+		m_SpriteHeight = 110.0f;
+	}
+	if( id == L"skeleton_mage_walk_down_right_02" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_02.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 62.0f;
+		m_SpriteHeight = 110.0f;
+	}
+	if( id == L"skeleton_mage_walk_down_right_03" )
+	{
+		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_03.png";
+		m_Width = -1.0f;
+		m_SpriteWidth = 62.0f;
 		m_SpriteHeight = 110.0f;
 	}
 

@@ -28,12 +28,28 @@ bool CScene::Update( float deltaTime )
 {
 	if ( CInputManager::GetInstance().GetKeyState( VK_LEFT ) & INPUT_PRESSED )
 	{
-		m_PlayerCharacter.SetDirection( LEFT );
+		if ( CInputManager::GetInstance().GetKeyState( VK_UP ) & INPUT_PRESSED ){
+			m_PlayerCharacter.SetDirection( UP_LEFT );
+		}
+		else if ( CInputManager::GetInstance().GetKeyState( VK_DOWN ) & INPUT_PRESSED ){
+			m_PlayerCharacter.SetDirection( DOWN_LEFT );
+		}
+		else{
+			m_PlayerCharacter.SetDirection( LEFT );
+		}
 		m_PlayerCharacter.SetStatus( CHARACTER_WALK );
 	}
 	else if ( CInputManager::GetInstance().GetKeyState( VK_RIGHT ) & INPUT_PRESSED )
 	{
-		m_PlayerCharacter.SetDirection( RIGHT );
+		if ( CInputManager::GetInstance().GetKeyState( VK_UP ) & INPUT_PRESSED ){
+			m_PlayerCharacter.SetDirection( UP_RIGHT );
+		}
+		else if ( CInputManager::GetInstance().GetKeyState( VK_DOWN ) & INPUT_PRESSED ){
+			m_PlayerCharacter.SetDirection( DOWN_RIGHT );
+		}
+		else{
+			m_PlayerCharacter.SetDirection( RIGHT );
+		}
 		m_PlayerCharacter.SetStatus( CHARACTER_WALK );
 	}
 

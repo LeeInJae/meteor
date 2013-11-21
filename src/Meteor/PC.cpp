@@ -19,7 +19,16 @@ CPC::~CPC(void)
 
 bool CPC::LoadAnimation()
 {
-	std::wstring animationIdList[] = { L"character_walk_left", L"character_walk_right", L"character_walk_up", L"character_walk_down" };
+	std::wstring animationIdList[] = { 
+		L"character_walk_left", 
+		L"character_walk_right", 
+		L"character_walk_up", 
+		L"character_walk_up_left", 
+		L"character_walk_up_right", 
+		L"character_walk_down", 
+		L"character_walk_down_left", 
+		L"character_walk_down_right" 
+	};
 
 	for each ( std::wstring animationId in animationIdList )
 	{
@@ -59,8 +68,24 @@ CAnimation * CPC::GetAnimation() const
 		animationId = L"character_walk_up";
 		break;
 
+	case UP_LEFT:
+		animationId = L"character_walk_up_left";
+		break;
+
+	case UP_RIGHT:
+		animationId = L"character_walk_up_right";
+		break;
+
 	case DOWN:
 		animationId = L"character_walk_down";
+		break;
+
+	case DOWN_LEFT:
+		animationId = L"character_walk_down_left";
+		break;
+
+	case DOWN_RIGHT:
+		animationId = L"character_walk_down_right";
 		break;
 	}
 	CAnimation * animation = m_Animation.find(animationId)->second;
