@@ -8,7 +8,7 @@
 #include <iostream>
 
 #define SKELETON_MAGE_WALK_SPEED	64
-#define SKELETON_MAGE_SIGHT			256
+#define SKELETON_MAGE_SIGHT			512
 #define SKELETON_MAGE_ATTACK_RANGE	64
 
 const static float PI = 3.14159265359f;
@@ -56,7 +56,7 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 	CGameObject::Update( deltaTime, playerPosition );
 
 	//  플레이어와의 거리 체크
-	Position diff = playerPosition - m_Position;
+	Vector diff = playerPosition - m_Position;
 	float distance = sqrt( pow( diff.x, 2 ) + pow( diff.y, 2 ) );
 
 	//  시야내에 있을시 플레이어 쫓기
@@ -100,32 +100,7 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 			break;
 		}
 
-		//switch ( slopeLevel )
-		//{
-		//case 2:
-		//case 3:
-		//case 4:
-		//case 5:
-		//	m_Direction = DOWN;
-		//	break;
-		//case 6:
-		//case 7:
-		//case 8:
-		//case 9:
-		//	m_Direction = RIGHT;
-		//	break;
-		//case 10:
-		//case 11:
-		//case 12:
-		//case 13:
-		//	m_Direction = UP;
-		//	break;
-		//default:	// 0, 1, 14, 15, 16
-		//	m_Direction = LEFT;
-		//	break;
-		//}
-
-		Walk( m_Direction, deltaTime * SKELETON_MAGE_WALK_SPEED );
+		Move( deltaTime * SKELETON_MAGE_WALK_SPEED * cos( slope ), -deltaTime * SKELETON_MAGE_WALK_SPEED * sin( slope ) );
 	}
 	else if( m_Status == CHARACTER_STAND && distance <= SKELETON_MAGE_ATTACK_RANGE ) {
 		m_Status = CHARACTER_STAND;
@@ -137,12 +112,12 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 		m_Status = CHARACTER_STAND;
 	}
 
-	return false;
+	return true;
 }
 
 CAnimation * CMonster::GetAnimation() const
 {
-	std::wstring animationId;
+	ResourceId animationId;
 	switch( m_Direction )
 	{
 	case LEFT:

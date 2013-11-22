@@ -53,7 +53,7 @@ bool CPC::Update( float deltaTime )
 
 CAnimation * CPC::GetAnimation() const
 {
-	std::wstring animationId;
+	ResourceId animationId;
 	switch( m_Direction )
 	{
 	case LEFT:

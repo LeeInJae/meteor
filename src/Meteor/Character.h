@@ -33,7 +33,7 @@ public:
 	void SetStatus( CharacterStatus status ) { m_Status = status; }
 
 	// Override
-	virtual bool Move(float x, float y);
+	virtual bool Move( float x, float y ) override;
 	virtual bool Walk( Direction direction, float speed );
 
 protected:

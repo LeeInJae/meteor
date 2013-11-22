@@ -9,8 +9,10 @@ public:
 	CCircle( float centerX, float centerY, float radius );
 	virtual ~CCircle(void);
 
-	CCircle operator+( const Position & position ) const;
+	CCircle operator+( const Vector & position ) const;
+	CCircle operator+( const float radius ) const;
 	bool isIntersected( const CCircle & other ) const;
+	bool GetIntersect( const Position & start, const Position & end, Position & intersect ) const;
 
 private:
 	Position	m_Center;
