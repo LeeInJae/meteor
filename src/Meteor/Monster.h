@@ -9,7 +9,7 @@ class CMonster :
 	public CCharacter
 {
 public:
-	CMonster( std::wstring monsterId );
+	CMonster( ResourceId monsterId );
 	~CMonster(void);
 
 	bool LoadAnimation();
@@ -17,6 +17,6 @@ public:
 	CAnimation * GetAnimation() const;
 
 private:
-	std::wstring	m_MonsterId;
+	ResourceId	m_MonsterId;
 };
 

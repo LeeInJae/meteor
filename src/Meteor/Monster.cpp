@@ -13,8 +13,8 @@
 
 const static float PI = 3.14159265359f;
 
-CMonster::CMonster( std::wstring monsterId )
-	:	m_MonsterId( monsterId )
+CMonster::CMonster( ResourceId monsterId )
+	: m_MonsterId( monsterId )
 {
 }
 
@@ -28,7 +28,7 @@ CMonster::~CMonster(void)
 
 bool CMonster::LoadAnimation()
 {
-	std::wstring animationIdList[] = { 
+	ResourceId animationIdList[] = { 
 		m_MonsterId + L"_walk_left", 
 		m_MonsterId + L"_walk_right", 
 		m_MonsterId + L"_walk_up", 
@@ -39,7 +39,7 @@ bool CMonster::LoadAnimation()
 		m_MonsterId + L"_walk_down_right", 
 	};
 
-	for each ( std::wstring animationId in animationIdList )
+	for each ( ResourceId animationId in animationIdList )
 	{
 		CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
 		CAnimation * animation = animationInfo->CreateAnimation();

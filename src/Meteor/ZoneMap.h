@@ -2,6 +2,7 @@
 
 #include "IResource.h"
 #include "Position.h"
+#include "GameObject.h"
 #include <vector>
 #include <string>
 
@@ -23,7 +24,7 @@ public:
 	bool Update( Position & playerPosition );
 	void Render();
 
-	bool CanMove( const Position & position ) const; // 해당 좌표의 이동 가능 여부
+	Direction FindPath( const Position & start, const Position & destination, const std::list< CGameObject * > objects ) const; // 해당 좌표의 이동 가능 여부
 
 	// --------------------------------
 	//	IResource interface

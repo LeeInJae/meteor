@@ -16,7 +16,6 @@ class CZone : public CEventSubject<CGameObject>
 {
 public:
 	CZone(void);
-	CZone( std::wstring id );
 	virtual ~CZone(void);
 	
 	bool Update( float deltaTime, Position & PlayerPosition );
@@ -35,6 +34,6 @@ private:
 								m_Height;
 	CPC *						m_Player;
 	std::list< CGameObject * >	m_Object;
-	std::wstring				m_ZoneId;
+	ResourceId					m_ZoneId;
 	CZoneMap *					m_Map;
 };

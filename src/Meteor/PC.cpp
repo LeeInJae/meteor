@@ -19,7 +19,7 @@ CPC::~CPC(void)
 
 bool CPC::LoadAnimation()
 {
-	std::wstring animationIdList[] = { 
+	ResourceId animationIdList[] = { 
 		L"character_walk_left", 
 		L"character_walk_right", 
 		L"character_walk_up", 
@@ -30,7 +30,7 @@ bool CPC::LoadAnimation()
 		L"character_walk_down_right" 
 	};
 
-	for each ( std::wstring animationId in animationIdList )
+	for each ( ResourceId animationId in animationIdList )
 	{
 		CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
 		CAnimation * animation = animationInfo->CreateAnimation();

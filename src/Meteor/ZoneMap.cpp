@@ -56,9 +56,9 @@ bool CZoneMap::Update( Position & playerPosition )
 // ----------------------------------------------------------------
 //	CanMove
 // ----------------------------------------------------------------
-bool CZoneMap::CanMove( const Position & position ) const
+Direction CZoneMap::FindPath( const Position & start, const Position & destination, const std::list< CGameObject * > objects ) const
 {
-	return ( position.x > 128.0f && position.y > 128.0f && position.x < m_Width && position.y < m_Height );
+	return NONE;
 }
 
 

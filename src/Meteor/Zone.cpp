@@ -8,13 +8,6 @@ CZone::CZone(void)
 
 }
 
-CZone::CZone( std::wstring id )
-	: m_ZoneId( id )
-	, m_Map( nullptr )
-{
-
-}
-
 CZone::~CZone(void)
 {
 	SafeDelete( m_Map );
@@ -73,6 +66,6 @@ void CZone::SendEvent( CGameObject * event )
 	CEventSubject::SendEvent( event );
 
 	if ( event->GetEventType() == EVENT_MOVE
-		&& ! m_Map->CanMove( event->GetPosition() ) )
+		/* && ! m_Map->CanMove( event->GetPosition() ) */ )
 		event->SetEventType( EVENT_CANCEL );
 }

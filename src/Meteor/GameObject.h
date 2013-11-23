@@ -17,6 +17,7 @@ enum EventType
 
 enum Direction
 {
+	NONE,
 	UP,
 	DOWN,
 	LEFT,
@@ -60,6 +61,6 @@ protected:
 	Direction			m_Direction;
 	CCircle				m_Boundary;
 	EventType			m_EventType;
-	std::map<std::wstring, CAnimation *> m_Animation;
+	std::map<ResourceId, CAnimation *> m_Animation;
 	IEventSubject<CGameObject> * m_EventSubject;
 };

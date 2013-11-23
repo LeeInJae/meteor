@@ -54,26 +54,28 @@ bool CCircle::isIntersected( const CCircle & other ) const
 // ----------------------------------------------------------------
 bool CCircle::GetIntersect( const Position & start, const Position & end, Position & intersect ) const
 {
-	Vector direction = end - start;
-	Vector hypotenuse = m_Center - start;
-	float dirSquare		= direction * direction;
-	float dotProduct	= direction * hypotenuse;
-	float hypoSquare	= hypotenuse * hypotenuse;
-	float radiusSquare	= m_Radius * m_Radius;
+	float x = m_Center.x;
+	float y = m_Center.y;
+	float r = m_Radius;
 
-	if ( dirSquare <= 0.000001f )
-		return false;
+	Position point[4];
 
-	if ( hypoSquare > radiusSquare && dotProduct < 0.0f )
-		return false;
+	point[0].x = x - r;
+	point[0].y = y - r;
+	point[1].x = x - r;
+	point[1].y = y + r;
+	point[2].x = x + r;
+	point[2].y = y - r;
+	point[3].x = x + r;
+	point[3].y = y + r;
 
-	float projectionSquare = dotProduct * dotProduct / dirSquare;
-	float determinant = projectionSquare - hypoSquare + radiusSquare;
+	float determinent[4];
 
-	if ( determinant < 0.0f )
-		return false;
-
-	intersect = start + ( ( end - start ) * - ( ( sqrt( projectionSquare ) + sqrt( determinant ) ) / sqrt( dirSquare ) ) );
+	for ( int i = 0; i < 4; ++i )
+		determinent[i] =
+			start.x * end.y - end.x * start.y +
+			end.x * point[i].y + point[i].x * end.y +
+			point[i].x * start.x + start.x * point[i].y;
 
 	return true;
 }
