@@ -11,8 +11,6 @@
 #define SKELETON_MAGE_SIGHT			512
 #define SKELETON_MAGE_ATTACK_RANGE	64
 
-const static float PI = 3.14159265359f;
-
 CMonster::CMonster( ResourceId monsterId )
 	: m_MonsterId( monsterId )
 {
@@ -64,42 +62,8 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 		m_Status = CHARACTER_WALK;
 
 		float slope = atan2( -diff.y, diff.x );
-		int slopeLevel = static_cast<int>( ( slope + PI ) * 8.0f / PI );	// 0 ~ 16 level
-		switch ( slopeLevel )
-		{
-		case 1:
-		case 2:
-			m_Direction = DOWN_LEFT;
-			break;
-		case 3:
-		case 4:
-			m_Direction = DOWN;
-			break;
-		case 5:
-		case 6:
-			m_Direction = DOWN_RIGHT;
-			break;
-		case 7:
-		case 8:
-			m_Direction = RIGHT;
-			break;
-		case 9:
-		case 10:
-			m_Direction = UP_RIGHT;
-			break;
-		case 11:
-		case 12:
-			m_Direction = UP;
-			break;
-		case 13:
-		case 14:
-			m_Direction = UP_LEFT;
-			break;
-		default:	// 0, 15, 16
-			m_Direction = LEFT;
-			break;
-		}
 
+		m_Direction = ::GetDirection<float>( m_Position.x, m_Position.y, playerPosition.x, playerPosition.y );
 		Move( deltaTime * SKELETON_MAGE_WALK_SPEED * cos( slope ), -deltaTime * SKELETON_MAGE_WALK_SPEED * sin( slope ) );
 	}
 	else if( m_Status == CHARACTER_STAND && distance <= SKELETON_MAGE_ATTACK_RANGE ) {

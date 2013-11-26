@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Animation.h"
+#include "Direction.h"
 #include "Position.h"
 #include "Circle.h"
 #include "IEventSubject.h"
@@ -14,20 +15,6 @@ enum EventType
 	EVENT_CANCEL,
 	EVENT_MOVE,
 };
-
-enum Direction
-{
-	NONE,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-	UP_LEFT,
-	UP_RIGHT,
-	DOWN_LEFT,
-	DOWN_RIGHT
-};
-
 
 // 게임상의 각 개체
 class CGameObject : public IEventListener<CGameObject>
@@ -43,7 +30,7 @@ public:
 	void SetDirection( Direction direction ) { m_Direction = direction; }
 	Direction GetDirection() const { return m_Direction; }
 	const Position & GetPosition() const { return m_Position; }
-	virtual bool Move(float x, float y);
+	virtual bool Move( float x, float y );
 	virtual CAnimation * GetAnimation() const = 0;
 
 	void SetSubject( IEventSubject<CGameObject> * subject );

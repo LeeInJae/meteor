@@ -63,9 +63,14 @@ void CZone::Enter( CPC * player, CZone * from )
 
 void CZone::SendEvent( CGameObject * event )
 {
-	CEventSubject::SendEvent( event );
-
-	if ( event->GetEventType() == EVENT_MOVE
-		/* && ! m_Map->CanMove( event->GetPosition() ) */ )
-		event->SetEventType( EVENT_CANCEL );
+	switch ( event->GetEventType() )
+	{
+	case EVENT_CANCEL:
+		return;
+	case EVENT_MOVE:
+		CEventSubject::SendEvent( event );
+		//if ( event->GetEventType() == EVENT_MOVE && ! m_Map->CanMove( event->GetPosition() ) )
+		//	event->SetEventType( EVENT_CANCEL );
+		return;
+	}
 }

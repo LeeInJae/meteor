@@ -3,8 +3,8 @@
 #include "IResource.h"
 #include "Position.h"
 #include "GameObject.h"
+#include "PathFinder.h"
 #include <vector>
-#include <string>
 
 class CSprite;
 class CMapInfo;
@@ -24,7 +24,7 @@ public:
 	bool Update( Position & playerPosition );
 	void Render();
 
-	Direction FindPath( const Position & start, const Position & destination, const std::list< CGameObject * > objects ) const; // 해당 좌표의 이동 가능 여부
+	Direction FindPath( const CGameObject * monster, const CGameObject * target, const std::list< CGameObject * > objects );
 
 	// --------------------------------
 	//	IResource interface
@@ -37,5 +37,6 @@ private:
 	float					m_Width;
 	float					m_Height;
 	Position				m_Position;
+	//CPathFinder				m_PathFinder;
 	std::vector<std::vector<CSprite *>>	m_Sprites;
 };

@@ -56,9 +56,48 @@ bool CZoneMap::Update( Position & playerPosition )
 // ----------------------------------------------------------------
 //	CanMove
 // ----------------------------------------------------------------
-Direction CZoneMap::FindPath( const Position & start, const Position & destination, const std::list< CGameObject * > objects ) const
+Direction CZoneMap::FindPath( const CGameObject * monster, const CGameObject * target, const std::list< CGameObject * > objects )
 {
 	return NONE;
+	//float monsterSize = monster->GetBoundary().GetRadius();
+
+	//// Grid size : 128 * 128
+	//int sizeX = static_cast<int>( ( m_Width ) / 128 );
+	//int sizeY = static_cast<int>( ( m_Height ) / 128 );
+	////int sizeX = static_cast<int>( ( m_SizeX * m_Width ) / 64 );
+	////int sizeY = static_cast<int>( ( m_SizeY * m_Height ) / 64 );
+
+	//// Clear new map
+	//m_PathFinder.ResetMap( sizeX, sizeY );
+
+	//// Mark all blocking object
+	//for ( auto object : objects )
+	//{
+	//	if ( object == monster ) continue;
+	//	if ( object == target ) continue;
+
+	//	Position position = object->GetPosition();
+	//	int size = static_cast<int>( monsterSize + object->GetBoundary().GetRadius() ) / 128;
+	//	int x = static_cast<int>( position.x + 32 ) / 128;
+	//	int y = static_cast<int>( position.y + 32 ) / 128;
+
+	//	if ( size <= 0 ) size = 1;
+	//	if ( x < size ) x = size;
+	//	if ( y < size ) y = size;
+
+	//	m_PathFinder.AddObject( x - size, x + size, y - size, y + size );
+	//	//std::cout << "(" << x - size << ", " << x + size << ", " << y - size << ", " << y + size << " )" << std::endl;
+	//}
+
+	//// Start finding
+	//Position monsterPosition = monster->GetPosition();
+	//Position targetPosition = target->GetPosition();
+	//int monsterX = static_cast<int>( monsterPosition.x + 32 ) / 128;
+	//int monsterY = static_cast<int>( monsterPosition.y + 32 ) / 128;
+	//int targetX = static_cast<int>( targetPosition.x + 32 ) / 128;
+	//int targetY = static_cast<int>( targetPosition.y + 32 ) / 128;
+
+	//return m_PathFinder.FindPath( monsterX, monsterY, targetX, targetY );
 }
 
 

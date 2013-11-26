@@ -90,6 +90,9 @@
     <ClCompile Include="ZoneMap.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -226,6 +229,12 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="ZoneMap.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

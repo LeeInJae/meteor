@@ -97,6 +97,7 @@
     </ClInclude>
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="D2DText.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="IEventListener.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Fps.h" />
@@ -123,6 +124,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="PC.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -170,6 +172,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="PC.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
