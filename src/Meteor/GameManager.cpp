@@ -55,17 +55,17 @@ bool CGameManager::Process()
 		return true;
 
 	std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
-	std::chrono::duration<float> elapsedTime = currentTime - m_LastTime;
+	float elapsedTime = static_cast< std::chrono::duration< float > >( currentTime - m_LastTime ).count();
 
-	//if ( elapsedTime > ( 1000 / 60 ) )
+	if ( elapsedTime > 1e-6f )
 	{
 		// --------------------------------
 		//	Update
 		// --------------------------------
 		CInputManager::GetInstance().UpdateKeyState();
 
-		m_Fps->Update( elapsedTime.count() );
-		m_Scene->Update( elapsedTime.count() );
+		m_Fps->Update( elapsedTime );
+		m_Scene->Update( elapsedTime );
 
 		m_LastTime = currentTime;
 

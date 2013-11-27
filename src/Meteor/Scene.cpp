@@ -70,9 +70,9 @@ bool CScene::Update( float deltaTime )
 	}
 
 
-	if ( CInputManager::GetInstance().GetKeyState( VK_SPACE ) & INPUT_PRESSED )
+	if ( CInputManager::GetInstance().GetKeyState( VK_SPACE ) & INPUT_DOWN )
 	{
-		// m_PlayerCharacter.Action();
+		m_PlayerCharacter.Action();
 	}
 
 

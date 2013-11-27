@@ -27,7 +27,7 @@ bool CPC::LoadAnimation()
 		L"character_walk_up_right", 
 		L"character_walk_down", 
 		L"character_walk_down_left", 
-		L"character_walk_down_right" 
+		L"character_walk_down_right"
 	};
 
 	for each ( ResourceId animationId in animationIdList )
@@ -90,10 +90,22 @@ CAnimation * CPC::GetAnimation() const
 	}
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
-	if ( m_Status == CHARACTER_WALK )
+	switch ( m_Status )
+	{
+	case CHARACTER_WALK:
 		animation->SetSpeed( 8 );
-	else if ( m_Status == CHARACTER_STAND )
+		break;
+	case CHARACTER_STAND:
 		animation->SetSpeed( 0 );
+		break;
+	case CHARACTER_ATTACK:
+		break;
+	}
 
 	return animation;
+}
+
+
+void CPC::Action()
+{
 }

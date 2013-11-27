@@ -21,8 +21,8 @@ const static float PI = 3.14159265359f;
 template< typename Type >
 Direction GetDirection( Type startX, Type startY, Type targetX, Type targetY )
 {
-	auto diffX = targetX - startX;
-	auto diffY = targetY - startY;
+	float diffX = static_cast<float>( targetX - startX );
+	float diffY = static_cast<float>( targetY - startY );
 
 	float slope = atan2( -diffY, diffX );
 	int slopeLevel = static_cast<int>( ( slope + PI ) * 8.0f / PI );	// 0 ~ 16 level

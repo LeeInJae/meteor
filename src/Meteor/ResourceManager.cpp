@@ -143,7 +143,8 @@ bool CResourceManager::LoadResource( ResourceId id )
 		spriteInfo->LoadResource( id );
 		resource = spriteInfo;
 	}
-	else if ( id.find( L"character_" ) != std::wstring::npos
+	else if ( id.find( L"skill_" ) != std::wstring::npos
+		|| id.find( L"character_" ) != std::wstring::npos
 		|| id.find( L"skeleton_" ) != std::wstring::npos )
 	{
 		CAnimationInfo * animationInfo = new CAnimationInfo();
