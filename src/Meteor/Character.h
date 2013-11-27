@@ -30,15 +30,18 @@ public:
 	bool SetBuff(CSkill &);
 	int GetHp() { return m_Hp; }
 	bool IsDead() { return (m_Hp <= 0); }
-	void SetStatus( CharacterStatus status ) { m_Status = status; }
-
+	void SetStatus( CharacterStatus status );
+	void SetDirection( Direction direction );
+	
 	// Override
 	virtual bool Move( float x, float y ) override;
 	virtual bool Walk( Direction direction, float speed );
+	virtual bool Action();
 
 protected:
 	int m_Hp;
 	int m_Speed;
+	float m_ActionTime;
 
 	CharacterStatus m_Status;
 	std::list<CSkill*> m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트

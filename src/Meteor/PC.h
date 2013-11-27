@@ -14,7 +14,5 @@ public:
 	bool LoadAnimation();
 	bool Update( float deltaTime );
 	CAnimation * GetAnimation() const;
-
-	void Action( /* TODO: Skill type? */ );
 };
 

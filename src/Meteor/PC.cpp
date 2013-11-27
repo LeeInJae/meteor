@@ -27,7 +27,15 @@ bool CPC::LoadAnimation()
 		L"character_walk_up_right", 
 		L"character_walk_down", 
 		L"character_walk_down_left", 
-		L"character_walk_down_right"
+		L"character_walk_down_right",
+		L"character_slash_left", 
+		L"character_slash_right", 
+		L"character_slash_up", 
+		L"character_slash_up_left", 
+		L"character_slash_up_right", 
+		L"character_slash_down", 
+		L"character_slash_down_left", 
+		L"character_slash_down_right"
 	};
 
 	for each ( ResourceId animationId in animationIdList )
@@ -45,67 +53,65 @@ bool CPC::Update( float deltaTime )
 {
 	CGameObject::Update( deltaTime, m_Position );
 
+	if ( m_ActionTime > 0.0f )
+		m_ActionTime -= deltaTime;
+
 	if ( m_Status == CHARACTER_WALK )
 		Walk( m_Direction, WALK_SPEED * deltaTime );
-
+	
 	return true;
 }
 
 CAnimation * CPC::GetAnimation() const
 {
+	int speed = 0;
 	ResourceId animationId;
-	switch( m_Direction )
-	{
-	case LEFT:
-		animationId = L"character_walk_left";
-		break;
-
-	case RIGHT:
-		animationId = L"character_walk_right";
-		break;
-
-	case UP:
-		animationId = L"character_walk_up";
-		break;
-
-	case UP_LEFT:
-		animationId = L"character_walk_up_left";
-		break;
-
-	case UP_RIGHT:
-		animationId = L"character_walk_up_right";
-		break;
-
-	case DOWN:
-		animationId = L"character_walk_down";
-		break;
-
-	case DOWN_LEFT:
-		animationId = L"character_walk_down_left";
-		break;
-
-	case DOWN_RIGHT:
-		animationId = L"character_walk_down_right";
-		break;
-	}
-	CAnimation * animation = m_Animation.find(animationId)->second;
 
 	switch ( m_Status )
 	{
 	case CHARACTER_WALK:
-		animation->SetSpeed( 8 );
+		speed = 8;
+		animationId = L"character_walk";
 		break;
 	case CHARACTER_STAND:
-		animation->SetSpeed( 0 );
+		speed = 0;
+		animationId = L"character_walk";
 		break;
 	case CHARACTER_ATTACK:
+		speed = 8;
+		animationId = L"character_slash";
 		break;
 	}
 
+	switch( m_Direction )
+	{
+	case LEFT:
+		animationId += L"_left";
+		break;
+	case RIGHT:
+		animationId += L"_right";
+		break;
+	case UP:
+		animationId += L"_up";
+		break;
+	case UP_LEFT:
+		animationId += L"_up_left";
+		break;
+	case UP_RIGHT:
+		animationId += L"_up_right";
+		break;
+	case DOWN:
+		animationId += L"_down";
+		break;
+	case DOWN_LEFT:
+		animationId += L"_down_left";
+		break;
+	case DOWN_RIGHT:
+		animationId += L"_down_right";
+		break;
+	}
+	CAnimation * animation = m_Animation.find(animationId)->second;
+
+	animation->SetSpeed( speed );
 	return animation;
-}
-
-
-void CPC::Action()
-{
 }

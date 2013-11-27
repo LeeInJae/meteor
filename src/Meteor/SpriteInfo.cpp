@@ -28,341 +28,578 @@ CSpriteInfo::~CSpriteInfo(void)
 bool CSpriteInfo::LoadResource( ResourceId id )
 {
 	// TODO: Temporary Code
-	if( id == L"character_walk_left_01" )
+	
+	if( id.find(L"character") != std::wstring::npos )
 	{
-		m_BitmapId = L".\\Player\\character_walk_right_01.png";
-		m_Width = -1.0f;
-		m_OriginX = -4.0f;
-		m_SpriteWidth = 50.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_left_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_right_02.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 60.0f;
-		m_SpriteHeight = 98.0f;
-	}
-	if( id == L"character_walk_left_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_right_03.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 60.0f;
-		m_SpriteHeight = 98.0f;
-	}
+		if( id == L"character_walk_left_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = -4.0f;
+			m_SpriteWidth = 50.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_left_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 60.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_walk_left_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 60.0f;
+			m_SpriteHeight = 98.0f;
+		}
 
-	if( id == L"character_walk_right_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_right_01.png";
-		m_OriginX = 4.0f;
-		m_SpriteWidth = 50.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_right_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_right_02.png";
-		m_SpriteWidth = 60.0f;
-		m_SpriteHeight = 98.0f;
-	}
-	if( id == L"character_walk_right_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_right_03.png";
-		m_SpriteWidth = 60.0f;
-		m_SpriteHeight = 98.0f;
-	}
+		else if( id == L"character_walk_right_01" )
+		{
+			m_OriginX = 4.0f;
+			m_SpriteWidth = 50.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_right_02" )
+		{
+			m_SpriteWidth = 60.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_walk_right_03" )
+		{
+			m_SpriteWidth = 60.0f;
+			m_SpriteHeight = 98.0f;
+		}
 
-	if( id == L"character_walk_up_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_01.png";
-		m_OriginX = 2.0f;
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_up_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_02.png";
-		m_SpriteWidth = 48.0f;
-		m_SpriteHeight = 102.0f;
-	}
-	if( id == L"character_walk_up_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_03.png";
-		m_SpriteWidth = 48.0f;
-		m_SpriteHeight = 102.0f;
-	}
+		else if( id == L"character_walk_up_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_up_02" )
+		{
+			m_SpriteWidth = 48.0f;
+			m_SpriteHeight = 102.0f;
+		}
+		else if( id == L"character_walk_up_03" )
+		{
+			m_SpriteWidth = 48.0f;
+			m_SpriteHeight = 102.0f;
+		}
 
-	if( id == L"character_walk_up_left_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_right_01.png";
-		m_OriginX = 2.0f;
-		m_Width = -1.0f;
-		m_SpriteWidth = 48.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_up_left_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_right_02.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 52.0f;
-		m_SpriteHeight = 102.0f;
-	}
-	if( id == L"character_walk_up_left_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_right_03.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 52.0f;
-		m_SpriteHeight = 102.0f;
-	}
+		else if( id == L"character_walk_up_left_01" )
+		{
+			m_OriginX = 2.0f;
+			m_Width = -1.0f;
+			m_SpriteWidth = 48.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_up_left_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 52.0f;
+			m_SpriteHeight = 102.0f;
+		}
+		else if( id == L"character_walk_up_left_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 52.0f;
+			m_SpriteHeight = 102.0f;
+		}
 
-	if( id == L"character_walk_up_right_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_right_01.png";
-		m_OriginX = 2.0f;
-		m_SpriteWidth = 48.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_up_right_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_right_02.png";
-		m_SpriteWidth = 52.0f;
-		m_SpriteHeight = 102.0f;
-	}
-	if( id == L"character_walk_up_right_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_up_right_03.png";
-		m_SpriteWidth = 52.0f;
-		m_SpriteHeight = 102.0f;
-	}
+		else if( id == L"character_walk_up_right_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 48.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_up_right_02" )
+		{
+			m_SpriteWidth = 52.0f;
+			m_SpriteHeight = 102.0f;
+		}
+		else if( id == L"character_walk_up_right_03" )
+		{
+			m_SpriteWidth = 52.0f;
+			m_SpriteHeight = 102.0f;
+		}
 
-	if( id == L"character_walk_down_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_01.png";
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_down_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_02.png";
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
-	if( id == L"character_walk_down_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_03.png";
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
+		else if( id == L"character_walk_down_01" )
+		{
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_down_02" )
+		{
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"character_walk_down_03" )
+		{
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
 
-	if( id == L"character_walk_down_left_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_left_01.png";
-		m_SpriteWidth = 50.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_down_left_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_left_02.png";
-		m_SpriteWidth = 58.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_down_left_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_left_03.png";
-		m_SpriteWidth = 58.0f;
-		m_SpriteHeight = 100.0f;
-	}
+		else if( id == L"character_walk_down_left_01" )
+		{
+			m_SpriteWidth = 50.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_down_left_02" )
+		{
+			m_SpriteWidth = 58.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_down_left_03" )
+		{
+			m_SpriteWidth = 58.0f;
+			m_SpriteHeight = 100.0f;
+		}
 
-	if( id == L"character_walk_down_right_01" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_left_01.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 50.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_down_right_02" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_left_02.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 58.0f;
-		m_SpriteHeight = 100.0f;
-	}
-	if( id == L"character_walk_down_right_03" )
-	{
-		m_BitmapId = L".\\Player\\character_walk_down_left_03.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 58.0f;
-		m_SpriteHeight = 100.0f;
-	}
+		else if( id == L"character_walk_down_right_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 50.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_down_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 58.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_walk_down_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 58.0f;
+			m_SpriteHeight = 100.0f;
+		}
 
 
-// skeleton mage
-	if( id == L"skeleton_mage_walk_left_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_01.png";
-		m_OriginX = 4.0f;
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
-	if( id == L"skeleton_mage_walk_left_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_02.png";
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
-	if( id == L"skeleton_mage_walk_left_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_03.png";
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
 
-	if( id == L"skeleton_mage_walk_right_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_01.png";
-		m_Width = -1.0f;
-		m_OriginX = -4.0f;
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
-	if( id == L"skeleton_mage_walk_right_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_02.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
-	if( id == L"skeleton_mage_walk_right_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_left_03.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 56.0f;
-		m_SpriteHeight = 104.0f;
-	}
+		else if( id == L"character_slash_left_01" )
+		{
+			m_OriginX = -4.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_left_02" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_left_03" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_left_04" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_left_05" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_left_06" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
 
-	if( id == L"skeleton_mage_walk_up_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_01.png";
-		m_OriginX = 2.0f;
-		m_SpriteWidth = 64.0f;
-		m_SpriteHeight = 108.0f;
-	}
-	if( id == L"skeleton_mage_walk_up_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_02.png";
-		m_SpriteWidth = 64.0f;
-		m_SpriteHeight = 108.0f;
-	}
-	if( id == L"skeleton_mage_walk_up_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_03.png";
-		m_SpriteWidth = 64.0f;
-		m_SpriteHeight = 108.0f;
-	}
+		else if( id == L"character_slash_right_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = 4.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_right_04" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_right_05" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_right_06" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
 
-	if( id == L"skeleton_mage_walk_up_right_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_01.png";
-		m_OriginX = 2.0f;
-		m_SpriteWidth = 66.0f;
-		m_SpriteHeight = 106.0f;
-	}
-	if( id == L"skeleton_mage_walk_up_right_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_02.png";
-		m_SpriteWidth = 66.0f;
-		m_SpriteHeight = 106.0f;
-	}
-	if( id == L"skeleton_mage_walk_up_right_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_03.png";
-		m_SpriteWidth = 66.0f;
-		m_SpriteHeight = 106.0f;
-	}
+		else if( id == L"character_slash_up_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"character_slash_up_02" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"character_slash_up_03" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"character_slash_up_04" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"character_slash_up_05" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"character_slash_up_06" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
 
-	if( id == L"skeleton_mage_walk_up_left_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_01.png";
-		m_OriginX = 2.0f;
-		m_Width = -1.0f;
-		m_SpriteWidth = 66.0f;
-		m_SpriteHeight = 106.0f;
-	}
-	if( id == L"skeleton_mage_walk_up_left_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_02.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 66.0f;
-		m_SpriteHeight = 106.0f;
-	}
-	if( id == L"skeleton_mage_walk_up_left_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_up_right_03.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 66.0f;
-		m_SpriteHeight = 106.0f;
-	}
+		else if( id == L"character_slash_up_left_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"character_slash_up_left_02" )
+		{
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"character_slash_up_left_03" )
+		{
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"character_slash_up_left_04" )
+		{
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"character_slash_up_left_05" )
+		{
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"character_slash_up_left_06" )
+		{
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
 
-	if( id == L"skeleton_mage_walk_down_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_01.png";
-		m_SpriteWidth = 78.0f;
-		m_SpriteHeight = 110.0f;
-	}
-	if( id == L"skeleton_mage_walk_down_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_02.png";
-		m_SpriteWidth = 78.0f;
-		m_SpriteHeight = 110.0f;
-	}
-	if( id == L"skeleton_mage_walk_down_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_03.png";
-		m_SpriteWidth = 78.0f;
-		m_SpriteHeight = 110.0f;
-	}
+		else if( id == L"character_slash_up_right_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_up_right_02" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_up_right_03" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_up_right_04" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_up_right_05" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_up_right_06" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
 
-	if( id == L"skeleton_mage_walk_down_left_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_01.png";
-		m_SpriteWidth = 62.0f;
-		m_SpriteHeight = 110.0f;
-	}
-	if( id == L"skeleton_mage_walk_down_left_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_02.png";
-		m_SpriteWidth = 62.0f;
-		m_SpriteHeight = 110.0f;
-	}
-	if( id == L"skeleton_mage_walk_down_left_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_03.png";
-		m_SpriteWidth = 62.0f;
-		m_SpriteHeight = 110.0f;
-	}
+		else if( id == L"character_slash_down_01" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_02" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_03" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_04" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_05" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_06" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
 
-	if( id == L"skeleton_mage_walk_down_right_01" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_01.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 62.0f;
-		m_SpriteHeight = 110.0f;
-	}
-	if( id == L"skeleton_mage_walk_down_right_02" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_02.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 62.0f;
-		m_SpriteHeight = 110.0f;
-	}
-	if( id == L"skeleton_mage_walk_down_right_03" )
-	{
-		m_BitmapId = L".\\Monster\\skeleton_mage_walk_down_left_03.png";
-		m_Width = -1.0f;
-		m_SpriteWidth = 62.0f;
-		m_SpriteHeight = 110.0f;
-	}
+		else if( id == L"character_slash_down_left_01" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_left_02" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_left_03" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_left_04" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_left_05" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"character_slash_down_left_06" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
 
-	return false;
+		else if( id == L"character_slash_down_right_01" )
+		{
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_down_right_02" )
+		{
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_down_right_03" )
+		{
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_down_right_04" )
+		{
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_down_right_05" )
+		{
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"character_slash_down_right_06" )
+		{
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+
+		m_BitmapId = L".\\Player\\" + id + L".png";
+	}
+	else if( id.find(L"skeleton_mage") != std::wstring::npos )
+	{
+		if( id == L"skeleton_mage_walk_left_01" )
+		{
+			m_OriginX = 4.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_walk_left_02" )
+		{
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_walk_left_03" )
+		{
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_right_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = -4.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_walk_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_walk_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 104.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_up_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 64.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_walk_up_02" )
+		{
+			m_SpriteWidth = 64.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_walk_up_03" )
+		{
+			m_SpriteWidth = 64.0f;
+			m_SpriteHeight = 108.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_up_right_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_walk_up_right_02" )
+		{
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_walk_up_right_03" )
+		{
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 106.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_up_left_01" )
+		{
+			m_OriginX = 2.0f;
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_walk_up_left_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_walk_up_left_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 106.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_down_01" )
+		{
+			m_SpriteWidth = 78.0f;
+			m_SpriteHeight = 110.0f;
+		}
+		else if( id == L"skeleton_mage_walk_down_02" )
+		{
+			m_SpriteWidth = 78.0f;
+			m_SpriteHeight = 110.0f;
+		}
+		else if( id == L"skeleton_mage_walk_down_03" )
+		{
+			m_SpriteWidth = 78.0f;
+			m_SpriteHeight = 110.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_down_left_01" )
+		{
+			m_SpriteWidth = 62.0f;
+			m_SpriteHeight = 110.0f;
+		}
+		else if( id == L"skeleton_mage_walk_down_left_02" )
+		{
+			m_SpriteWidth = 62.0f;
+			m_SpriteHeight = 110.0f;
+		}
+		else if( id == L"skeleton_mage_walk_down_left_03" )
+		{
+			m_SpriteWidth = 62.0f;
+			m_SpriteHeight = 110.0f;
+		}
+
+		else if( id == L"skeleton_mage_walk_down_right_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 62.0f;
+			m_SpriteHeight = 110.0f;
+		}
+		else if( id == L"skeleton_mage_walk_down_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 62.0f;
+			m_SpriteHeight = 110.0f;
+		}
+		else if( id == L"skeleton_mage_walk_down_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 62.0f;
+			m_SpriteHeight = 110.0f;
+		}
+
+		m_BitmapId = L".\\Monster\\" + id + L".png";
+	}
+	else
+		return false;
+	
+	if( m_Width < 0.0f )
+	{
+		std::wstring::size_type pos = std::wstring::npos;
+		pos = m_BitmapId.find(L"left");
+		if( pos != std::wstring::npos )
+			m_BitmapId.replace( m_BitmapId.begin() + pos, m_BitmapId.begin() + pos + wcslen(L"left"), L"right" );
+		else
+		{
+			pos = m_BitmapId.find(L"right");
+			if( pos != std::wstring::npos )
+				m_BitmapId.replace( m_BitmapId.begin() + pos, m_BitmapId.begin() + pos + wcslen(L"right"), L"left" );
+		}
+	}
+	return true;
 }
 
 

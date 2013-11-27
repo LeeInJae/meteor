@@ -5,6 +5,7 @@ const static float SQRT_HALF2 = 0.70710678118f;
 
 CCharacter::CCharacter(void)
 	: m_Status(CHARACTER_STAND)
+	, m_ActionTime(0.0f)
 {
 }
 
@@ -58,4 +59,29 @@ bool CCharacter::Walk( Direction direction, float distance )
 	}
 
 	return false;
+}
+
+bool CCharacter::Action()
+{
+	if( m_ActionTime > 0.0f )
+		return false;
+
+	m_Status = CHARACTER_ATTACK;
+	m_ActionTime = 0.8f;
+
+	return true;
+}
+
+void CCharacter::SetStatus( CharacterStatus status )
+{
+	if( m_ActionTime > 0.0f )
+		return;
+	m_Status = status;
+}
+
+void CCharacter::SetDirection( Direction direction )
+{
+	if( m_ActionTime > 0.0f )
+		return;
+	m_Direction = direction;
 }
