@@ -1,7 +1,8 @@
 //@author : 조익성 (2013.10.23)
 
 #pragma once
-#include "character.h"
+
+#include "Character.h"
 
 // 플레이어
 class CPC :
@@ -14,5 +15,12 @@ public:
 	bool LoadAnimation();
 	bool Update( float deltaTime );
 	CAnimation * GetAnimation() const;
+
+	std::vector<int> & GetCasting() { return m_Casting; }
+	bool Cast( int id );
+	bool Action();
+
+private:
+	std::vector<int>	m_Casting;
 };
 

@@ -2,6 +2,7 @@
 #pragma once
 #include "PC.h"
 #include "Zone.h"
+#include "CastUI.h"
 
 class CScene
 {
@@ -13,7 +14,8 @@ public:
 	void Render();
 
 private:
-	Position m_CameraPosition;
-	CPC		m_PlayerCharacter;
-	CZone *	m_Zone;
+	Position	m_CameraPosition;
+	CPC			m_PlayerCharacter;
+	CZone *		m_Zone;
+	CCastUI *	m_CastingUI;
 };

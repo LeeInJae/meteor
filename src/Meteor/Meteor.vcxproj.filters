@@ -93,6 +93,9 @@
     <ClCompile Include="PathFinder.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="CastUI.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -236,6 +239,15 @@
     </ClInclude>
     <ClInclude Include="PathFinder.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderObject.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CastUI.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

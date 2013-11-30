@@ -10,6 +10,7 @@ CScene::CScene(void)
 	m_CameraPosition.y = 0.0f;
 
 	m_PlayerCharacter.LoadAnimation();
+	m_CastingUI = new CCastUI( m_PlayerCharacter );
 
 	CZoneInfo * zoneInfo = CResourceManager::GetInstance().GetZoneInfo( L"zone_village" );
 	m_Zone = zoneInfo->CreateZone();
@@ -21,6 +22,7 @@ CScene::CScene(void)
 CScene::~CScene(void)
 {
 	SafeDelete( m_Zone );
+	SafeDelete( m_CastingUI );
 }
 
 
@@ -69,11 +71,17 @@ bool CScene::Update( float deltaTime )
 		m_PlayerCharacter.SetStatus( CHARACTER_STAND );
 	}
 
+	char keymap[] = { 'Q', 'W', 'E', 'R', 'T' };
+	int index = 0;
+	for ( auto key : keymap )
+	{
+		if ( ( CInputManager::GetInstance().GetKeyState( key ) & INPUT_DOWN ) )
+			m_PlayerCharacter.Cast( index );
+		++ index;
+	}
 
 	if ( CInputManager::GetInstance().GetKeyState( VK_SPACE ) & INPUT_DOWN )
-	{
 		m_PlayerCharacter.Action();
-	}
 
 
 	m_PlayerCharacter.Update( deltaTime );
@@ -86,4 +94,5 @@ bool CScene::Update( float deltaTime )
 void CScene::Render()
 {
 	m_Zone->Render( m_CameraPosition );
+	m_CastingUI->Render();
 }

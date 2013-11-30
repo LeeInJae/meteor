@@ -583,6 +583,13 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 
 		m_BitmapId = L".\\Monster\\" + id + L".png";
 	}
+	else if( id.find(L"cast_") != std::wstring::npos )
+	{
+			m_Width = 1.0f;
+			m_SpriteWidth = 16.0f;
+			m_SpriteHeight = 16.0f;
+		m_BitmapId = L".\\Player\\" + id + L".png";
+	}
 	else
 		return false;
 	

@@ -115,3 +115,51 @@ CAnimation * CPC::GetAnimation() const
 	animation->SetSpeed( speed );
 	return animation;
 }
+
+bool CPC::Cast( int id )
+{
+	if ( m_Casting.size() < 6 )
+		m_Casting.push_back( id );
+
+	return true;
+}
+
+bool CPC::Action()
+{
+	SHORT cast_table[][6] =
+	{
+		{ 1, 2, 3, -1, -1, -1 },	// 0: Init Status
+		{ 5, -1, -1, -1, -1, -1 },	// 1: R
+		{ -1, -1, -1, -1, -1, -1 },	// 2: B
+		{ -1, -1, -1, -1, -1, -1 },	// 3: G
+		{ -1, -1, -1, -1, -1, -1 },	// 4: Y
+		{ -1, -1, -1, -1, -1, -1 },	// 5: RB
+	};
+
+	SHORT skill_table[] =
+	{
+		-1,
+		-1, // 1: ID_SKILL_FIRE_BOLT,
+		-1,	// 2: ID_SKILL_WIND_STORM,
+		-1,	// 3: ID_SKILL_POISON_PLANT
+		-1,	// 4: ID_SKILL_???
+		5,	// 5: ID_SKILL_FIRE_STORM
+	};
+
+	if ( m_Casting.size() == 0 )
+		return CCharacter::Action();
+
+	SHORT index = 0;
+	for ( auto cast : m_Casting )
+		if ( ( index = cast_table[ index ][ cast ] ) == -1 )
+			break;
+
+	m_Casting.clear();
+
+	if ( index == -1 )
+		return false;
+
+	// TODO: Implement Skill
+
+	return true;
+}
