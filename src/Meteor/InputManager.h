@@ -20,12 +20,14 @@ enum KEYSTATE
 class CInputManager : public IInputManager
 {
 public:
+	void UpdateKeyState();
+
 	// --------------------------------
 	//	IInputManager interface
 	// --------------------------------
-	void UpdateKeyState();
 	InputState GetKeyState( int key );
 	InputState GetMouseState();
+	void BlockKeyState( int key );
 
 	// --------------------------------
 	//	GetInstance
@@ -39,4 +41,5 @@ private:
 
 	bool m_PreviousKeyState[256];
 	bool m_CurrentKeyState[256];
+	bool m_BlockKeyState[256];
 };

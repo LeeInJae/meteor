@@ -16,6 +16,7 @@ void CInputManager::UpdateKeyState()
 {
 	for ( int i = 0; i < 256; i++ )
 	{
+		m_BlockKeyState[i] = false;
 		m_PreviousKeyState[i] = m_CurrentKeyState[i];
 
 		if( ::GetKeyState(i) & 0x8000 )
@@ -30,6 +31,9 @@ void CInputManager::UpdateKeyState()
 // ----------------------------------------------------------------
 InputState CInputManager::GetKeyState( int key )
 {
+	if ( m_BlockKeyState[key] )
+		return INPUT_NOTPRESSED;
+
 	if ( m_PreviousKeyState[key] == false && m_CurrentKeyState[key] == true )
 	{
 		return INPUT_PRESSED | INPUT_DOWN;
@@ -54,6 +58,7 @@ InputState CInputManager::GetMouseState()
 	return INPUT_NOTPRESSED;
 }
 
+
 // ----------------------------------------------------------------
 //	GetInstance
 // ----------------------------------------------------------------
@@ -61,4 +66,13 @@ CInputManager & CInputManager::GetInstance()
 {
 	static CInputManager instance;
 	return instance;
+}
+
+
+// ----------------------------------------------------------------
+//	BlockKeyState
+// ----------------------------------------------------------------
+void CInputManager::BlockKeyState( int key )
+{
+	m_BlockKeyState[key] = true;
 }

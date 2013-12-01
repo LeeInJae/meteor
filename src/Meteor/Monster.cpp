@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include "ResourceManager.h"
 #include "GameManager.h"
+#include "SceneManager.h"
 #include "AnimationInfo.h"
 
 #include <cmath>
@@ -49,9 +50,11 @@ bool CMonster::LoadAnimation()
 	return true;
 }
 
-bool CMonster::Update( float deltaTime, Position & playerPosition )
+bool CMonster::Update( float deltaTime )
 {
-	CGameObject::Update( deltaTime, playerPosition );
+	CGameObject::Update( deltaTime );
+
+	Position playerPosition = CSceneManager::GetInstance().GetCurrentScene()->GetPlayer().GetPosition();
 
 	//  플레이어와의 거리 체크
 	Vector diff = playerPosition - m_Position;
@@ -82,46 +85,63 @@ bool CMonster::Update( float deltaTime, Position & playerPosition )
 CAnimation * CMonster::GetAnimation() const
 {
 	ResourceId animationId;
+
+	switch ( m_Status )
+	{
+	case CHARACTER_WALK:
+		animationId = L"skeleton_mage_walk";
+		break;
+	case CHARACTER_STAND:
+		animationId = L"skeleton_mage_walk";
+		break;
+	case CHARACTER_ATTACK:
+		animationId = L"skeleton_mage_slash";
+		break;
+	}
+
 	switch( m_Direction )
 	{
 	case LEFT:
-		animationId = L"skeleton_mage_walk_left";
+		animationId += L"_left";
 		break;
-
 	case RIGHT:
-		animationId = L"skeleton_mage_walk_right";
+		animationId += L"_right";
 		break;
-
 	case UP:
-		animationId = L"skeleton_mage_walk_up";
+		animationId += L"_up";
 		break;
-
 	case UP_LEFT:
-		animationId = L"skeleton_mage_walk_up_left";
+		animationId += L"_up_left";
 		break;
-
 	case UP_RIGHT:
-		animationId = L"skeleton_mage_walk_up_right";
+		animationId += L"_up_right";
 		break;
-
 	case DOWN:
-		animationId = L"skeleton_mage_walk_down";
+		animationId += L"_down";
 		break;
-
 	case DOWN_LEFT:
-		animationId = L"skeleton_mage_walk_down_left";
+		animationId += L"_down_left";
 		break;
-
 	case DOWN_RIGHT:
-		animationId = L"skeleton_mage_walk_down_right";
+		animationId += L"_down_right";
 		break;
 	}
+
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
-	if ( m_Status == CHARACTER_WALK )
-		animation->SetSpeed( 8 );
-	else if ( m_Status == CHARACTER_STAND )
-		animation->SetSpeed( 0 );
+	switch ( m_Status )
+	{
+	case CHARACTER_WALK:
+		animation->Play( 8 );
+		break;
+	case CHARACTER_STAND:
+		animation->Stop( true );
+		break;
+	case CHARACTER_ATTACK:
+		animation->Stop( true );
+		animation->Play( 10, false );
+		break;
+	}
 
 	return animation;
 }

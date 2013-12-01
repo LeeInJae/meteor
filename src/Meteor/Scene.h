@@ -13,6 +13,8 @@ public:
 	bool Update( float deltaTime );
 	void Render();
 
+	const CPC &		GetPlayer()	const	{ return m_PlayerCharacter; }
+
 private:
 	Position	m_CameraPosition;
 	CPC			m_PlayerCharacter;

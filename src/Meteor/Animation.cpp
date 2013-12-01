@@ -9,6 +9,7 @@
 CAnimation::CAnimation()
 	: m_FrameNumber( 0 )
 	, m_Fps( 0 )
+	, m_Loop(true)
 	, m_ElapsedTime( 0 )
 {
 }
@@ -46,35 +47,62 @@ void CAnimation::AddSprite( CSprite * sprite )
 // ----------------------------------------------------------------
 bool CAnimation::Update( float deltaTime )
 {
+	assert( m_Sprites.size() > 0 );
+
 	if( m_Fps == 0 )
-		return true;
+		return false;
 
 	m_ElapsedTime += deltaTime;
 
-	if( m_ElapsedTime >= float( 1.0f / m_Fps ) )
+	if( m_ElapsedTime >= static_cast<float>( 1.0f / m_Fps ) )
 	{
-		++m_FrameNumber;
+		++ m_FrameNumber;
 		m_ElapsedTime = 0;
 	}
 	
 	if( m_FrameNumber >= m_Sprites.size() )
-		m_FrameNumber = 0;
+	{
+		if ( m_Loop )
+			m_FrameNumber = 0;
+		else
+		{
+			-- m_FrameNumber;
+			m_Fps = 0;
+		}
+	}
 
 	return true;
 }
+
 
 // ----------------------------------------------------------------
 //	Render
 // ----------------------------------------------------------------
 void CAnimation::Render()
 {
-	CSprite * sprite;
-
-	if( m_Fps == 0 )
-		sprite = m_Sprites[0];
-	else
-		sprite = m_Sprites[m_FrameNumber];
+	CSprite * sprite = m_Sprites[ m_FrameNumber ];
 
 	sprite->SetPosition( m_Position );
 	sprite->Render();
+}
+
+
+// ----------------------------------------------------------------
+//	Play
+// ----------------------------------------------------------------
+void CAnimation::Play( int fps, bool loop )
+{
+	m_Fps = fps;
+	m_Loop = loop;
+}
+
+
+// ----------------------------------------------------------------
+//	Stop
+// ----------------------------------------------------------------
+void CAnimation::Stop( bool reset )
+{
+	m_Fps = 0;
+	if ( reset )
+		m_FrameNumber = 0;
 }

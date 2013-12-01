@@ -18,7 +18,8 @@ CAnimationInfo::~CAnimationInfo(void)
 
 bool CAnimationInfo::LoadResource( ResourceId id )
 {
-	if ( id.find(L"character") != std::wstring::npos )
+	if ( id.find(L"character") != std::wstring::npos
+		|| id.find(L"effect") != std::wstring::npos )
 	{
 		if ( id.find(L"walk") != std::wstring::npos )
 		{

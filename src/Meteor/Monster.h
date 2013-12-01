@@ -13,7 +13,7 @@ public:
 	~CMonster(void);
 
 	bool LoadAnimation();
-	bool Update( float deltaTime, Position & playerPosition );
+	bool Update( float deltaTime );
 	CAnimation * GetAnimation() const;
 
 private:

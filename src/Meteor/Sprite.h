@@ -22,16 +22,11 @@ public:
 	float GetImageHeight()	const { return m_ImageHeight; }
 
 	void SetPosition	( Position position )	{ m_Position = position; }
-	void SetImageWidth	( float width )		{ m_ImageWidth = width; }
-	void SetImageHeight	( float height )	{ m_ImageHeight = height; }
-	void SetOpacity		( float opacity )	{ m_Opacity = opacity; }
+	void SetImageWidth	( float width )			{ m_ImageWidth = width; }
+	void SetImageHeight	( float height )		{ m_ImageHeight = height; }
+	void SetOpacity		( float opacity	)		{ m_Opacity = opacity; }
 
 protected:
-	float m_Left;
-	float m_Top;
-	float m_Width;
-	float m_Height;
-
 	Position m_Position;
 
 	float m_ImageWidth;

@@ -51,16 +51,14 @@ bool CPC::LoadAnimation()
 
 bool CPC::Update( float deltaTime )
 {
-	CGameObject::Update( deltaTime, m_Position );
+	CCharacter::Update( deltaTime );
 
-	if ( m_ActionTime > 0.0f )
-		m_ActionTime -= deltaTime;
-
-	if ( m_Status == CHARACTER_WALK )
+	if ( m_Status == CHARACTER_WALK || m_Status == CHARACTER_ATTACK )
 		Walk( m_Direction, WALK_SPEED * deltaTime );
 	
 	return true;
 }
+
 
 CAnimation * CPC::GetAnimation() const
 {
@@ -70,15 +68,12 @@ CAnimation * CPC::GetAnimation() const
 	switch ( m_Status )
 	{
 	case CHARACTER_WALK:
-		speed = 8;
 		animationId = L"character_walk";
 		break;
 	case CHARACTER_STAND:
-		speed = 0;
 		animationId = L"character_walk";
 		break;
 	case CHARACTER_ATTACK:
-		speed = 8;
 		animationId = L"character_slash";
 		break;
 	}
@@ -110,9 +105,22 @@ CAnimation * CPC::GetAnimation() const
 		animationId += L"_down_right";
 		break;
 	}
+
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
-	animation->SetSpeed( speed );
+	switch ( m_Status )
+	{
+	case CHARACTER_WALK:
+		animation->Play( 8 );
+		break;
+	case CHARACTER_STAND:
+		animation->Stop( true );
+		break;
+	case CHARACTER_ATTACK:
+		animation->Play( 10, false );
+		break;
+	}
+
 	return animation;
 }
 

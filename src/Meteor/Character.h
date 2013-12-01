@@ -25,6 +25,9 @@ public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 
+	virtual bool Update( float deltaTime ) override;
+	virtual void Render( Position & cameraPosition ) override;
+
 	bool HitCheck(CSkill &skill);
 	bool ApplyDamage(int damage);
 	bool SetBuff(CSkill &);
@@ -43,6 +46,8 @@ protected:
 	int m_Speed;
 	float m_ActionTime;
 
-	CharacterStatus m_Status;
-	std::list<CSkill*> m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
+	CharacterStatus		m_Status;
+	CSkill *			m_BasicAttack;
+	CSkill *			m_Skill;
+	std::list<CSkill*>	m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
 };

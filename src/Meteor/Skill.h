@@ -1,19 +1,19 @@
 //@author : 조익성 (2013.10.25)
 
 #pragma once
-#include "gameobject.h"
+
+#include "GameObject.h"
 
 // 스킬
-class CSkill :
-	public CGameObject
+class CSkill : public CGameObject
 {
 public:
-	CSkill(void);
-	~CSkill(void);
+	CSkill() {};
+	virtual ~CSkill() {};
 
 	int GetDamage() { return m_Damage; };
 	int GetDuration() { return m_Duration; };
-	void ApplySkill( CGameObject &target );
+	virtual void ApplySkill( CGameObject * target ) = 0;
 
 protected:
 	int m_Damage; // 데미지

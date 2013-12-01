@@ -5,15 +5,15 @@
 #include "Character.h"
 
 // 플레이어
-class CPC :
-	public CCharacter
+class CPC : public CCharacter
 {
 public:
 	CPC(void);
 	~CPC(void);
 
+	bool Update( float deltaTime ) override;
+
 	bool LoadAnimation();
-	bool Update( float deltaTime );
 	CAnimation * GetAnimation() const;
 
 	std::vector<int> & GetCasting() { return m_Casting; }

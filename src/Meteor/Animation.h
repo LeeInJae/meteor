@@ -23,12 +23,14 @@ public:
 	void AddSprite( CSprite * sprite );
 	bool Update( float deltaTime );
 	void Render();
+	void Play( int fps, bool loop = true );
+	void Stop( bool reset );
 
 private:
-
 	std::vector<CSprite *> m_Sprites;
 	UINT		m_FrameNumber;
 	int			m_Fps;
+	bool		m_Loop;
 	Position	m_Position;
 	float		m_ElapsedTime;
 };

@@ -13,7 +13,7 @@ CGameObject::~CGameObject(void)
 {
 }
 
-bool CGameObject::Update( float deltaTime, Position & playerPosition )
+bool CGameObject::Update( float deltaTime )
 {
 	CAnimation * animation = GetAnimation();
 	assert( animation );

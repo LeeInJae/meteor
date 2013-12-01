@@ -173,8 +173,6 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_SpriteHeight = 100.0f;
 		}
 
-
-
 		else if( id == L"character_slash_left_01" )
 		{
 			m_OriginX = -4.0f;
@@ -585,10 +583,15 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	}
 	else if( id.find(L"cast_") != std::wstring::npos )
 	{
-			m_Width = 1.0f;
 			m_SpriteWidth = 16.0f;
 			m_SpriteHeight = 16.0f;
 		m_BitmapId = L".\\Player\\Cast\\" + id + L".png";
+	}
+	else if( id.find(L"effect_") != std::wstring::npos )
+	{
+			m_SpriteWidth = 640.0f;
+			m_SpriteHeight = 400.0f;
+		m_BitmapId = L".\\Player\\Effect\\" + id + L".png";
 	}
 	else
 		return false;

@@ -1,15 +1,18 @@
 #include "stdafx.h"
 #include "GameManager.h"
+#include "SceneManager.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
 #include "D2DRenderer.h"
 #include "D2DText.h"
+#include "Scene.h"
+#include "Fps.h"
 
 // ----------------------------------------------------------------
 //	Constructor
 // ----------------------------------------------------------------
 CGameManager::CGameManager(void)
-	: m_Scene(nullptr)
+	: m_Continue(true)
 	, m_StartTime(std::chrono::system_clock::now())
 	, m_LastTime(std::chrono::system_clock::now())
 	, m_Width(0)
@@ -32,14 +35,13 @@ CGameManager::~CGameManager(void)
 bool CGameManager::Init()
 {
 	IRenderer & renderer = CD2DRenderer::GetInstance();
-
 	renderer.Init();
 	m_Width = renderer.GetWidth();
 	m_Height = renderer.GetHeight();
 
-	m_Scene = new CScene();
-	m_LastTime = m_StartTime = std::chrono::system_clock::now();
+	CSceneManager::GetInstance().Init();
 
+	m_LastTime = m_StartTime = std::chrono::system_clock::now();
 	m_Fps = new CFps();
 
 	return true;
@@ -51,8 +53,8 @@ bool CGameManager::Init()
 // ----------------------------------------------------------------
 bool CGameManager::Process()
 {
-	if ( ! m_Scene )
-		return true;
+	if ( ! m_Continue )
+		return false;
 
 	std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
 	float elapsedTime = static_cast< std::chrono::duration< float > >( currentTime - m_LastTime ).count();
@@ -65,8 +67,7 @@ bool CGameManager::Process()
 		CInputManager::GetInstance().UpdateKeyState();
 
 		m_Fps->Update( elapsedTime );
-		m_Scene->Update( elapsedTime );
-
+		CSceneManager::GetInstance().UpdateScene( elapsedTime );
 		m_LastTime = currentTime;
 
 		// --------------------------------
@@ -75,7 +76,7 @@ bool CGameManager::Process()
 		CD2DRenderer::GetInstance().Begin();
 		CD2DRenderer::GetInstance().Clear();
 
-		m_Scene->Render();
+		CSceneManager::GetInstance().RenderScene();
 		m_Fps->Render();
 
 		CD2DRenderer::GetInstance().End();
@@ -90,9 +91,10 @@ bool CGameManager::Process()
 // ---------------------------------------------------------------
 void CGameManager::Release()
 {
+	m_Continue = false;
+	CSceneManager::GetInstance().Release();
 	CResourceManager::GetInstance().Clear();
 	CD2DRenderer::GetInstance().Release();
-	SafeDelete( m_Scene );
 	SafeDelete( m_Fps );
 }
 

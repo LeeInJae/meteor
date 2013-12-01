@@ -44,7 +44,7 @@ void CZoneMap::AddSprite( int row, CSprite * sprite )
 // ----------------------------------------------------------------
 //	Update
 // ----------------------------------------------------------------
-bool CZoneMap::Update( Position & playerPosition )
+bool CZoneMap::Update( const Position & playerPosition )
 {
 	m_Position.x = -playerPosition.x;
 	m_Position.y = -playerPosition.y;

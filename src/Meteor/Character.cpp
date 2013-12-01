@@ -1,22 +1,55 @@
 #include "stdafx.h"
 #include "Character.h"
+#include "BasicAttack.h"
 
-const static float SQRT_HALF2 = 0.70710678118f;
+const static float SQRT2_2 = 0.70710678118f;
 
 CCharacter::CCharacter(void)
-	: m_Status(CHARACTER_STAND)
-	, m_ActionTime(0.0f)
+	: m_ActionTime(0.0f)
+	, m_Skill(nullptr)
+	, m_Status(CHARACTER_STAND)
 {
+	CBasicAttack * basicAttack = new CBasicAttack();
+	basicAttack->LoadAnimation();
+	m_BasicAttack = basicAttack;
 }
 
 CCharacter::~CCharacter(void)
 {
+	SafeDelete( m_BasicAttack );
 }
+
+
+bool CCharacter::Update( float deltaTime )
+{
+	if ( m_ActionTime > 0.0f )
+		m_ActionTime -= deltaTime;
+	else
+		m_Skill = nullptr;
+
+	if ( m_Skill )
+	{
+		m_Skill->Update( deltaTime );
+		m_Skill->SetPosition( m_Position.x, m_Position.y );
+	}
+
+	return CGameObject::Update( deltaTime );
+}
+
+
+void CCharacter::Render( Position & cameraPosition )
+{
+	CGameObject::Render( cameraPosition );
+	if ( m_Skill )
+		m_Skill->Render( cameraPosition );
+}
+
 
 bool CCharacter::HitCheck(CSkill &skill)
 {
 	return false;
 }
+
 
 bool CCharacter::Move( float x, float y )
 {
@@ -29,7 +62,7 @@ bool CCharacter::Move( float x, float y )
 
 bool CCharacter::Walk( Direction direction, float distance )
 {
-	float diagonal = distance * SQRT_HALF2;
+	float diagonal = distance * SQRT2_2;
 
 	switch( m_Direction )
 	{
@@ -67,7 +100,12 @@ bool CCharacter::Action()
 		return false;
 
 	m_Status = CHARACTER_ATTACK;
-	m_ActionTime = 0.8f;
+	m_ActionTime = 0.7f;
+
+	m_Skill = m_BasicAttack;
+	m_Skill->ApplySkill( this );
+
+	GetAnimation()->Stop( true );
 
 	return true;
 }

@@ -2,9 +2,10 @@
 #pragma once
 
 #include "IGamemanager.h"
-#include "Scene.h"
-#include "Fps.h"
 #include <chrono>
+
+class CScene;
+class CFps;
 
 class CGameManager : public IGameManager
 {
@@ -33,7 +34,7 @@ private:
 	CGameManager( const CGameManager & );
 	CGameManager & operator=( const CGameManager & );
 
-	CScene *	m_Scene;
+	bool		m_Continue;
 	CFps *		m_Fps;
 
 	// Time and Fps

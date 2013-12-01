@@ -21,7 +21,7 @@ public:
 
 	void SetSize( UINT x, UINT y, float width, float height );
 	void AddSprite( int row, CSprite * sprite );
-	bool Update( Position & playerPosition );
+	bool Update( const Position & playerPosition );
 	void Render();
 
 	Direction FindPath( const CGameObject * monster, const CGameObject * target, const std::list< CGameObject * > objects );

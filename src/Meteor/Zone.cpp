@@ -20,7 +20,7 @@ bool CZone::Update( float deltaTime, Position & playerPosition )
 {
 	m_Map->Update( playerPosition );
 	for ( auto object : m_Object )
-		object->Update( deltaTime, playerPosition );
+		object->Update( deltaTime );
 
 	return true;
 }
