@@ -588,7 +588,7 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_Width = 1.0f;
 			m_SpriteWidth = 16.0f;
 			m_SpriteHeight = 16.0f;
-		m_BitmapId = L".\\Player\\" + id + L".png";
+		m_BitmapId = L".\\Player\\Cast\\" + id + L".png";
 	}
 	else
 		return false;
