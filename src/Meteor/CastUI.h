@@ -19,5 +19,6 @@ public:
 
 private:
 	CPC & m_Player;
-	std::vector<CSprite *> m_Sprites;
+	//std::vector<CSprite *> m_Sprites;
+	std::map<std::string, CSprite *> m_Sprites;
 };

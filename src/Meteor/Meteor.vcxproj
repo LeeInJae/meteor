@@ -100,6 +100,7 @@
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="D2DText.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="FlameSlash.h" />
     <ClInclude Include="IEventListener.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Fps.h" />
@@ -165,6 +166,7 @@
     </ClCompile>
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="D2DText.cpp" />
+    <ClCompile Include="FlameSlash.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp">

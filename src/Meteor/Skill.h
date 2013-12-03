@@ -3,21 +3,25 @@
 #pragma once
 
 #include "GameObject.h"
+#include "AnimationInfo.h"
 
 // 스킬
 class CSkill : public CGameObject
 {
 public:
-	CSkill() {};
+	CSkill(void) {};
 	virtual ~CSkill() {};
 
 	int GetDamage() { return m_Damage; };
-	int GetDuration() { return m_Duration; };
+	float GetDuration() { return m_Duration; };
+	virtual bool LoadAnimation();
+	virtual CAnimation * GetAnimation() const;
 	virtual void ApplySkill( CGameObject * target ) = 0;
 
 protected:
 	int m_Damage; // 데미지
-	int m_Duration; // 지속 시간
+	float m_Duration; // 지속 시간
 	CGameObject * m_Target; // 타겟
+	ResourceId m_SkillName;
 };
 

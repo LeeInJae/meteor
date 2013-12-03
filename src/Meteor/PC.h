@@ -16,11 +16,15 @@ public:
 	bool LoadAnimation();
 	CAnimation * GetAnimation() const;
 
-	std::vector<int> & GetCasting() { return m_Casting; }
-	bool Cast( int id );
+	//std::vector<int> & GetCasting() { return m_Casting; }
+	std::list<std::string> & GetCasting() { return m_Casting; }
+	//bool Cast( int id );
+	bool Cast( std::string id );
 	bool Action();
 
 private:
-	std::vector<int>	m_Casting;
+	//std::vector<int>	m_Casting;
+	CSkill *			m_BasicAttack;
+	std::list<std::string> m_Casting;
 };
 

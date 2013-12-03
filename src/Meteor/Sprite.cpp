@@ -15,10 +15,10 @@ void CD2DSprite::Render()
 	float left = CD2DRenderer::GetInstance().GetWidth() * 0.5f;
 	float top = CD2DRenderer::GetInstance().GetHeight() * 0.5f;
 
-	left += m_Position.x - m_ImageWidth / 2;
-	top += m_Position.y - m_ImageHeight / 2;
+	left += m_Position.x - m_ImageWidth * 0.5f;
+	top += m_Position.y - m_ImageHeight * 0.5f;
 
-	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Translation( left, top );
+	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Rotation( m_Rotation, D2D1::Point2F(m_ImageWidth * 0.5f, m_ImageHeight * 0.5f) ) * D2D1::Matrix3x2F::Translation( left, top );
 	CD2DRenderer::GetInstance().GetHwndRenderTarget()->SetTransform( m_BaseMatrix * matrix );
 	CD2DRenderer::GetInstance().GetHwndRenderTarget()->DrawBitmap(m_pD2DBitmap->GetD2DBitmap(), D2D1::RectF(0.f, 0.f, m_ImageWidth, m_ImageHeight), m_Opacity );
 }

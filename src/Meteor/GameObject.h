@@ -8,6 +8,7 @@
 #include "Circle.h"
 #include "IEventSubject.h"
 #include "IEventListener.h"
+#include "ResourceManager.h"
 
 // TODO: Redesign with lambda and closure to cancel event
 enum EventType
@@ -31,6 +32,7 @@ public:
 	Direction			GetDirection() const					{ return m_Direction; }
 	const Position &	GetPosition() const						{ return m_Position; }
 	virtual bool		Move( float x, float y );
+	bool				Move( Direction direction, float distance );
 	virtual CAnimation * GetAnimation() const = 0;
 
 	void				SetSubject( IEventSubject<CGameObject> * subject );

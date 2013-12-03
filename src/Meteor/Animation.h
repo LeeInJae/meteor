@@ -20,6 +20,7 @@ public:
 	// --------------------------------
 	void SetSpeed( int fps ) { m_Fps = fps; }
 	void SetPosition( Position & position, Position & cameraPosition );
+	void SetRotation( float rotation ){ m_Rotation = rotation; }
 	void AddSprite( CSprite * sprite );
 	bool Update( float deltaTime );
 	void Render();
@@ -33,4 +34,5 @@ private:
 	bool		m_Loop;
 	Position	m_Position;
 	float		m_ElapsedTime;
+	float		m_Rotation;
 };

@@ -72,13 +72,22 @@ bool CScene::Update( float deltaTime )
 	}
 
 	char keymap[] = { 'Q', 'W', 'E', 'R', 'T' };
+	std::string gemMap[] = {
+		"Red",
+		"Blue",
+		"Green",
+		"Yellow",
+		"Black"
+	};
 	int index = 0;
 	for ( auto key : keymap )
 	{
 		if ( ( CInputManager::GetInstance().GetKeyState( key ) & INPUT_DOWN ) )
-			m_PlayerCharacter.Cast( index );
+			m_PlayerCharacter.Cast( gemMap[index] );
 		++ index;
 	}
+
+	
 
 	if ( CInputManager::GetInstance().GetKeyState( VK_SPACE ) & INPUT_DOWN )
 		m_PlayerCharacter.Action();

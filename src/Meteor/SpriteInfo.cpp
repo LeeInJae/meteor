@@ -583,14 +583,20 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	}
 	else if( id.find(L"cast_") != std::wstring::npos )
 	{
-			m_SpriteWidth = 16.0f;
-			m_SpriteHeight = 16.0f;
+		m_SpriteWidth = 16.0f;
+		m_SpriteHeight = 16.0f;
 		m_BitmapId = L".\\Player\\Cast\\" + id + L".png";
 	}
 	else if( id.find(L"effect_") != std::wstring::npos )
 	{
-			m_SpriteWidth = 640.0f;
-			m_SpriteHeight = 400.0f;
+		if ( id.find(L"flame_slash_") != std::wstring::npos )
+		{
+			m_SpriteWidth = 320.0f;
+			m_SpriteHeight = 240.0f;
+			m_BitmapId = L".\\Player\\Effect\\" + id + L".png";
+		}
+		m_SpriteWidth = 640.0f;
+		m_SpriteHeight = 400.0f;
 		m_BitmapId = L".\\Player\\Effect\\" + id + L".png";
 	}
 	else
@@ -621,7 +627,7 @@ CSprite * CSpriteInfo::CreateSprite()
 	CD2DSprite * sprite = new CD2DSprite();
 	CD2DBitmap * bitmap = static_cast<CD2DBitmap *>( CResourceManager::GetInstance().GetResource( m_BitmapId ) );
 
-	sprite->SetBaseMatrix( D2D1::Matrix3x2F::Scale( m_Width, m_Height, D2D1::Point2F( m_SpriteWidth * 0.5f, m_SpriteHeight * 0.5f ) ) * D2D1::Matrix3x2F::Translation( -m_OriginX, -m_OriginY ) );
+	sprite->SetBaseMatrix( D2D1::Matrix3x2F::Scale( m_Width, m_Height, D2D1::Point2F( m_SpriteWidth * 0.5f, m_SpriteHeight * 0.5f ) ) * D2D1::Matrix3x2F::Translation( -m_OriginX, -m_OriginY )	);
 	sprite->SetImageWidth( m_SpriteWidth );
 	sprite->SetImageHeight( m_SpriteHeight );
 	sprite->SetBitmap( bitmap );

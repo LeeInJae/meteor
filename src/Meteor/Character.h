@@ -47,7 +47,7 @@ protected:
 	float m_ActionTime;
 
 	CharacterStatus		m_Status;
-	CSkill *			m_BasicAttack;
+//	CSkill *			m_BasicAttack;
 	CSkill *			m_Skill;
 	std::list<CSkill*>	m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
 };

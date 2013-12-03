@@ -12,7 +12,7 @@ class CSprite
 public:
 	CSprite()
 		: m_ImageWidth(0.f), m_ImageHeight(0.f),
-		m_ColorR(0.f), m_ColorG(0.f), m_ColorB(0.f), m_Opacity(1.f)
+		m_ColorR(0.f), m_ColorG(0.f), m_ColorB(0.f), m_Opacity(1.f), m_Rotation( 0.0f )
 	{}
 	virtual ~CSprite(){}
 	virtual void Release() {}
@@ -25,6 +25,7 @@ public:
 	void SetImageWidth	( float width )			{ m_ImageWidth = width; }
 	void SetImageHeight	( float height )		{ m_ImageHeight = height; }
 	void SetOpacity		( float opacity	)		{ m_Opacity = opacity; }
+	void SetRotation	( float rotation )	{ m_Rotation = rotation; }
 
 protected:
 	Position m_Position;
@@ -33,6 +34,7 @@ protected:
 	float m_ImageHeight;
 	float m_ColorR, m_ColorG, m_ColorB;
 	float m_Opacity;
+	float m_Rotation;
 };
 
 class CD2DSprite : public CSprite

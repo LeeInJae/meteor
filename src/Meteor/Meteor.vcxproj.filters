@@ -100,7 +100,10 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="BasicAttack.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\SkillList</Filter>
+    </ClCompile>
+    <ClCompile Include="FlameSlash.cpp">
+      <Filter>Game\SkillList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +262,10 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="BasicAttack.h">
-      <Filter>Game</Filter>
+      <Filter>Game\SkillList</Filter>
+    </ClInclude>
+    <ClInclude Include="FlameSlash.h">
+      <Filter>Game\SkillList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +293,9 @@
     </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{0f1df1e8-7280-40ef-a375-43f456f33d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\SkillList">
+      <UniqueIdentifier>{7553f2cc-f485-493b-bb1b-99aa725c74c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

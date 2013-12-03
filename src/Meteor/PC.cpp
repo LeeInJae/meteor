@@ -3,11 +3,16 @@
 #include "ResourceManager.h"
 #include "GameManager.h"
 #include "AnimationInfo.h"
+#include "BasicAttack.h"
+#include "FlameSlash.h"
 
 #define WALK_SPEED 192
 
 CPC::CPC(void)
 {
+	CBasicAttack * basicAttack = new CBasicAttack();
+	basicAttack->LoadAnimation();
+	m_BasicAttack = basicAttack;
 }
 
 CPC::~CPC(void)
@@ -15,6 +20,8 @@ CPC::~CPC(void)
 	for ( auto animation : m_Animation )
 		SafeDelete( animation.second );
 	m_Animation.clear();
+
+	SafeDelete( m_BasicAttack );
 }
 
 bool CPC::LoadAnimation()
@@ -53,8 +60,10 @@ bool CPC::Update( float deltaTime )
 {
 	CCharacter::Update( deltaTime );
 
-	if ( m_Status == CHARACTER_WALK || m_Status == CHARACTER_ATTACK )
+	if ( m_Status == CHARACTER_WALK )
 		Walk( m_Direction, WALK_SPEED * deltaTime );
+	else if ( m_Status == CHARACTER_ATTACK )
+		Walk( m_Direction, WALK_SPEED * 0.5f * deltaTime );
 	
 	return true;
 }
@@ -124,17 +133,27 @@ CAnimation * CPC::GetAnimation() const
 	return animation;
 }
 
-bool CPC::Cast( int id )
+//bool CPC::Cast( int id )
+//{
+//	if ( m_Casting.size() < 6 )
+//		m_Casting.push_back( id );
+//
+//	return true;
+//}
+
+bool CPC::Cast( std::string id )
 {
 	if ( m_Casting.size() < 6 )
 		m_Casting.push_back( id );
-
 	return true;
 }
 
 bool CPC::Action()
 {
-	SHORT cast_table[][6] =
+	if( m_ActionTime > 0.0f )
+		return false;
+
+/*	SHORT cast_table[][6] =
 	{
 		{ 1, 2, 3, -1, -1, -1 },	// 0: Init Status
 		{ 5, -1, -1, -1, -1, -1 },	// 1: R
@@ -153,7 +172,18 @@ bool CPC::Action()
 		-1,	// 4: ID_SKILL_???
 		5,	// 5: ID_SKILL_FIRE_STORM
 	};
+*/
 
+	//std::map< std::string, std::wstring > skill_table;
+	//skill_table["Red"] = L"skill_fire_bolt";
+	//skill_table["RedGreen"] = L"skill_flame_slash";
+	//skill_table["RedRedGreen"] = L"skill_fire_storm";
+
+	std::map< std::string, CSkill * > skill_table;
+	skill_table["RedGreen"] = new CFlameSlash();
+	skill_table["RedGreen"]->LoadAnimation();
+
+/*
 	if ( m_Casting.size() == 0 )
 		return CCharacter::Action();
 
@@ -161,13 +191,53 @@ bool CPC::Action()
 	for ( auto cast : m_Casting )
 		if ( ( index = cast_table[ index ][ cast ] ) == -1 )
 			break;
+*/
+	if( m_Casting.empty() ){
+		m_Status = CHARACTER_ATTACK;
+		
+		m_Skill = m_BasicAttack;
+		m_ActionTime = m_Skill->GetDuration();
+		m_Skill->ApplySkill( this );
 
+		GetAnimation()->Stop( true );
+
+		return true;
+	}
+
+	std::string castingGems;
+	for ( auto cast : m_Casting ){
+		castingGems += cast;
+	}
+	
 	m_Casting.clear();
 
-	if ( index == -1 )
+	//if ( skill_table[castingGems].empty() )
+	//	wprintf_s( L"SKILL : There is no such a skill.\n");
+	//else{
+	//	wprintf_s( L"SKILL : %s\n", skill_table[castingGems].c_str() );
+	//}
+
+	if ( skill_table[castingGems] == nullptr )
 		return false;
+	else{
+		m_Status = CHARACTER_ATTACK;
+
+		m_Skill = skill_table[castingGems];
+		m_ActionTime = m_Skill->GetDuration();
+		m_Skill->SetPosition( m_Position.x, m_Position.y );
+		m_Skill->ApplySkill( this );
+		
+		GetAnimation()->Stop( true );
+
+		return true;
+	}
+
+	//if ( index == -1 )
+	//	return false;
 
 	// TODO: Implement Skill
 
 	return true;
+
+
 }

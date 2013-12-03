@@ -30,6 +30,15 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 				m_SpriteId.push_back( id + tmp );
 			}
 		}
+		else if ( id.find(L"flame_slash") != std::wstring::npos )
+		{
+			for( int idx = 1; idx < 7; ++idx)
+			{
+				wchar_t tmp[4];
+				swprintf_s( tmp, L"_%02d", idx );
+				m_SpriteId.push_back( id + tmp );
+			}
+		}
 		else if ( id.find(L"slash") != std::wstring::npos )
 		{
 			for( int idx = 1; idx < 7; ++idx)

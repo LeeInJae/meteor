@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Character.h"
-#include "BasicAttack.h"
 
 const static float SQRT2_2 = 0.70710678118f;
 
@@ -9,14 +8,10 @@ CCharacter::CCharacter(void)
 	, m_Skill(nullptr)
 	, m_Status(CHARACTER_STAND)
 {
-	CBasicAttack * basicAttack = new CBasicAttack();
-	basicAttack->LoadAnimation();
-	m_BasicAttack = basicAttack;
 }
 
 CCharacter::~CCharacter(void)
 {
-	SafeDelete( m_BasicAttack );
 }
 
 
@@ -30,7 +25,6 @@ bool CCharacter::Update( float deltaTime )
 	if ( m_Skill )
 	{
 		m_Skill->Update( deltaTime );
-		m_Skill->SetPosition( m_Position.x, m_Position.y );
 	}
 
 	return CGameObject::Update( deltaTime );
@@ -94,20 +88,24 @@ bool CCharacter::Walk( Direction direction, float distance )
 	return false;
 }
 
+//bool CCharacter::Action()
+//{
+//	if( m_ActionTime > 0.0f )
+//		return false;
+//
+//	m_Status = CHARACTER_ATTACK;
+//	m_ActionTime = 0.7f;
+//
+//	m_Skill = m_BasicAttack;
+//	m_Skill->ApplySkill( this );
+//
+//	GetAnimation()->Stop( true );
+//
+//	return true;
+//}
 bool CCharacter::Action()
 {
-	if( m_ActionTime > 0.0f )
-		return false;
-
-	m_Status = CHARACTER_ATTACK;
-	m_ActionTime = 0.7f;
-
-	m_Skill = m_BasicAttack;
-	m_Skill->ApplySkill( this );
-
-	GetAnimation()->Stop( true );
-
-	return true;
+	return false;
 }
 
 void CCharacter::SetStatus( CharacterStatus status )

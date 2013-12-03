@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
+const static float SQRT2_2 = 0.70710678118f;
 
 CGameObject::CGameObject(void)
 	: m_EventSubject( nullptr )
@@ -55,6 +56,40 @@ bool CGameObject::Move( float x, float y )
 	}
 
 	return true;
+}
+
+bool CGameObject::Move( Direction direction, float distance )
+{
+	float diagonal = distance * SQRT2_2;
+
+	switch( m_Direction )
+	{
+	case LEFT:
+		return Move( -distance, 0 );
+
+	case RIGHT:
+		return Move( distance, 0 );
+
+	case UP:
+		return Move( 0, -distance );
+
+	case DOWN:
+		return Move( 0, distance );
+
+	case UP_LEFT:
+		return Move( -diagonal, -diagonal );
+
+	case UP_RIGHT:
+		return Move( diagonal, -diagonal );
+
+	case DOWN_LEFT:
+		return Move( -diagonal, diagonal );
+
+	case DOWN_RIGHT:
+		return Move( diagonal, diagonal );
+	}
+
+	return false;
 }
 
 

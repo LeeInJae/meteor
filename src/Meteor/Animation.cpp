@@ -11,6 +11,7 @@ CAnimation::CAnimation()
 	, m_Fps( 0 )
 	, m_Loop(true)
 	, m_ElapsedTime( 0 )
+	, m_Rotation ( 0.0f )
 {
 }
 
@@ -83,6 +84,7 @@ void CAnimation::Render()
 	CSprite * sprite = m_Sprites[ m_FrameNumber ];
 
 	sprite->SetPosition( m_Position );
+	sprite->SetRotation( m_Rotation );
 	sprite->Render();
 }
 
