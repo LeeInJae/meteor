@@ -25,7 +25,7 @@ bool CGameObject::Update( float deltaTime )
 	return true;
 }
 
-void CGameObject::Render( Position & cameraPosition )
+void CGameObject::Render( const Position & cameraPosition )
 {
 	CAnimation * animation = GetAnimation();
 	assert( animation );

@@ -52,7 +52,7 @@ bool CMonster::LoadAnimation()
 
 bool CMonster::Update( float deltaTime )
 {
-	CGameObject::Update( deltaTime );
+	CCharacter::Update( deltaTime );
 
 	Position playerPosition = CSceneManager::GetInstance().GetCurrentScene()->GetPlayer().GetPosition();
 

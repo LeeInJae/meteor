@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Character.h"
+#include "HpUI.h"
 
 const static float SQRT2_2 = 0.70710678118f;
 
@@ -8,10 +9,12 @@ CCharacter::CCharacter(void)
 	, m_Skill(nullptr)
 	, m_Status(CHARACTER_STAND)
 {
+	m_HpUI = new CHpUI( this );
 }
 
 CCharacter::~CCharacter(void)
 {
+	SafeDelete( m_HpUI );
 }
 
 
@@ -27,15 +30,20 @@ bool CCharacter::Update( float deltaTime )
 		m_Skill->Update( deltaTime );
 	}
 
+	m_HpUI->Update( deltaTime );
+
 	return CGameObject::Update( deltaTime );
 }
 
 
-void CCharacter::Render( Position & cameraPosition )
+void CCharacter::Render( const Position & cameraPosition )
 {
 	CGameObject::Render( cameraPosition );
 	if ( m_Skill )
 		m_Skill->Render( cameraPosition );
+
+	m_HpUI->SetPosition( cameraPosition );
+	m_HpUI->Render();
 }
 
 

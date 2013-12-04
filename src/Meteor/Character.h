@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "Skill.h"
 
+class CHpUI;
+
 enum CharacterStatus {
 	CHARACTER_DEAD,
 	CHARACTER_STAND,
@@ -26,7 +28,7 @@ public:
 	virtual ~CCharacter(void);
 
 	virtual bool Update( float deltaTime ) override;
-	virtual void Render( Position & cameraPosition ) override;
+	virtual void Render( const Position & cameraPosition ) override;
 
 	bool HitCheck(CSkill &skill);
 	bool ApplyDamage(int damage);
@@ -47,7 +49,7 @@ protected:
 	float m_ActionTime;
 
 	CharacterStatus		m_Status;
-//	CSkill *			m_BasicAttack;
+	CHpUI *				m_HpUI;
 	CSkill *			m_Skill;
 	std::list<CSkill*>	m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
 };

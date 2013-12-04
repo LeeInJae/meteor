@@ -15,6 +15,7 @@ enum EventType
 {
 	EVENT_CANCEL,
 	EVENT_MOVE,
+	EVENT_HIT,
 };
 
 // 게임상의 각 개체
@@ -25,7 +26,7 @@ public:
 	virtual ~CGameObject(void);
 
 	virtual bool		Update( float deltaTime );
-	virtual void		Render( Position & cameraPosition );
+	virtual void		Render( const Position & cameraPosition );
 	
 	void				SetPosition( float x, float y )			{ m_Position.x = x; m_Position.y = y; }
 	void				SetDirection( Direction direction )		{ m_Direction = direction; }
@@ -52,4 +53,5 @@ protected:
 	EventType							m_EventType;
 	std::map<ResourceId, CAnimation *>	m_Animation;
 	IEventSubject<CGameObject> *		m_EventSubject;
+	std::vector<CGameObject *>			m_EventBucket;
 };

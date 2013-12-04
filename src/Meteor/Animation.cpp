@@ -26,7 +26,7 @@ CAnimation::~CAnimation()
 // ----------------------------------------------------------------
 //	SetPosition
 // ----------------------------------------------------------------
-void CAnimation::SetPosition( Position & position, Position & cameraPosition )
+void CAnimation::SetPosition( const Position & position, const Position & cameraPosition )
 {
 	m_Position = position;
 	m_Position.x -= cameraPosition.x;

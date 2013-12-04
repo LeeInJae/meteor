@@ -97,10 +97,12 @@
     <ClInclude Include="Character.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="D2DRect.h" />
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="D2DText.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="FlameSlash.h" />
+    <ClInclude Include="HpUI.h" />
     <ClInclude Include="IEventListener.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Fps.h" />
@@ -164,6 +166,7 @@
     <ClCompile Include="Character.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="D2DRect.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="D2DText.cpp" />
     <ClCompile Include="FlameSlash.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="GameObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="HpUI.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />

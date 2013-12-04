@@ -5,6 +5,13 @@
 #include "SpriteInfo.h"
 
 
+CCastUI::~CCastUI()
+{
+	for ( auto sprite : m_Sprites )
+		SafeDelete( sprite.second );
+}
+
+
 void CCastUI::LoadSprites()
 {
 	assert( m_Sprites.size() == 0 );
@@ -12,32 +19,6 @@ void CCastUI::LoadSprites()
 		return;
 
 	CSpriteInfo * spriteInfo = nullptr;
-
-/*
-	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_red_01" );
-	m_Sprites.push_back( spriteInfo->CreateSprite() );
-	SafeRelease( spriteInfo );
-
-	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_blue_01" );
-	m_Sprites.push_back( spriteInfo->CreateSprite() );
-	SafeRelease( spriteInfo );
-
-	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_green_01" );
-	m_Sprites.push_back( spriteInfo->CreateSprite() );
-	SafeRelease( spriteInfo );
-
-	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_yellow_01" );
-	m_Sprites.push_back( spriteInfo->CreateSprite() );
-	SafeRelease( spriteInfo );
-
-	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_white_01" );
-	m_Sprites.push_back( spriteInfo->CreateSprite() );
-	SafeRelease( spriteInfo );
-
-	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_black_01" );
-	m_Sprites.push_back( spriteInfo->CreateSprite() );
-	SafeRelease( spriteInfo );
-*/
 
 	spriteInfo = CResourceManager::GetInstance().GetSpriteInfo( L"cast_red_01" );
 	m_Sprites["Red"] = spriteInfo->CreateSprite();
@@ -67,8 +48,6 @@ void CCastUI::LoadSprites()
 
 void CCastUI::Update( float deltaTime )
 {
-	for ( auto sprite : m_Sprites )
-		SafeDelete( sprite.second );
 }
 
 
@@ -80,7 +59,6 @@ void CCastUI::Render()
 	Position position;
 	position.x = -40.0f;
 	position.y = 50.0f;
-	//std::vector<int> & casting = m_Player.GetCasting();
 	std::list<std::string> & casting = m_Player.GetCasting();
 
 	for ( std::string cast : casting )

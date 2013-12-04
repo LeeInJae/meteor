@@ -219,12 +219,14 @@ bool CPC::Action()
 
 	if ( skill_table[castingGems] == nullptr )
 		return false;
-	else{
+	else
+	{
 		m_Status = CHARACTER_ATTACK;
 
 		m_Skill = skill_table[castingGems];
 		m_ActionTime = m_Skill->GetDuration();
 		m_Skill->SetPosition( m_Position.x, m_Position.y );
+		m_Skill->SetSubject( m_EventSubject );
 		m_Skill->ApplySkill( this );
 		
 		GetAnimation()->Stop( true );
@@ -238,6 +240,4 @@ bool CPC::Action()
 	// TODO: Implement Skill
 
 	return true;
-
-
 }

@@ -7,7 +7,7 @@ class CCastUI final : public CUIObject
 {
 public:
 	CCastUI( CPC & player ) : m_Player(player) {}
-	~CCastUI(void) {}
+	~CCastUI(void);
 
 	void LoadSprites();
 

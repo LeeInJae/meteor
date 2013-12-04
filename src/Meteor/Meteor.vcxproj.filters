@@ -105,6 +105,12 @@
     <ClCompile Include="FlameSlash.cpp">
       <Filter>Game\SkillList</Filter>
     </ClCompile>
+    <ClCompile Include="HpUI.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DRect.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -266,6 +272,12 @@
     </ClInclude>
     <ClInclude Include="FlameSlash.h">
       <Filter>Game\SkillList</Filter>
+    </ClInclude>
+    <ClInclude Include="HpUI.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="D2DRect.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
