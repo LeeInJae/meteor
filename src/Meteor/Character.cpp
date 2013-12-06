@@ -6,6 +6,8 @@ const static float SQRT2_2 = 0.70710678118f;
 
 CCharacter::CCharacter(void)
 	: m_ActionTime(0.0f)
+	, m_Hp(1.0f)
+	, m_MaxHp(1.0f)
 	, m_Skill(nullptr)
 	, m_Status(CHARACTER_STAND)
 {

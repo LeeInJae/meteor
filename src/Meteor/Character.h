@@ -30,23 +30,28 @@ public:
 	virtual bool Update( float deltaTime ) override;
 	virtual void Render( const Position & cameraPosition ) override;
 
-	bool HitCheck(CSkill &skill);
-	bool ApplyDamage(int damage);
-	bool SetBuff(CSkill &);
-	int GetHp() { return m_Hp; }
-	bool IsDead() { return (m_Hp <= 0); }
-	void SetStatus( CharacterStatus status );
-	void SetDirection( Direction direction );
-	
+	bool	HitCheck(CSkill &skill);
+	bool	ApplyDamage(int damage);
+	bool	SetBuff(CSkill &);
+	void	SetStatus( CharacterStatus status );
+	void	SetDirection( Direction direction );
+
+	void	SetHp( float hp )		{ m_Hp = hp; }
+	void	SetMaxHp( float hp )	{ m_MaxHp = hp; }
+	float	GetHp() const			{ return m_Hp; }
+	float	GetMaxHp() const		{ return m_MaxHp; }
+	bool	IsDead() const			{ return (m_Hp <= 0.0f); }
+
 	// Override
 	virtual bool Move( float x, float y ) override;
 	virtual bool Walk( Direction direction, float speed );
 	virtual bool Action();
 
 protected:
-	int m_Hp;
-	int m_Speed;
-	float m_ActionTime;
+	float	m_Hp;
+	float	m_MaxHp;
+	int		m_Speed;
+	float	m_ActionTime;
 
 	CharacterStatus		m_Status;
 	CHpUI *				m_HpUI;

@@ -22,4 +22,5 @@ public:
 private:
 	CCharacter *	m_Character;
 	CD2DRect		m_Rect;
+	CD2DRect		m_Bar;
 };

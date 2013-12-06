@@ -107,11 +107,14 @@ CZone * CZoneInfo::CreateZone()
 			}
 		}
 	}
-	for (int i = 0; i < numOfMonster; ++i){
+	for (int i = 0; i < numOfMonster; ++i)
+	{
 		CMonster * monster = new CMonster( L"skeleton_mage" );
 		monster->LoadAnimation();
 		monster->SetPosition( monsterPosX[i], monsterPosY[i] );
 		monster->SetDirection( RIGHT );
+		monster->SetHp( 5.0f );
+		monster->SetMaxHp( 5.0f );
 		zone->AddObject( monster );
 	}
 

@@ -10,6 +10,8 @@ CScene::CScene(void)
 	m_CameraPosition.y = 0.0f;
 
 	m_PlayerCharacter.LoadAnimation();
+	m_PlayerCharacter.SetHp( 18.0f );
+	m_PlayerCharacter.SetMaxHp( 20.0f );
 	m_CastingUI = new CCastUI( m_PlayerCharacter );
 
 	CZoneInfo * zoneInfo = CResourceManager::GetInstance().GetZoneInfo( L"zone_village" );

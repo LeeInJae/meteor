@@ -5,6 +5,7 @@
 
 CD2DRect::CD2DRect()
 	: m_Brush(nullptr)
+	, m_Fill(false)
 {
 	SetColor( 0.0f, 0.0f, 0.0f, 1.0f );
 	m_Rect.left		= 0;
@@ -46,9 +47,13 @@ void CD2DRect::Render()
 {
 	float left = CD2DRenderer::GetInstance().GetWidth() * 0.5f;
 	float top = CD2DRenderer::GetInstance().GetHeight() * 0.5f;
+	ID2D1HwndRenderTarget * renderTarget = CD2DRenderer::GetInstance().GetHwndRenderTarget();
 
 	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Translation( left + m_Position.x, top + m_Position.y );
 
-	CD2DRenderer::GetInstance().GetHwndRenderTarget()->SetTransform( matrix );
-	CD2DRenderer::GetInstance().GetHwndRenderTarget()->DrawRectangle( m_Rect, m_Brush );
+	renderTarget->SetTransform( matrix );
+	if ( m_Fill )
+		renderTarget->FillRectangle( m_Rect, m_Brush );
+	else
+		renderTarget->DrawRectangle( m_Rect, m_Brush );
 }

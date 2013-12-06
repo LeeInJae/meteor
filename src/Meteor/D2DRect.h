@@ -12,6 +12,7 @@ public:
 	void SetRect( float left, float top, float right, float bottom );
 	void SetPosition( const Position & position );
 	void SetColor( float red, float green, float blue, float opacity );
+	void SetFill( bool fill ) { m_Fill = fill; }
 	void Render();
 
 protected:
@@ -21,6 +22,7 @@ protected:
 	float		m_Opacity;
 
 	Position				m_Position;
+	bool					m_Fill;
 	D2D1_RECT_F				m_Rect;
 	ID2D1SolidColorBrush *	m_Brush;
 };
