@@ -6,6 +6,7 @@
 CFlameSlash::CFlameSlash(void)
 {
 	m_SkillName = L"effect_flame_slash";
+	m_Damage = 2.0f;
 	m_Duration = 0.7f;
 }
 

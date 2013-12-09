@@ -37,6 +37,7 @@ public:
 	virtual CAnimation * GetAnimation() const = 0;
 
 	void				SetSubject( IEventSubject<CGameObject> * subject );
+	IEventSubject<CGameObject> * GetSubject() const				{ return m_EventSubject; }
 	void				SetEventType( EventType type )			{ m_EventType = type; }
 	EventType			GetEventType() const					{ return m_EventType; }
 	CCircle				GetBoundary() const						{ return m_Boundary + m_Position; }

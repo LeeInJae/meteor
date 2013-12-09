@@ -128,7 +128,7 @@ Direction CPathFinder::FindPath( int startX, int startY, int targetX, int target
 	//}
 
 	if ( target.GetParent() == nullptr )
-		return NONE;
+		return UP;
 
 	CPathNode * node = &target;
 	while ( node->GetParent() != &start && node->GetParent() != nullptr )

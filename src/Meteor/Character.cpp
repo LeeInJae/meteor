@@ -131,3 +131,24 @@ void CCharacter::SetDirection( Direction direction )
 		return;
 	m_Direction = direction;
 }
+
+
+void CCharacter::EventHandler( CGameObject * event )
+{
+	if ( ! event ) return;
+	if ( this == event ) return;
+
+	CGameObject::EventHandler( event );
+
+	if ( ( event->GetEventType() == EVENT_HIT )
+		&& GetBoundary().isIntersected( event->GetBoundary() ) )
+	{
+		CSkill * skill = static_cast<CSkill *>(event);
+
+		m_Hp -= skill->GetDamage();
+		if ( m_Hp < 1e-6f )
+			m_Hp = 0.0f;
+
+		// TODO: Process DEAD
+	}
+}

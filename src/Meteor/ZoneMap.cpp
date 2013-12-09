@@ -58,7 +58,7 @@ bool CZoneMap::Update( const Position & playerPosition )
 // ----------------------------------------------------------------
 Direction CZoneMap::FindPath( const CGameObject * monster, const CGameObject * target, const std::list< CGameObject * > objects )
 {
-	return NONE;
+	return UP;
 	//float monsterSize = monster->GetBoundary().GetRadius();
 
 	//// Grid size : 128 * 128

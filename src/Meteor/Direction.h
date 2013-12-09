@@ -5,7 +5,6 @@
 
 enum Direction
 {
-	NONE,
 	UP,
 	UP_RIGHT,
 	RIGHT,

@@ -72,5 +72,7 @@ void CZone::SendEvent( CGameObject * event )
 		//if ( event->GetEventType() == EVENT_MOVE && ! m_Map->CanMove( event->GetPosition() ) )
 		//	event->SetEventType( EVENT_CANCEL );
 		return;
+	default:
+		CEventSubject::SendEvent( event );
 	}
 }

@@ -47,6 +47,8 @@ public:
 	virtual bool Walk( Direction direction, float speed );
 	virtual bool Action();
 
+	void EventHandler( CGameObject * event ) override;
+
 protected:
 	float	m_Hp;
 	float	m_MaxHp;
