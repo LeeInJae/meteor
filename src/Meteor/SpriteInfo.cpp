@@ -433,6 +433,55 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_SpriteHeight = 106.0f;
 		}
 
+		else if( id == L"character_stiff_left_01" )
+		{
+			m_OriginX = -4.0f;
+			m_SpriteWidth = 102.0f;
+			m_SpriteHeight = 96.0f;
+		}
+		else if( id == L"character_stiff_right_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = 4.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 96.0f;
+		}
+		else if( id == L"character_stiff_up_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 86.0f;
+		}
+		else if( id == L"character_stiff_up_left_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 88.0f;
+		}
+		else if( id == L"character_stiff_up_right_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 88.0f;
+		}
+		else if( id == L"character_stiff_down_01" )
+		{
+			m_SpriteWidth = 64.0f;
+			m_SpriteHeight = 100.0f;
+		}
+		else if( id == L"character_stiff_down_left_01" )
+		{
+			m_SpriteWidth = 54.0f;
+			m_SpriteHeight = 88.0f;
+		}
+		else if( id == L"character_stiff_down_right_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 54.0f;
+			m_SpriteHeight = 88.0f;
+		}
+
 		m_BitmapId = L".\\Player\\" + id + L".png";
 	}
 	else if( id.find(L"skeleton_mage") != std::wstring::npos )
@@ -577,6 +626,55 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_Width = -1.0f;
 			m_SpriteWidth = 62.0f;
 			m_SpriteHeight = 110.0f;
+		}
+
+		else if( id == L"skeleton_mage_stiff_left_01" )
+		{
+			m_OriginX = 4.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 102.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_right_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = -4.0f;
+			m_SpriteWidth = 56.0f;
+			m_SpriteHeight = 102.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_up_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_up_right_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_up_left_01" )
+		{
+			m_OriginX = 2.0f;
+			m_Width = -1.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_down_01" )
+		{
+			m_SpriteWidth = 112.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_down_left_01" )
+		{
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_stiff_down_right_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 108.0f;
 		}
 
 		m_BitmapId = L".\\Monster\\" + id + L".png";

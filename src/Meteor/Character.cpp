@@ -5,9 +5,10 @@
 const static float SQRT2_2 = 0.70710678118f;
 
 CCharacter::CCharacter(void)
-	: m_ActionTime(0.0f)
-	, m_Hp(1.0f)
+	: m_Hp(1.0f)
 	, m_MaxHp(1.0f)
+	, m_Speed(0.0f)
+	, m_ActionTime(0.0f)
 	, m_Skill(nullptr)
 	, m_Status(CHARACTER_STAND)
 {
@@ -34,6 +35,11 @@ bool CCharacter::Update( float deltaTime )
 
 	m_HpUI->Update( deltaTime );
 
+	if ( m_Status == CHARACTER_WALK )
+		Walk( m_Direction, m_Speed * deltaTime );
+	else if ( m_Status == CHARACTER_ATTACK )
+		Walk( m_Direction, m_Speed * 0.5f * deltaTime );
+	
 	return CGameObject::Update( deltaTime );
 }
 
@@ -60,7 +66,7 @@ bool CCharacter::Move( float x, float y )
 	if ( CGameObject::Move( x, y ) )
 		return true;
 
-	m_Status = CHARACTER_STAND;
+	SetStatus( CHARACTER_STAND );
 	return false;
 }
 
@@ -120,16 +126,47 @@ bool CCharacter::Action()
 
 void CCharacter::SetStatus( CharacterStatus status )
 {
-	if( m_ActionTime > 0.0f )
+	if ( m_Status == status )
 		return;
+
+	if ( m_ActionTime > 0.0f )
+		return;
+
 	m_Status = status;
+
+	ResetAnimation();
 }
+
 
 void CCharacter::SetDirection( Direction direction )
 {
-	if( m_ActionTime > 0.0f )
+	if ( m_Direction == direction )
+		return;
+
+	if ( m_ActionTime > 0.0f )
 		return;
 	m_Direction = direction;
+
+	ResetAnimation();
+}
+
+
+void CCharacter::ResetAnimation()
+{
+	switch ( m_Status )
+	{
+	case CHARACTER_STAND:
+		GetAnimation()->Stop( 0 );
+		break;
+	case CHARACTER_WALK:
+		GetAnimation()->Play( 0, true );
+		break;
+	case CHARACTER_ATTACK:
+		GetAnimation()->Play( 0, false );
+		break;
+	case CHARACTER_STIFF:
+		GetAnimation()->Stop( 0 );
+	}
 }
 
 
@@ -147,7 +184,15 @@ void CCharacter::EventHandler( CGameObject * event )
 
 		m_Hp -= skill->GetDamage();
 		if ( m_Hp < 1e-6f )
+		{
 			m_Hp = 0.0f;
+			// SetStatus( CHARACTER_DEAD );
+		}
+		else
+		{
+			SetStatus( CHARACTER_STIFF );
+			m_ActionTime = 0.3f;
+		}
 
 		// TODO: Process DEAD
 	}

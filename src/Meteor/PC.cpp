@@ -13,13 +13,20 @@ CPC::CPC(void)
 	CBasicAttack * basicAttack = new CBasicAttack();
 	basicAttack->LoadAnimation();
 	m_BasicAttack = basicAttack;
+
+	m_SkillTable["RedGreen"] = new CFlameSlash();
+	m_SkillTable["RedGreen"]->LoadAnimation();
+
+	m_Speed = WALK_SPEED;
 }
 
 CPC::~CPC(void)
 {
 	for ( auto animation : m_Animation )
 		SafeDelete( animation.second );
-	m_Animation.clear();
+
+	for ( auto skill : m_SkillTable )
+		SafeDelete( skill.second );
 
 	SafeDelete( m_BasicAttack );
 }
@@ -35,14 +42,22 @@ bool CPC::LoadAnimation()
 		L"character_walk_down", 
 		L"character_walk_down_left", 
 		L"character_walk_down_right",
-		L"character_slash_left", 
+		L"character_slash_left",
 		L"character_slash_right", 
 		L"character_slash_up", 
 		L"character_slash_up_left", 
 		L"character_slash_up_right", 
 		L"character_slash_down", 
 		L"character_slash_down_left", 
-		L"character_slash_down_right"
+		L"character_slash_down_right",
+		L"character_stiff_left",
+		L"character_stiff_right", 
+		L"character_stiff_up", 
+		L"character_stiff_up_left", 
+		L"character_stiff_up_right", 
+		L"character_stiff_down", 
+		L"character_stiff_down_left", 
+		L"character_stiff_down_right",
 	};
 
 	for each ( ResourceId animationId in animationIdList )
@@ -56,25 +71,13 @@ bool CPC::LoadAnimation()
 	return true;
 }
 
-bool CPC::Update( float deltaTime )
-{
-	CCharacter::Update( deltaTime );
-
-	if ( m_Status == CHARACTER_WALK )
-		Walk( m_Direction, WALK_SPEED * deltaTime );
-	else if ( m_Status == CHARACTER_ATTACK )
-		Walk( m_Direction, WALK_SPEED * 0.5f * deltaTime );
-	
-	return true;
-}
-
 
 CAnimation * CPC::GetAnimation() const
 {
 	int speed = 0;
 	ResourceId animationId;
 
-	switch ( m_Status )
+	switch ( GetStatus() )
 	{
 	case CHARACTER_WALK:
 		animationId = L"character_walk";
@@ -84,6 +87,9 @@ CAnimation * CPC::GetAnimation() const
 		break;
 	case CHARACTER_ATTACK:
 		animationId = L"character_slash";
+		break;
+	case CHARACTER_STIFF:
+		animationId = L"character_stiff";
 		break;
 	}
 
@@ -117,29 +123,8 @@ CAnimation * CPC::GetAnimation() const
 
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
-	switch ( m_Status )
-	{
-	case CHARACTER_WALK:
-		animation->Play( 8 );
-		break;
-	case CHARACTER_STAND:
-		animation->Stop( true );
-		break;
-	case CHARACTER_ATTACK:
-		animation->Play( 10, false );
-		break;
-	}
-
 	return animation;
 }
-
-//bool CPC::Cast( int id )
-//{
-//	if ( m_Casting.size() < 6 )
-//		m_Casting.push_back( id );
-//
-//	return true;
-//}
 
 bool CPC::Cast( std::string id )
 {
@@ -153,91 +138,37 @@ bool CPC::Action()
 	if( m_ActionTime > 0.0f )
 		return false;
 
-/*	SHORT cast_table[][6] =
+	if( m_Casting.empty() )
 	{
-		{ 1, 2, 3, -1, -1, -1 },	// 0: Init Status
-		{ 5, -1, -1, -1, -1, -1 },	// 1: R
-		{ -1, -1, -1, -1, -1, -1 },	// 2: B
-		{ -1, -1, -1, -1, -1, -1 },	// 3: G
-		{ -1, -1, -1, -1, -1, -1 },	// 4: Y
-		{ -1, -1, -1, -1, -1, -1 },	// 5: RB
-	};
-
-	SHORT skill_table[] =
-	{
-		-1,
-		-1, // 1: ID_SKILL_FIRE_BOLT,
-		-1,	// 2: ID_SKILL_WIND_STORM,
-		-1,	// 3: ID_SKILL_POISON_PLANT
-		-1,	// 4: ID_SKILL_???
-		5,	// 5: ID_SKILL_FIRE_STORM
-	};
-*/
-
-	//std::map< std::string, std::wstring > skill_table;
-	//skill_table["Red"] = L"skill_fire_bolt";
-	//skill_table["RedGreen"] = L"skill_flame_slash";
-	//skill_table["RedRedGreen"] = L"skill_fire_storm";
-
-	std::map< std::string, CSkill * > skill_table;
-	skill_table["RedGreen"] = new CFlameSlash();
-	skill_table["RedGreen"]->LoadAnimation();
-
-/*
-	if ( m_Casting.size() == 0 )
-		return CCharacter::Action();
-
-	SHORT index = 0;
-	for ( auto cast : m_Casting )
-		if ( ( index = cast_table[ index ][ cast ] ) == -1 )
-			break;
-*/
-	if( m_Casting.empty() ){
-		m_Status = CHARACTER_ATTACK;
+		SetStatus( CHARACTER_ATTACK );
+		GetAnimation()->Play( 0, false );
 		
 		m_Skill = m_BasicAttack;
 		m_ActionTime = m_Skill->GetDuration();
 		m_Skill->ApplySkill( this );
 
-		GetAnimation()->Stop( true );
-
 		return true;
 	}
 
 	std::string castingGems;
-	for ( auto cast : m_Casting ){
+	for ( auto cast : m_Casting )
+	{
 		castingGems += cast;
 	}
 	
 	m_Casting.clear();
 
-	//if ( skill_table[castingGems].empty() )
-	//	wprintf_s( L"SKILL : There is no such a skill.\n");
-	//else{
-	//	wprintf_s( L"SKILL : %s\n", skill_table[castingGems].c_str() );
-	//}
-
-	if ( skill_table[castingGems] == nullptr )
+	if ( m_SkillTable[castingGems] == nullptr )
 		return false;
-	else
-	{
-		m_Status = CHARACTER_ATTACK;
 
-		m_Skill = skill_table[castingGems];
-		m_ActionTime = m_Skill->GetDuration();
-		m_Skill->SetPosition( m_Position.x, m_Position.y );
-		m_Skill->SetSubject( m_EventSubject );
-		m_Skill->ApplySkill( this );
+	SetStatus( CHARACTER_ATTACK );
+	GetAnimation()->Play( 0, false );
+
+	m_Skill			= m_SkillTable[castingGems];
+	m_ActionTime	= m_Skill->GetDuration();
+	m_Skill->SetPosition( m_Position.x, m_Position.y );
+	m_Skill->SetSubject( m_EventSubject );
+	m_Skill->ApplySkill( this );
 		
-		GetAnimation()->Stop( true );
-
-		return true;
-	}
-
-	//if ( index == -1 )
-	//	return false;
-
-	// TODO: Implement Skill
-
 	return true;
 }

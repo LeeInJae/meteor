@@ -23,6 +23,6 @@ public:
 	void Release();
 
 private:
-	UINT					m_Fps;
+	float					m_Fps;
 	std::vector<ResourceId>	m_SpriteId;
 };

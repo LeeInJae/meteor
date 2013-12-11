@@ -17,6 +17,7 @@ enum CharacterStatus {
 	CHARACTER_DEFENCE,
 	CHARACTER_AVOID,
 	CHARACTER_STUN,
+	CHARACTER_STIFF,
 };
 
 // 각 캐릭터들(PC,NPC,MOB)
@@ -35,6 +36,7 @@ public:
 	bool	SetBuff(CSkill &);
 	void	SetStatus( CharacterStatus status );
 	void	SetDirection( Direction direction );
+	CharacterStatus GetStatus() const { return m_Status; }
 
 	void	SetHp( float hp )		{ m_Hp = hp; }
 	void	SetMaxHp( float hp )	{ m_MaxHp = hp; }
@@ -50,13 +52,17 @@ public:
 	void EventHandler( CGameObject * event ) override;
 
 protected:
+	void	ResetAnimation();
+
 	float	m_Hp;
 	float	m_MaxHp;
-	int		m_Speed;
+	float	m_Speed;
 	float	m_ActionTime;
 
-	CharacterStatus		m_Status;
 	CHpUI *				m_HpUI;
 	CSkill *			m_Skill;
 	std::list<CSkill*>	m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
+
+private:
+	CharacterStatus		m_Status;
 };

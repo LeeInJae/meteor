@@ -11,8 +11,6 @@ public:
 	CPC(void);
 	~CPC(void);
 
-	bool Update( float deltaTime ) override;
-
 	bool LoadAnimation();
 	CAnimation * GetAnimation() const;
 
@@ -23,8 +21,8 @@ public:
 	bool Action();
 
 private:
-	//std::vector<int>	m_Casting;
-	CSkill *			m_BasicAttack;
-	std::list<std::string> m_Casting;
+	CSkill *							m_BasicAttack;
+	std::list<std::string>				m_Casting;
+	std::map< std::string, CSkill * >	m_SkillTable;
 };
 

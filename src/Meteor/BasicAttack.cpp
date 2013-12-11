@@ -7,7 +7,7 @@ CBasicAttack::CBasicAttack()
 	m_SkillName = L"effect_slash";
 	m_Damage = 1.0f;
 	m_Duration = 0.7f;
-	m_Boundary.SetRadius( 40.0f );
+	m_Boundary.SetRadius( 50.0f );
 }
 
 
@@ -31,8 +31,7 @@ void CBasicAttack::ApplySkill( CGameObject * target )
 {
 	m_Target = target;
 	CAnimation * animation = GetAnimation();
-	animation->Stop( true );
-	animation->Play( 10, false );
+	animation->Play( 0, false );
 
 	Direction m_Direction = target->GetDirection();
 

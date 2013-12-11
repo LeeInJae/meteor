@@ -15,6 +15,7 @@
 CMonster::CMonster( ResourceId monsterId )
 	: m_MonsterId( monsterId )
 {
+	m_Speed = SKELETON_MAGE_WALK_SPEED;
 }
 
 
@@ -36,6 +37,14 @@ bool CMonster::LoadAnimation()
 		m_MonsterId + L"_walk_down", 
 		m_MonsterId + L"_walk_down_left", 
 		m_MonsterId + L"_walk_down_right", 
+		m_MonsterId + L"_stiff_left", 
+		m_MonsterId + L"_stiff_right", 
+		m_MonsterId + L"_stiff_up", 
+		m_MonsterId + L"_stiff_up_left", 
+		m_MonsterId + L"_stiff_up_right", 
+		m_MonsterId + L"_stiff_down", 
+		m_MonsterId + L"_stiff_down_left", 
+		m_MonsterId + L"_stiff_down_right", 
 	};
 
 	for each ( ResourceId animationId in animationIdList )
@@ -52,8 +61,6 @@ bool CMonster::LoadAnimation()
 
 bool CMonster::Update( float deltaTime )
 {
-	CCharacter::Update( deltaTime );
-
 	Position playerPosition = CSceneManager::GetInstance().GetCurrentScene()->GetPlayer().GetPosition();
 
 	//  플레이어와의 거리 체크
@@ -62,31 +69,24 @@ bool CMonster::Update( float deltaTime )
 
 	//  시야내에 있을시 플레이어 쫓기
 	if( distance <= SKELETON_MAGE_SIGHT && distance > SKELETON_MAGE_ATTACK_RANGE) {
-		m_Status = CHARACTER_WALK;
+		SetStatus( CHARACTER_WALK );
 
 		float slope = atan2( -diff.y, diff.x );
+		SetDirection( ::GetDirection<float>( m_Position.x, m_Position.y, playerPosition.x, playerPosition.y ) );
 
-		m_Direction = ::GetDirection<float>( m_Position.x, m_Position.y, playerPosition.x, playerPosition.y );
-		Move( deltaTime * SKELETON_MAGE_WALK_SPEED * cos( slope ), -deltaTime * SKELETON_MAGE_WALK_SPEED * sin( slope ) );
+		//Move( deltaTime * SKELETON_MAGE_WALK_SPEED * cos( slope ), -deltaTime * SKELETON_MAGE_WALK_SPEED * sin( slope ) );
 	}
-	else if( m_Status == CHARACTER_STAND && distance <= SKELETON_MAGE_ATTACK_RANGE ) {
-		m_Status = CHARACTER_STAND;
-	}
-	else if( m_Status == CHARACTER_WALK && distance <= SKELETON_MAGE_ATTACK_RANGE - 10 ){
-		m_Status = CHARACTER_STAND;
-	}
-	else {
-		m_Status = CHARACTER_STAND;
-	}
+	else
+		SetStatus( CHARACTER_STAND );
 
-	return true;
+	return CCharacter::Update( deltaTime );
 }
 
 CAnimation * CMonster::GetAnimation() const
 {
 	ResourceId animationId;
 
-	switch ( m_Status )
+	switch ( GetStatus() )
 	{
 	case CHARACTER_WALK:
 		animationId = L"skeleton_mage_walk";
@@ -96,6 +96,9 @@ CAnimation * CMonster::GetAnimation() const
 		break;
 	case CHARACTER_ATTACK:
 		animationId = L"skeleton_mage_slash";
+		break;
+	case CHARACTER_STIFF:
+		animationId = L"skeleton_mage_stiff";
 		break;
 	}
 
@@ -128,20 +131,6 @@ CAnimation * CMonster::GetAnimation() const
 	}
 
 	CAnimation * animation = m_Animation.find(animationId)->second;
-
-	switch ( m_Status )
-	{
-	case CHARACTER_WALK:
-		animation->Play( 8 );
-		break;
-	case CHARACTER_STAND:
-		animation->Stop( true );
-		break;
-	case CHARACTER_ATTACK:
-		animation->Stop( true );
-		animation->Play( 10, false );
-		break;
-	}
 
 	return animation;
 }

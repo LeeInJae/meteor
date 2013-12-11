@@ -29,6 +29,8 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 				swprintf_s( tmp, L"_%02d", idx );
 				m_SpriteId.push_back( id + tmp );
 			}
+
+			m_Fps = 8.0f;
 		}
 		else if ( id.find(L"flame_slash") != std::wstring::npos )
 		{
@@ -38,6 +40,8 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 				swprintf_s( tmp, L"_%02d", idx );
 				m_SpriteId.push_back( id + tmp );
 			}
+
+			m_Fps = 10.0f;
 		}
 		else if ( id.find(L"slash") != std::wstring::npos )
 		{
@@ -47,6 +51,13 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 				swprintf_s( tmp, L"_%02d", idx );
 				m_SpriteId.push_back( id + tmp );
 			}
+
+			m_Fps = 10.0f;
+		}
+		else if ( id.find(L"stiff") != std::wstring::npos )
+		{
+			m_SpriteId.push_back( id + L"_01" );
+			m_Fps = 0.0f;
 		}
 	}
 	else if ( id.find(L"skeleton_mage") != std::wstring::npos )
@@ -59,6 +70,12 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 				swprintf_s( tmp, L"_%02d", idx );
 				m_SpriteId.push_back( id + tmp );
 			}
+			m_Fps = 0.0f;
+		}
+		else if ( id.find(L"stiff") != std::wstring::npos )
+		{
+			m_SpriteId.push_back( id + L"_01" );
+			m_Fps = 0.0f;
 		}
 	}
 

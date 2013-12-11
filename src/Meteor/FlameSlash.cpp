@@ -46,6 +46,5 @@ void CFlameSlash::ApplySkill( CGameObject * target )
 
 	CAnimation * animation = GetAnimation();
 	animation->SetRotation( -225.0f + 45.0f * m_Direction );
-	animation->Stop( true );
-	animation->Play( 10, false );
+	animation->Play( 0, false );
 }
