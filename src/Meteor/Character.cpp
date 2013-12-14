@@ -182,18 +182,19 @@ void CCharacter::EventHandler( CGameObject * event )
 	{
 		CSkill * skill = static_cast<CSkill *>(event);
 
-		m_Hp -= skill->GetDamage();
-		if ( m_Hp < 1e-6f )
+		if( skill->HitCheck( this ) )
 		{
-			m_Hp = 0.0f;
-			// SetStatus( CHARACTER_DEAD );
+			m_Hp -= skill->GetDamage();
+			if ( m_Hp < 1e-6f )
+			{
+				m_Hp = 0.0f;
+				// SetStatus( CHARACTER_DEAD );
+			}
+			else
+			{
+				SetStatus( CHARACTER_STIFF );
+				m_ActionTime = 0.3f;
+			}
 		}
-		else
-		{
-			SetStatus( CHARACTER_STIFF );
-			m_ActionTime = 0.3f;
-		}
-
-		// TODO: Process DEAD
 	}
 }

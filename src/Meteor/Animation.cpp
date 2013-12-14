@@ -69,7 +69,7 @@ bool CAnimation::Update( float deltaTime )
 		else
 		{
 			-- m_FrameNumber;
-			m_Fps = 0;
+			m_Stop = true;
 		}
 	}
 
@@ -113,8 +113,10 @@ void CAnimation::Play( bool loop )
 void CAnimation::Stop( int frameNumber )
 {
 	m_FrameNumber = frameNumber;
+	m_Stop = true;
 }
 
 void CAnimation::Stop()
 {
+	m_Stop = true;
 }

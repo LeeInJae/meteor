@@ -48,3 +48,8 @@ void CFlameSlash::ApplySkill( CGameObject * target )
 	animation->SetRotation( -225.0f + 45.0f * m_Direction );
 	animation->Play( 0, false );
 }
+
+bool CFlameSlash::HitCheck( CGameObject * target )
+{
+	return ( typeid( *target ) != typeid( *m_Target ) );
+}

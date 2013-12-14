@@ -17,6 +17,7 @@ public:
 	virtual bool			LoadAnimation();
 	virtual CAnimation *	GetAnimation() const;
 	virtual void			ApplySkill( CGameObject * target ) = 0;
+	virtual bool			HitCheck( CGameObject * target ) = 0;
 
 protected:
 	float					m_Damage;		// µ¥¹ÌÁö

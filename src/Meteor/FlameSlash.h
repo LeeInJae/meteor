@@ -11,6 +11,8 @@ public:
 	CAnimation * GetAnimation() const override;
 
 	bool Update( float deltaTime ) override;
+
 	void ApplySkill( CGameObject * target ) override;
+	bool HitCheck( CGameObject * target ) override;
 };
 

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "BasicAttack.h"
+#include "PC.h"
 
 
 CBasicAttack::CBasicAttack()
@@ -7,7 +8,7 @@ CBasicAttack::CBasicAttack()
 	m_SkillName = L"effect_slash";
 	m_Damage = 1.0f;
 	m_Duration = 0.7f;
-	m_Boundary.SetRadius( 50.0f );
+	m_Boundary.SetRadius( 60.0f );
 }
 
 
@@ -38,28 +39,28 @@ void CBasicAttack::ApplySkill( CGameObject * target )
 	switch( m_Direction )
 	{
 		case UP:
-			m_Boundary.SetCenter( 0.0f, -40.0f );
+			m_Boundary.SetCenter( 0.0f, -50.0f );
 			break;
 		case UP_RIGHT:
-			m_Boundary.SetCenter( 28.0f, -28.0f );
+			m_Boundary.SetCenter( 31.0f, -31.0f );
 			break;
 		case RIGHT:
-			m_Boundary.SetCenter( 40.0f, 0.0f );
+			m_Boundary.SetCenter( 50.0f, 0.0f );
 			break;
 		case DOWN_RIGHT:
-			m_Boundary.SetCenter( 28.0f, 28.0f );
+			m_Boundary.SetCenter( 31.0f, 31.0f );
 			break;
 		case DOWN:
-			m_Boundary.SetCenter( 0.0f, 40.0f );
+			m_Boundary.SetCenter( 0.0f, 50.0f );
 			break;
 		case DOWN_LEFT:
-			m_Boundary.SetCenter( -28.0f, 28.0f );
+			m_Boundary.SetCenter( -31.0f, 31.0f );
 			break;
 		case LEFT:
-			m_Boundary.SetCenter( -40.0f, 0.0f );
+			m_Boundary.SetCenter( -50.0f, 0.0f );
 			break;
 		case UP_LEFT:
-			m_Boundary.SetCenter( -28.0f, -28.0f );
+			m_Boundary.SetCenter( -31.0f, -31.0f );
 			break;
 	}
 
@@ -69,4 +70,9 @@ void CBasicAttack::ApplySkill( CGameObject * target )
 	if( eventSubject )
 		eventSubject->SendEvent( this );
 
+}
+
+bool CBasicAttack::HitCheck( CGameObject * target )
+{
+	return ( typeid( *target ) != typeid( *m_Target ) );
 }
