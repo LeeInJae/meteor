@@ -628,6 +628,277 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_SpriteHeight = 110.0f;
 		}
 
+		else if( id == L"skeleton_mage_attack_left_01" )
+		{
+			m_OriginX = -4.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_left_02" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_left_03" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_left_04" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_left_05" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_left_06" )
+		{
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_right_01" )
+		{
+			m_Width = -1.0f;
+			m_OriginX = 4.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_right_04" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_right_05" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_right_06" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 70.0f;
+			m_SpriteHeight = 106.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_up_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_02" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_03" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_04" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_05" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_06" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 104.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_up_left_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_left_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_left_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_left_04" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_left_05" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_left_06" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 88.0f;
+			m_SpriteHeight = 108.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_up_right_01" )
+		{
+			m_OriginX = 2.0f;
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_right_02" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_right_03" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_right_04" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_right_05" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_up_right_06" )
+		{
+			m_SpriteWidth = 80.0f;
+			m_SpriteHeight = 98.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_down_01" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_02" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_03" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_04" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_05" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_06" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 98.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_down_left_01" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_left_02" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_left_03" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_left_04" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_left_05" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_left_06" )
+		{
+			m_SpriteWidth = 76.0f;
+			m_SpriteHeight = 98.0f;
+		}
+
+		else if( id == L"skeleton_mage_attack_down_right_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_right_04" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_right_05" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+		else if( id == L"skeleton_mage_attack_down_right_06" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 84.0f;
+			m_SpriteHeight = 106.0f;
+		}
+
 		else if( id == L"skeleton_mage_stiff_left_01" )
 		{
 			m_OriginX = 4.0f;

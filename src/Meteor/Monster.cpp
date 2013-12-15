@@ -4,6 +4,7 @@
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "AnimationInfo.h"
+#include "MonsterAttack.h"
 
 #include <cmath>
 #include <iostream>
@@ -15,6 +16,8 @@
 CMonster::CMonster( ResourceId monsterId )
 	: m_MonsterId( monsterId )
 {
+	m_BasicAttack = new CMonsterAttack();
+
 	m_Speed = SKELETON_MAGE_WALK_SPEED;
 }
 
@@ -23,38 +26,53 @@ CMonster::~CMonster(void)
 {
 	for ( auto animation : m_Animation )
 		SafeDelete( animation.second );
-	m_Animation.clear();
 }
 
 bool CMonster::LoadAnimation()
 {
-	ResourceId animationIdList[] = { 
-		m_MonsterId + L"_walk_left", 
-		m_MonsterId + L"_walk_right", 
-		m_MonsterId + L"_walk_up", 
-		m_MonsterId + L"_walk_up_left", 
-		m_MonsterId + L"_walk_up_right", 
-		m_MonsterId + L"_walk_down", 
-		m_MonsterId + L"_walk_down_left", 
-		m_MonsterId + L"_walk_down_right", 
-		m_MonsterId + L"_stiff_left", 
-		m_MonsterId + L"_stiff_right", 
-		m_MonsterId + L"_stiff_up", 
-		m_MonsterId + L"_stiff_up_left", 
-		m_MonsterId + L"_stiff_up_right", 
-		m_MonsterId + L"_stiff_down", 
-		m_MonsterId + L"_stiff_down_left", 
-		m_MonsterId + L"_stiff_down_right", 
+	ResourceId actionIdList[] = {
+		L"_walk",
+		L"_attack",
+		L"_stiff",
 	};
 
-	for each ( ResourceId animationId in animationIdList )
+	ResourceId directionIdList[] = {
+		L"_left",
+		L"_right",
+		L"_up",
+		L"_up_left",
+		L"_up_right",
+		L"_down",
+		L"_down_left",
+		L"_down_right",
+	};
+
+	for each ( ResourceId actionId in actionIdList )
 	{
-		CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
-		CAnimation * animation = animationInfo->CreateAnimation();
-		//m_Animation.push_back( animation );
-		m_Animation[animationId] = animation;
-		SafeRelease( animationInfo );
+		for each ( ResourceId directionId in directionIdList )
+		{
+			ResourceId animationId = m_MonsterId + actionId + directionId;
+			CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
+			CAnimation * animation = animationInfo->CreateAnimation();
+			m_Animation[animationId] = animation;
+			SafeRelease( animationInfo );
+		}
 	}
+
+	return true;
+}
+
+bool CMonster::Action()
+{
+	if( m_ActionTime > 0.0f )
+		return false;
+
+	SetStatus( CHARACTER_ATTACK );
+	GetAnimation()->Play( 0, false );
+		
+	m_Skill			= m_BasicAttack;
+	m_ActionTime	= m_Skill->GetDuration();
+	m_Skill->ApplySkill( this );
 
 	return true;
 }
@@ -68,7 +86,11 @@ bool CMonster::Update( float deltaTime )
 	float distance = sqrt( pow( diff.x, 2 ) + pow( diff.y, 2 ) );
 
 	//  시야내에 있을시 플레이어 쫓기
-	if( distance <= SKELETON_MAGE_SIGHT && distance > SKELETON_MAGE_ATTACK_RANGE) {
+	if( distance < SKELETON_MAGE_ATTACK_RANGE )
+	{
+		Action();
+	}
+	else if( distance <= SKELETON_MAGE_SIGHT && distance > SKELETON_MAGE_ATTACK_RANGE) {
 		SetStatus( CHARACTER_WALK );
 
 		float slope = atan2( -diff.y, diff.x );
@@ -95,7 +117,7 @@ CAnimation * CMonster::GetAnimation() const
 		animationId = L"skeleton_mage_walk";
 		break;
 	case CHARACTER_ATTACK:
-		animationId = L"skeleton_mage_slash";
+		animationId = L"skeleton_mage_attack";
 		break;
 	case CHARACTER_STIFF:
 		animationId = L"skeleton_mage_stiff";

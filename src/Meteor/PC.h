@@ -12,16 +12,20 @@ public:
 	~CPC(void);
 
 	bool LoadAnimation();
-	CAnimation * GetAnimation() const;
+	std::list<std::string> &	GetCasting() { return m_Casting; }
+	bool						Cast( std::string id );
 
-	//std::vector<int> & GetCasting() { return m_Casting; }
-	std::list<std::string> & GetCasting() { return m_Casting; }
-	//bool Cast( int id );
-	bool Cast( std::string id );
-	bool Action();
+	// --------------------------------
+	//	CCharacter
+	// --------------------------------
+	bool Action() override;
+
+	// --------------------------------
+	//	CGameObject
+	// --------------------------------
+	CAnimation * GetAnimation() const override;
 
 private:
-	CSkill *							m_BasicAttack;
 	std::list<std::string>				m_Casting;
 	std::map< std::string, CSkill * >	m_SkillTable;
 };

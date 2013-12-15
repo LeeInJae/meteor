@@ -93,12 +93,6 @@ bool CGameObject::Move( Direction direction, float distance )
 }
 
 
-void CGameObject::SetSubject( IEventSubject<CGameObject> * subject )
-{
-	m_EventSubject = subject;
-}
-
-
 void CGameObject::EventHandler( CGameObject * event )
 {
 	if ( ! event ) return;

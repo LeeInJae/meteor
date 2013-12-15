@@ -9,6 +9,7 @@ CCharacter::CCharacter(void)
 	, m_MaxHp(1.0f)
 	, m_Speed(0.0f)
 	, m_ActionTime(0.0f)
+	, m_BasicAttack(nullptr)
 	, m_Skill(nullptr)
 	, m_Status(CHARACTER_STAND)
 {
@@ -18,6 +19,7 @@ CCharacter::CCharacter(void)
 CCharacter::~CCharacter(void)
 {
 	SafeDelete( m_HpUI );
+	SafeDelete( m_BasicAttack );
 }
 
 
@@ -36,9 +38,11 @@ bool CCharacter::Update( float deltaTime )
 	m_HpUI->Update( deltaTime );
 
 	if ( m_Status == CHARACTER_WALK )
-		Walk( m_Direction, m_Speed * deltaTime );
+		Move( m_Direction, m_Speed * deltaTime );
 	else if ( m_Status == CHARACTER_ATTACK )
-		Walk( m_Direction, m_Speed * 0.5f * deltaTime );
+		Move( m_Direction, m_Speed * 0.5f * deltaTime );
+	else if ( m_Status == CHARACTER_STIFF )
+		Move( m_Direction, -m_Speed * 0.5f * deltaTime );
 	
 	return CGameObject::Update( deltaTime );
 }
@@ -55,9 +59,10 @@ void CCharacter::Render( const Position & cameraPosition )
 }
 
 
-bool CCharacter::HitCheck(CSkill &skill)
+bool CCharacter::HitCheck( CSkill * skill )
 {
-	return false;
+	return ( GetBoundary().isIntersected( skill->GetBoundary() )
+		&& skill->HitCheck( this ) );
 }
 
 
@@ -70,57 +75,12 @@ bool CCharacter::Move( float x, float y )
 	return false;
 }
 
-bool CCharacter::Walk( Direction direction, float distance )
+bool CCharacter::Move( Direction direction, float distance )
 {
-	float diagonal = distance * SQRT2_2;
+	if ( CGameObject::Move( direction, distance ) )
+		return true;
 
-	switch( m_Direction )
-	{
-	case LEFT:
-		return Move( -distance, 0 );
-
-	case RIGHT:
-		return Move( distance, 0 );
-
-	case UP:
-		return Move( 0, -distance );
-
-	case DOWN:
-		return Move( 0, distance );
-
-	case UP_LEFT:
-		return Move( -diagonal, -diagonal );
-
-	case UP_RIGHT:
-		return Move( diagonal, -diagonal );
-
-	case DOWN_LEFT:
-		return Move( -diagonal, diagonal );
-
-	case DOWN_RIGHT:
-		return Move( diagonal, diagonal );
-	}
-
-	return false;
-}
-
-//bool CCharacter::Action()
-//{
-//	if( m_ActionTime > 0.0f )
-//		return false;
-//
-//	m_Status = CHARACTER_ATTACK;
-//	m_ActionTime = 0.7f;
-//
-//	m_Skill = m_BasicAttack;
-//	m_Skill->ApplySkill( this );
-//
-//	GetAnimation()->Stop( true );
-//
-//	return true;
-//}
-bool CCharacter::Action()
-{
+	SetStatus( CHARACTER_STAND );
 	return false;
 }
 
@@ -177,12 +137,11 @@ void CCharacter::EventHandler( CGameObject * event )
 
 	CGameObject::EventHandler( event );
 
-	if ( ( event->GetEventType() == EVENT_HIT )
-		&& GetBoundary().isIntersected( event->GetBoundary() ) )
+	if ( ( event->GetEventType() == EVENT_HIT ) )
 	{
 		CSkill * skill = static_cast<CSkill *>(event);
 
-		if( skill->HitCheck( this ) )
+		if( HitCheck( skill ) )
 		{
 			m_Hp -= skill->GetDamage();
 			if ( m_Hp < 1e-6f )

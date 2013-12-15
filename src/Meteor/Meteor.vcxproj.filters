@@ -111,6 +111,9 @@
     <ClCompile Include="D2DRect.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterAttack.cpp">
+      <Filter>Game\SkillList</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -278,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="D2DRect.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterAttack.h">
+      <Filter>Game\SkillList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,8 +13,17 @@ public:
 	~CMonster(void);
 
 	bool LoadAnimation();
-	bool Update( float deltaTime );
-	CAnimation * GetAnimation() const;
+
+	// --------------------------------
+	//	CCharacter
+	// --------------------------------
+	bool Action() override;
+
+	// --------------------------------
+	//	CGameObject
+	// --------------------------------
+	bool Update( float deltaTime ) override;
+	CAnimation * GetAnimation() const override;
 
 private:
 	ResourceId	m_MonsterId;

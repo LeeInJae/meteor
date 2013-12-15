@@ -28,12 +28,9 @@ public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 
-	virtual bool Update( float deltaTime ) override;
-	virtual void Render( const Position & cameraPosition ) override;
-
-	bool	HitCheck(CSkill &skill);
-	bool	ApplyDamage(int damage);
-	bool	SetBuff(CSkill &);
+	bool	HitCheck( CSkill * skill );
+	bool	ApplyDamage( int damage );
+	bool	SetBuff( CSkill & );
 	void	SetStatus( CharacterStatus status );
 	void	SetDirection( Direction direction );
 	CharacterStatus GetStatus() const { return m_Status; }
@@ -44,11 +41,19 @@ public:
 	float	GetMaxHp() const		{ return m_MaxHp; }
 	bool	IsDead() const			{ return (m_Hp <= 0.0f); }
 
-	// Override
-	virtual bool Move( float x, float y ) override;
-	virtual bool Walk( Direction direction, float speed );
-	virtual bool Action();
+	virtual bool Action() = 0;
 
+	// --------------------------------
+	//	CGameObject
+	// --------------------------------
+	bool Update( float deltaTime ) override;
+	void Render( const Position & cameraPosition ) override;
+	bool Move( float x, float y ) override;
+	bool Move( Direction direction, float distance ) override;
+
+	// --------------------------------
+	//	IEventListener
+	// --------------------------------
 	void EventHandler( CGameObject * event ) override;
 
 protected:
@@ -60,6 +65,7 @@ protected:
 	float	m_ActionTime;
 
 	CHpUI *				m_HpUI;
+	CSkill *			m_BasicAttack;
 	CSkill *			m_Skill;
 	std::list<CSkill*>	m_Buff; // 캐릭터에 걸린 버프형 스킬 리스트
 

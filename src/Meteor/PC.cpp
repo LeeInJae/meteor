@@ -27,45 +27,37 @@ CPC::~CPC(void)
 
 	for ( auto skill : m_SkillTable )
 		SafeDelete( skill.second );
-
-	SafeDelete( m_BasicAttack );
 }
 
 bool CPC::LoadAnimation()
 {
-	ResourceId animationIdList[] = { 
-		L"character_walk_left", 
-		L"character_walk_right", 
-		L"character_walk_up", 
-		L"character_walk_up_left", 
-		L"character_walk_up_right", 
-		L"character_walk_down", 
-		L"character_walk_down_left", 
-		L"character_walk_down_right",
-		L"character_slash_left",
-		L"character_slash_right", 
-		L"character_slash_up", 
-		L"character_slash_up_left", 
-		L"character_slash_up_right", 
-		L"character_slash_down", 
-		L"character_slash_down_left", 
-		L"character_slash_down_right",
-		L"character_stiff_left",
-		L"character_stiff_right", 
-		L"character_stiff_up", 
-		L"character_stiff_up_left", 
-		L"character_stiff_up_right", 
-		L"character_stiff_down", 
-		L"character_stiff_down_left", 
-		L"character_stiff_down_right",
+	ResourceId actionIdList[] = {
+		L"_walk",
+		L"_slash",
+		L"_stiff",
 	};
 
-	for each ( ResourceId animationId in animationIdList )
+	ResourceId directionIdList[] = {
+		L"_left",
+		L"_right",
+		L"_up",
+		L"_up_left",
+		L"_up_right",
+		L"_down",
+		L"_down_left",
+		L"_down_right",
+	};
+
+	for each ( ResourceId actionId in actionIdList )
 	{
-		CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
-		CAnimation * animation = animationInfo->CreateAnimation();
-		m_Animation[animationId] = animation;
-		SafeRelease( animationInfo );
+		for each ( ResourceId directionId in directionIdList )
+		{
+			ResourceId animationId = L"character" + actionId + directionId;
+			CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
+			CAnimation * animation = animationInfo->CreateAnimation();
+			m_Animation[animationId] = animation;
+			SafeRelease( animationInfo );
+		}
 	}
 
 	return true;
@@ -143,8 +135,8 @@ bool CPC::Action()
 		SetStatus( CHARACTER_ATTACK );
 		GetAnimation()->Play( 0, false );
 		
-		m_Skill = m_BasicAttack;
-		m_ActionTime = m_Skill->GetDuration();
+		m_Skill			= m_BasicAttack;
+		m_ActionTime	= m_Skill->GetDuration();
 		m_Skill->ApplySkill( this );
 
 		return true;

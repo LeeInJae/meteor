@@ -19,6 +19,7 @@ CAnimationInfo::~CAnimationInfo(void)
 bool CAnimationInfo::LoadResource( ResourceId id )
 {
 	if ( id.find(L"character") != std::wstring::npos
+		|| id.find(L"skeleton_mage") != std::wstring::npos
 		|| id.find(L"effect") != std::wstring::npos )
 	{
 		if ( id.find(L"walk") != std::wstring::npos )
@@ -32,7 +33,7 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 
 			m_Fps = 8.0f;
 		}
-		else if ( id.find(L"flame_slash") != std::wstring::npos )
+		else if ( id.find(L"attack") != std::wstring::npos )
 		{
 			for( int idx = 1; idx < 7; ++idx)
 			{
@@ -53,24 +54,6 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 			}
 
 			m_Fps = 10.0f;
-		}
-		else if ( id.find(L"stiff") != std::wstring::npos )
-		{
-			m_SpriteId.push_back( id + L"_01" );
-			m_Fps = 0.0f;
-		}
-	}
-	else if ( id.find(L"skeleton_mage") != std::wstring::npos )
-	{
-		if ( id.find(L"walk") != std::wstring::npos )
-		{
-			for( int idx = 1; idx < 4; ++idx)
-			{
-				wchar_t tmp[4];
-				swprintf_s( tmp, L"_%02d", idx );
-				m_SpriteId.push_back( id + tmp );
-			}
-			m_Fps = 0.0f;
 		}
 		else if ( id.find(L"stiff") != std::wstring::npos )
 		{
