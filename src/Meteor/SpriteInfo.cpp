@@ -1035,6 +1035,12 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 		m_SpriteHeight = 400.0f;
 		m_BitmapId = L".\\Player\\Effect\\" + id + L".png";
 	}
+	else if( id.find(L"ui_") != std::wstring::npos )
+	{
+		m_SpriteWidth = 300.0f;
+		m_SpriteHeight = 54.0f;
+		m_BitmapId = L".\\UI\\" + id + L".png";
+	}
 	else
 		return false;
 	

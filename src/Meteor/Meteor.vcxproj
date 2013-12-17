@@ -102,6 +102,7 @@
     <ClInclude Include="D2DText.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="FlameSlash.h" />
+    <ClInclude Include="GemStatusBar.h" />
     <ClInclude Include="HpUI.h" />
     <ClInclude Include="IEventListener.h" />
     <ClInclude Include="EventManager.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="GameObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GemStatusBar.cpp" />
     <ClCompile Include="HpUI.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />

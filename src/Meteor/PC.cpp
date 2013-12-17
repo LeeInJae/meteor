@@ -155,10 +155,11 @@ bool CPC::Action()
 		castingGems += cast;
 	}
 	
-	m_Casting.clear();
-
 	if ( m_SkillTable[castingGems] == nullptr )
+	{
+		m_Casting.clear();
 		return false;
+	}
 
 	SetStatus( CHARACTER_ATTACK );
 	GetAnimation()->Play( 0, false );
@@ -168,6 +169,8 @@ bool CPC::Action()
 	m_Skill->SetPosition( m_Position.x, m_Position.y );
 	m_Skill->SetSubject( m_EventSubject );
 	m_Skill->ApplySkill( this );
+
+	m_Casting.clear();
 		
 	return true;
 }

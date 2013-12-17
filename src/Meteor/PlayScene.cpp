@@ -15,6 +15,7 @@ CPlayScene::CPlayScene(void)
 	m_PlayerCharacter.SetHp( 18.0f );
 	m_PlayerCharacter.SetMaxHp( 20.0f );
 	m_CastingUI = new CCastUI( m_PlayerCharacter );
+	m_GemStatusBar = new CGemStatusBar();
 
 	CZoneInfo * zoneInfo = CResourceManager::GetInstance().GetZoneInfo( L"zone_village" );
 	m_Zone = zoneInfo->CreateZone();
@@ -108,4 +109,5 @@ void CPlayScene::Render()
 {
 	m_Zone->Render( m_CameraPosition );
 	m_CastingUI->Render();
+	m_GemStatusBar->Render();
 }

@@ -2,6 +2,7 @@
 #pragma once
 #include "Scene.h"
 #include "PC.h"
+#include "GemStatusBar.h"
 
 class CZone;
 class CCastUI;
@@ -20,4 +21,5 @@ private:
 	CPC			m_PlayerCharacter;
 	CZone *		m_Zone;
 	CCastUI *	m_CastingUI;
+	CGemStatusBar * m_GemStatusBar;
 };
