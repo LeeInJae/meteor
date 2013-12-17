@@ -54,3 +54,11 @@ CAnimation * CSkill::GetAnimation() const
 
 	return animation;
 }
+
+bool CSkill::Move( float x, float y )
+{
+	m_Position.x += x;
+	m_Position.y += y;
+
+	return true;
+}

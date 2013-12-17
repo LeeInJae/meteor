@@ -19,6 +19,12 @@ public:
 	virtual void			ApplySkill( CGameObject * target ) = 0;
 	virtual bool			HitCheck( CGameObject * target ) = 0;
 
+	// --------------------------------
+	//	CGameObject
+	// --------------------------------
+	bool Move( float x, float y ) override;
+	bool Move( Direction direction, float distance ) override { return CGameObject::Move( direction, distance ); };
+
 protected:
 	float					m_Damage;		// 데미지
 	float					m_Duration;		// 지속 시간
