@@ -63,6 +63,7 @@ protected:
 	float	m_Hp;
 	float	m_MaxHp;
 	float	m_Speed;
+	float	m_StiffSpeed;
 	float	m_ActionTime;
 
 	CHpUI *				m_HpUI;

@@ -113,9 +113,11 @@
     </ClCompile>
     <ClCompile Include="GemStatusBar.cpp">
       <Filter>Game</Filter>
-    </ClCompile>    <ClCompile Include="PlayScene.cpp">
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
       <Filter>Engine</Filter>
-    </ClCompile>  </ItemGroup>
+    </ClCompile>
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="Resource.h" />
@@ -288,9 +290,11 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
-    </ClInclude>    <ClInclude Include="GemStatusBar.h">
+    </ClInclude>
+    <ClInclude Include="GemStatusBar.h">
       <Filter>Game</Filter>
-    </ClInclude>  </ItemGroup>
+    </ClInclude>
+  </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Meteor.rc" />
   </ItemGroup>

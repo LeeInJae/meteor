@@ -20,7 +20,8 @@ CMonster::CMonster( ResourceId monsterId )
 {
 	m_BasicAttack = new CMonsterAttack();
 
-	m_Speed = SKELETON_MAGE_WALK_SPEED;
+	m_Speed			= SKELETON_MAGE_WALK_SPEED;
+	m_StiffSpeed	= SKELETON_MAGE_WALK_SPEED * 5;
 }
 
 
@@ -192,8 +193,8 @@ void CMonster::EventHandler( CGameObject * event )
 		CMonster * monster = new CMonster( L"skeleton_mage" );
 		monster->LoadAnimation();
 		monster->SetDirection( RIGHT );
-		monster->SetHp( 3.0f );
-		monster->SetMaxHp( 3.0f );
+		monster->SetHp( 2.0f );
+		monster->SetMaxHp( 2.0f );
 
 		m_Zone->SetRandomPosition( monster );
 		m_Zone->AddObject( monster );

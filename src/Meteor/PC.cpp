@@ -6,7 +6,7 @@
 #include "BasicAttack.h"
 #include "FlameSlash.h"
 
-#define WALK_SPEED 192
+#define WALK_SPEED 256
 
 CPC::CPC(void)
 {
@@ -18,6 +18,7 @@ CPC::CPC(void)
 	m_SkillTable["RedGreen"]->LoadAnimation();
 
 	m_Speed = WALK_SPEED;
+	m_StiffSpeed = WALK_SPEED * 0.5f;
 }
 
 CPC::~CPC(void)
@@ -169,9 +170,9 @@ bool CPC::Action()
 	m_Skill->SetPosition( m_Position.x, m_Position.y );
 	m_Skill->SetSubject( m_EventSubject );
 	m_Skill->ApplySkill( this );
-
-	m_Casting.clear();
 		
+	m_Casting.clear();
+
 	return true;
 }
 

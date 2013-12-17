@@ -20,7 +20,7 @@ public:
 	// --------------------------------
 	void SetSpeed( float fps ) { m_Fps = fps; }
 	void SetPosition( const Position & position, const Position & cameraPosition );
-	void SetRotation( float rotation ){ m_Rotation = rotation; }
+	void SetRotation( float rotation )			{ m_Rotation = rotation; }
 	void AddSprite( CSprite * sprite );
 	bool Update( float deltaTime );
 	void Render() const;

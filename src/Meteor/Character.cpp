@@ -45,7 +45,7 @@ bool CCharacter::Update( float deltaTime )
 	else if ( m_Status == CHARACTER_ATTACK )
 		Move( m_Direction, m_Speed * 0.5f * deltaTime );
 	else if ( m_Status == CHARACTER_STIFF )
-		Move( m_Direction, -m_Speed * 0.5f * deltaTime );
+		Move( m_Direction, -m_StiffSpeed * deltaTime );
 	
 	return CGameObject::Update( deltaTime );
 }
@@ -100,7 +100,10 @@ void CCharacter::SetStatus( CharacterStatus status )
 		return;
 
 	if ( IsAlive() && m_ActionTime > 0.0f )
-		return;
+	{
+		if ( status != CHARACTER_STIFF || m_Status != CHARACTER_ATTACK )
+			return;
+	}
 
 	m_Status = status;
 
@@ -113,7 +116,7 @@ void CCharacter::SetDirection( Direction direction )
 	if ( m_Direction == direction )
 		return;
 
-	if ( IsDead() && m_Status != CHARACTER_DEAD )
+	if ( IsDead() || m_Status == CHARACTER_DEAD )
 		return;
 
 	if ( IsAlive() && m_ActionTime > 0.0f )
@@ -170,12 +173,12 @@ void CCharacter::EventHandler( CGameObject * event )
 				case UP_LEFT:
 				case DOWN_LEFT:
 				case DOWN:
-					SetDirection( LEFT );
+					m_Direction = LEFT;
 					break;
 				case UP_RIGHT:
 				case DOWN_RIGHT:
 				case UP:
-					SetDirection( RIGHT );
+					m_Direction = RIGHT;
 					break;
 				default:
 					break;

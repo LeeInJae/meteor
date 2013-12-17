@@ -80,8 +80,8 @@ CZone * CZoneInfo::CreateZone()
 	monster->LoadAnimation();
 	monster->SetPosition( 150, 150 );
 	monster->SetDirection( RIGHT );
-	monster->SetHp( 5.0f );
-	monster->SetMaxHp( 5.0f );
+	monster->SetHp( 2.0f );
+	monster->SetMaxHp( 2.0f );
 	zone->AddObject( monster );
 
 	return zone;
