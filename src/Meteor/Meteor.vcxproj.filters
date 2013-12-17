@@ -51,9 +51,6 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Zone.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -113,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="MonsterAttack.cpp">
       <Filter>Game\SkillList</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,9 +190,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Zone.h">
@@ -284,6 +281,12 @@
     </ClInclude>
     <ClInclude Include="MonsterAttack.h">
       <Filter>Game\SkillList</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

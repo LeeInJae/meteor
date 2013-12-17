@@ -4,8 +4,8 @@
 
 
 CZone::CZone(void)
+	: m_Player(nullptr)
 {
-
 }
 
 CZone::~CZone(void)
@@ -49,7 +49,35 @@ void CZone::AddObject( CGameObject * object )
 {
 	Register( object );
 	object->SetSubject( this );
+	object->SetZone( this );
 	m_Object.push_back( object );
+}
+
+
+void CZone::SetRandomPosition( CGameObject * object )
+{
+	bool retry;
+	do
+	{
+		retry = false;
+
+		float x = static_cast<float>( rand() % ( 16 * 128 - 128 ) + 64 );
+		float y = static_cast<float>( rand() % ( 16 * 128 - 128 ) + 64 );
+
+		object->SetPosition( x, y );
+		CCircle boundary = object->GetBoundary();
+
+		for( auto other : m_Object )
+		{
+			if( object != other && boundary.isIntersected( other->GetBoundary() ) )
+				retry = true;
+		}
+
+		if( ( GetDistance( m_Player->GetPosition(), object->GetPosition() ) > 512.0 )
+			|| GetDistance( m_Player->GetPosition(), object->GetPosition() ) < 80.0 )
+			retry = true;
+
+	} while( retry );
 }
 
 

@@ -58,3 +58,17 @@ struct Position : public Vector
 		return position;
 	}
 };
+
+template< typename Type >
+float GetDistance( Type startX, Type startY, Type targetX, Type targetY )
+{
+	float diffX = static_cast<float>( targetX - startX );
+	float diffY = static_cast<float>( targetY - startY );
+
+	return sqrt( pow( diffX, 2 ) + pow( diffY, 2 ) );
+}
+
+static inline float GetDistance( Position start, Position end )
+{
+	return GetDistance( start.x, start.y, end.x, end.y );
+}

@@ -35,6 +35,7 @@ bool CPC::LoadAnimation()
 		L"_walk",
 		L"_slash",
 		L"_stiff",
+		L"_dead",
 	};
 
 	ResourceId directionIdList[] = {
@@ -54,8 +55,11 @@ bool CPC::LoadAnimation()
 		{
 			ResourceId animationId = L"character" + actionId + directionId;
 			CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
-			CAnimation * animation = animationInfo->CreateAnimation();
-			m_Animation[animationId] = animation;
+			if ( animationInfo )
+			{
+				CAnimation * animation = animationInfo->CreateAnimation();
+				m_Animation[animationId] = animation;
+			}
 			SafeRelease( animationInfo );
 		}
 	}
@@ -82,6 +86,9 @@ CAnimation * CPC::GetAnimation() const
 		break;
 	case CHARACTER_STIFF:
 		animationId = L"character_stiff";
+		break;
+	case CHARACTER_DEAD:
+		animationId = L"character_dead";
 		break;
 	}
 
@@ -163,4 +170,15 @@ bool CPC::Action()
 	m_Skill->ApplySkill( this );
 		
 	return true;
+}
+
+
+void CPC::EventHandler( CGameObject * event )
+{
+	if( event->GetEventType() == EVENT_DEAD )
+	{
+		// TODO: Game Over
+	}
+	else
+		CCharacter::EventHandler( event );
 }

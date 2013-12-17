@@ -148,8 +148,8 @@ bool CResourceManager::LoadResource( ResourceId id )
 		|| id.find( L"skeleton_" ) != std::wstring::npos )
 	{
 		CAnimationInfo * animationInfo = new CAnimationInfo();
-		animationInfo->LoadResource( id );
-		resource = animationInfo;
+		if( animationInfo->LoadResource( id ) )
+			resource = animationInfo;
 	}
 
 	if ( resource )

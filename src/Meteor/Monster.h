@@ -13,6 +13,7 @@ public:
 	~CMonster(void);
 
 	bool LoadAnimation();
+	void Resurrect();
 
 	// --------------------------------
 	//	CCharacter
@@ -24,6 +25,11 @@ public:
 	// --------------------------------
 	bool Update( float deltaTime ) override;
 	CAnimation * GetAnimation() const override;
+
+	// --------------------------------
+	//	IEventListener
+	// --------------------------------
+	void EventHandler( CGameObject * event ) override;
 
 private:
 	ResourceId	m_MonsterId;

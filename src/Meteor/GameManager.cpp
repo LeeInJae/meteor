@@ -41,6 +41,7 @@ bool CGameManager::Init()
 
 	CSceneManager::GetInstance().Init();
 
+	srand( (UINT)time(nullptr) );
 	m_LastTime = m_StartTime = std::chrono::system_clock::now();
 	m_Fps = new CFps();
 

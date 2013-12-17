@@ -1,9 +1,11 @@
 #include "stdafx.h"
-#include "Scene.h"
+#include "PlayScene.h"
+#include "Zone.h"
+#include "CastUI.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
 
-CScene::CScene(void)
+CPlayScene::CPlayScene(void)
 	: m_Zone( nullptr )
 {
 	m_CameraPosition.x = 0.0f;
@@ -21,14 +23,14 @@ CScene::CScene(void)
 }
 
 
-CScene::~CScene(void)
+CPlayScene::~CPlayScene(void)
 {
 	SafeDelete( m_Zone );
 	SafeDelete( m_CastingUI );
 }
 
 
-bool CScene::Update( float deltaTime )
+bool CPlayScene::Update( float deltaTime )
 {
 	if ( CInputManager::GetInstance().GetKeyState( VK_LEFT ) & INPUT_PRESSED )
 	{
@@ -102,7 +104,7 @@ bool CScene::Update( float deltaTime )
 	return true;
 }
 
-void CScene::Render()
+void CPlayScene::Render()
 {
 	m_Zone->Render( m_CameraPosition );
 	m_CastingUI->Render();

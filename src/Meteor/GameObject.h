@@ -10,12 +10,15 @@
 #include "IEventListener.h"
 #include "ResourceManager.h"
 
+class CZone;
+
 // TODO: Redesign with lambda and closure to cancel event
 enum EventType
 {
 	EVENT_CANCEL,
 	EVENT_MOVE,
 	EVENT_HIT,
+	EVENT_DEAD,
 };
 
 // 게임상의 각 개체
@@ -29,6 +32,9 @@ public:
 	void				SetDirection( Direction direction )		{ m_Direction = direction; }
 	const Position &	GetPosition() const						{ return m_Position; }
 	Direction			GetDirection() const					{ return m_Direction; }
+
+	void	SetZone( CZone * zone )	{ m_Zone = zone; }
+	CZone *	GetZone() const			{ return m_Zone; }
 
 	void				SetSubject( IEventSubject<CGameObject> * subject ) { m_EventSubject = subject; }
 	void				SetEventType( EventType type )			{ m_EventType = type; }
@@ -48,6 +54,7 @@ public:
 	void EventHandler( CGameObject * event ) override;
 	
 protected:
+	CZone *								m_Zone;
 	Position							m_Position;
 	Direction							m_Direction;
 	CCircle								m_Boundary;

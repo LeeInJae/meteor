@@ -39,7 +39,8 @@ public:
 	void	SetMaxHp( float hp )	{ m_MaxHp = hp; }
 	float	GetHp() const			{ return m_Hp; }
 	float	GetMaxHp() const		{ return m_MaxHp; }
-	bool	IsDead() const			{ return (m_Hp <= 0.0f); }
+	bool	IsAlive() const			{ return (m_Hp >= 1e-6f); }
+	bool	IsDead() const			{ return (m_Hp < 1e-6f); }
 
 	virtual bool Action() = 0;
 

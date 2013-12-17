@@ -25,6 +25,11 @@ public:
 	// --------------------------------
 	CAnimation * GetAnimation() const override;
 
+	// --------------------------------
+	//	IEventListener
+	// --------------------------------
+	void EventHandler( CGameObject * event ) override;
+
 private:
 	std::list<std::string>				m_Casting;
 	std::map< std::string, CSkill * >	m_SkillTable;

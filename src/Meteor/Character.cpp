@@ -30,6 +30,9 @@ bool CCharacter::Update( float deltaTime )
 	else
 		m_Skill = nullptr;
 
+	if( IsDead() )
+		return CGameObject::Update( deltaTime );
+
 	if ( m_Skill )
 	{
 		m_Skill->Update( deltaTime );
@@ -51,6 +54,10 @@ bool CCharacter::Update( float deltaTime )
 void CCharacter::Render( const Position & cameraPosition )
 {
 	CGameObject::Render( cameraPosition );
+
+	if ( IsDead() )
+		return;
+
 	if ( m_Skill )
 		m_Skill->Render( cameraPosition );
 
@@ -89,7 +96,10 @@ void CCharacter::SetStatus( CharacterStatus status )
 	if ( m_Status == status )
 		return;
 
-	if ( m_ActionTime > 0.0f )
+	if ( IsDead() && status != CHARACTER_DEAD )
+		return;
+
+	if ( IsAlive() && m_ActionTime > 0.0f )
 		return;
 
 	m_Status = status;
@@ -103,7 +113,7 @@ void CCharacter::SetDirection( Direction direction )
 	if ( m_Direction == direction )
 		return;
 
-	if ( m_ActionTime > 0.0f )
+	if ( IsAlive() && m_ActionTime > 0.0f )
 		return;
 	m_Direction = direction;
 
@@ -126,6 +136,10 @@ void CCharacter::ResetAnimation()
 		break;
 	case CHARACTER_STIFF:
 		GetAnimation()->Stop( 0 );
+		break;
+	case CHARACTER_DEAD:
+		GetAnimation()->Play( 0, false );
+		break;
 	}
 }
 
@@ -134,6 +148,7 @@ void CCharacter::EventHandler( CGameObject * event )
 {
 	if ( ! event ) return;
 	if ( this == event ) return;
+	if ( IsDead() ) return;
 
 	CGameObject::EventHandler( event );
 
@@ -147,7 +162,27 @@ void CCharacter::EventHandler( CGameObject * event )
 			if ( m_Hp < 1e-6f )
 			{
 				m_Hp = 0.0f;
-				// SetStatus( CHARACTER_DEAD );
+				switch ( m_Direction )
+				{
+				case UP_LEFT:
+				case DOWN_LEFT:
+				case DOWN:
+					SetDirection( LEFT );
+					break;
+				case UP_RIGHT:
+				case DOWN_RIGHT:
+				case UP:
+					SetDirection( RIGHT );
+					break;
+				default:
+					break;
+				}
+
+				SetEventType( EVENT_DEAD );
+				EventHandler( this );
+ 				SetStatus( CHARACTER_DEAD );
+				m_ActionTime = 5.0f;
+
 			}
 			else
 			{

@@ -140,6 +140,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceId.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Skill.h">
@@ -193,7 +194,7 @@
     </ClCompile>
     <ClCompile Include="PrintLog.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Skill.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

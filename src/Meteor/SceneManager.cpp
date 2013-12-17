@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SceneManager.h"
-#include "Scene.h"
+#include "PlayScene.h"
 #include "UIManager.h"
 
 // ----------------------------------------------------------------
@@ -25,7 +25,7 @@ CSceneManager::~CSceneManager(void)
 // ----------------------------------------------------------------
 void CSceneManager::Init()
 {
-	m_Scene = new CScene();
+	m_Scene = new CPlayScene();
 	CUIManager::GetInstance().Init();
 }
 

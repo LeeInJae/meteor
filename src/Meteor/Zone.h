@@ -23,17 +23,17 @@ public:
 
 	void SetMap( CZoneMap * map );
 	void AddObject( CGameObject * object );
+	void SetRandomPosition( CGameObject * object );
 	void Enter( CPC * player, CZone * from );
-	std::list< CGameObject * > GetObject() { return m_Object; }
-	CZoneMap * GetMapData() { return m_Map; }
+	const std::list< CGameObject * > &	GetObjects() const	{ return m_Object; }
+	const CPC *							GetPlayer()	const	{ return m_Player; }
+	CZoneMap *							GetMapData() const	{ return m_Map; }
 
 	void SendEvent( CGameObject * event );
 
 private:
-	int							m_Width, 
-								m_Height;
-	CPC *						m_Player;
 	std::list< CGameObject * >	m_Object;
+	CPC *						m_Player;
 	ResourceId					m_ZoneId;
 	CZoneMap *					m_Map;
 };

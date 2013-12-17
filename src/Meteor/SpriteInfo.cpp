@@ -482,6 +482,38 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_SpriteHeight = 88.0f;
 		}
 
+		else if( id == L"character_dead_left_01" )
+		{
+			m_SpriteWidth = 102.0f;
+			m_SpriteHeight = 96.0f;
+		}
+		else if( id == L"character_dead_left_02" )
+		{
+			m_SpriteWidth = 102.0f;
+			m_SpriteHeight = 96.0f;
+		}
+		else if( id == L"character_dead_left_03" )
+		{
+			m_SpriteWidth = 102.0f;
+			m_SpriteHeight = 96.0f;
+		}
+
+		else if( id == L"character_dead_right_01" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 96.0f;
+		}
+		else if( id == L"character_dead_right_02" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 96.0f;
+		}
+		else if( id == L"character_dead_right_03" )
+		{
+			m_SpriteWidth = 86.0f;
+			m_SpriteHeight = 96.0f;
+		}
+
 		m_BitmapId = L".\\Player\\" + id + L".png";
 	}
 	else if( id.find(L"skeleton_mage") != std::wstring::npos )
@@ -946,6 +978,41 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 			m_Width = -1.0f;
 			m_SpriteWidth = 66.0f;
 			m_SpriteHeight = 108.0f;
+		}
+
+		else if( id == L"skeleton_mage_dead_left_01" )
+		{
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 204.0f;
+		}
+		else if( id == L"skeleton_mage_dead_left_02" )
+		{
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 204.0f;
+		}
+		else if( id == L"skeleton_mage_dead_left_03" )
+		{
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 204.0f;
+		}
+
+		else if( id == L"skeleton_mage_dead_right_01" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 204.0f;
+		}
+		else if( id == L"skeleton_mage_dead_right_02" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 204.0f;
+		}
+		else if( id == L"skeleton_mage_dead_right_03" )
+		{
+			m_Width = -1.0f;
+			m_SpriteWidth = 66.0f;
+			m_SpriteHeight = 204.0f;
 		}
 
 		m_BitmapId = L".\\Monster\\" + id + L".png";

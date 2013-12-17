@@ -5,9 +5,6 @@
 #include "Monster.h"
 #include "ResourceManager.h"
 
-// for srand
-#include <time.h>
-
 CZoneInfo::CZoneInfo()
 {
 }
@@ -77,48 +74,16 @@ CZone * CZoneInfo::CreateZone()
 
 	CMapInfo * mapInfo = CResourceManager::GetInstance().GetMapInfo( L"map_village" );
 	zone->SetMap( mapInfo->CreateMap() );
-	//SafeRelease( mapInfo );
-	/*
+	SafeRelease( mapInfo );
+
 	CMonster * monster = new CMonster( L"skeleton_mage" );
 	monster->LoadAnimation();
 	monster->SetPosition( 150, 150 );
 	monster->SetDirection( RIGHT );
+	monster->SetHp( 5.0f );
+	monster->SetMaxHp( 5.0f );
 	zone->AddObject( monster );
-	*/
 
-	// 몬스터 랜덤 배치
-	const int numOfMonster = 10;
-	const int marginMonster = 40;
-	srand((UINT)time(nullptr));
-	float monsterPosX[numOfMonster];
-	float monsterPosY[numOfMonster];
-	for (int i = 0; i < numOfMonster; ++i){
-		monsterPosX[i] = float( rand() % ( 16 * 128 - 128 ) + 64 );
-		monsterPosY[i] = monsterPosX[i];
-		
-		for (int j = 0; j < i; ++j){
-			if (monsterPosX[j] - marginMonster < monsterPosX[i] &&
-				monsterPosX[j] + marginMonster > monsterPosX[i] &&
-				monsterPosY[j] - marginMonster < monsterPosY[i] &&
-				monsterPosY[j] + marginMonster > monsterPosY[i] )
-			{
-				--i;
-				break;
-			}
-		}
-	}
-	for (int i = 0; i < numOfMonster; ++i)
-	{
-		CMonster * monster = new CMonster( L"skeleton_mage" );
-		monster->LoadAnimation();
-		monster->SetPosition( monsterPosX[i], monsterPosY[i] );
-		monster->SetDirection( RIGHT );
-		monster->SetHp( 5.0f );
-		monster->SetMaxHp( 5.0f );
-		zone->AddObject( monster );
-	}
-
-	SafeRelease( mapInfo );
 	return zone;
 }
 

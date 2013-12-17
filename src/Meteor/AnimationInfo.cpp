@@ -55,6 +55,21 @@ bool CAnimationInfo::LoadResource( ResourceId id )
 
 			m_Fps = 10.0f;
 		}
+		else if ( id.find(L"dead") != std::wstring::npos )
+		{
+			if( ( id.find(L"_up") != std::wstring::npos )
+				|| ( id.find(L"_down") != std::wstring::npos ) )
+				return false;
+
+			for( int idx = 1; idx < 4; ++idx)
+			{
+				wchar_t tmp[4];
+				swprintf_s( tmp, L"_%02d", idx );
+				m_SpriteId.push_back( id + tmp );
+			}
+
+			m_Fps = 5.0f;
+		}
 		else if ( id.find(L"stiff") != std::wstring::npos )
 		{
 			m_SpriteId.push_back( id + L"_01" );

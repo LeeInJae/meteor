@@ -5,6 +5,8 @@
 #include "SceneManager.h"
 #include "AnimationInfo.h"
 #include "MonsterAttack.h"
+#include "Zone.h"
+#include "PC.h"
 
 #include <cmath>
 #include <iostream>
@@ -34,6 +36,7 @@ bool CMonster::LoadAnimation()
 		L"_walk",
 		L"_attack",
 		L"_stiff",
+		L"_dead",
 	};
 
 	ResourceId directionIdList[] = {
@@ -53,14 +56,26 @@ bool CMonster::LoadAnimation()
 		{
 			ResourceId animationId = m_MonsterId + actionId + directionId;
 			CAnimationInfo * animationInfo = CResourceManager::GetInstance().GetAnimationInfo( animationId );
-			CAnimation * animation = animationInfo->CreateAnimation();
-			m_Animation[animationId] = animation;
+			if ( animationInfo )
+			{
+				CAnimation * animation = animationInfo->CreateAnimation();
+				m_Animation[animationId] = animation;
+			}
 			SafeRelease( animationInfo );
 		}
 	}
 
 	return true;
 }
+
+
+void CMonster::Resurrect()
+{
+	SetHp( 2.0f );
+	SetStatus( CHARACTER_STAND );
+	m_Zone->SetRandomPosition( this );
+}
+
 
 bool CMonster::Action()
 {
@@ -79,11 +94,18 @@ bool CMonster::Action()
 
 bool CMonster::Update( float deltaTime )
 {
-	Position playerPosition = CSceneManager::GetInstance().GetCurrentScene()->GetPlayer().GetPosition();
+	if( IsDead() )
+	{
+		if( m_ActionTime > 0.0f )
+			return CCharacter::Update( deltaTime );
+
+		Resurrect();
+	}
+
+	Position playerPosition = m_Zone->GetPlayer()->GetPosition();
 
 	//  플레이어와의 거리 체크
-	Vector diff = playerPosition - m_Position;
-	float distance = sqrt( pow( diff.x, 2 ) + pow( diff.y, 2 ) );
+	float distance = GetDistance( m_Position, playerPosition );
 
 	//  시야내에 있을시 플레이어 쫓기
 	if( distance < SKELETON_MAGE_ATTACK_RANGE )
@@ -93,6 +115,7 @@ bool CMonster::Update( float deltaTime )
 	else if( distance <= SKELETON_MAGE_SIGHT && distance > SKELETON_MAGE_ATTACK_RANGE) {
 		SetStatus( CHARACTER_WALK );
 
+		Vector diff = playerPosition - m_Position;
 		float slope = atan2( -diff.y, diff.x );
 		SetDirection( ::GetDirection<float>( m_Position.x, m_Position.y, playerPosition.x, playerPosition.y ) );
 
@@ -121,6 +144,9 @@ CAnimation * CMonster::GetAnimation() const
 		break;
 	case CHARACTER_STIFF:
 		animationId = L"skeleton_mage_stiff";
+		break;
+	case CHARACTER_DEAD:
+		animationId = L"skeleton_mage_dead";
 		break;
 	}
 
@@ -155,4 +181,23 @@ CAnimation * CMonster::GetAnimation() const
 	CAnimation * animation = m_Animation.find(animationId)->second;
 
 	return animation;
+}
+
+
+void CMonster::EventHandler( CGameObject * event )
+{
+	if( event->GetEventType() == EVENT_DEAD )
+	{
+		// 몬스터 랜덤 배치
+		CMonster * monster = new CMonster( L"skeleton_mage" );
+		monster->LoadAnimation();
+		monster->SetDirection( RIGHT );
+		monster->SetHp( 3.0f );
+		monster->SetMaxHp( 3.0f );
+
+		m_Zone->SetRandomPosition( monster );
+		m_Zone->AddObject( monster );
+	}
+	else
+		CCharacter::EventHandler( event );
 }
