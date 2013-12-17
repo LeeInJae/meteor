@@ -113,6 +113,9 @@ void CCharacter::SetDirection( Direction direction )
 	if ( m_Direction == direction )
 		return;
 
+	if ( IsDead() && m_Status != CHARACTER_DEAD )
+		return;
+
 	if ( IsAlive() && m_ActionTime > 0.0f )
 		return;
 	m_Direction = direction;
