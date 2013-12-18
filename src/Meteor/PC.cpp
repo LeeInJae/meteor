@@ -19,6 +19,8 @@ CPC::CPC(void)
 
 	m_Speed		= WALK_SPEED;
 	m_BackSpeed	= WALK_SPEED * 1.8f;
+
+	m_Type		= PLAYER;
 }
 
 CPC::~CPC(void)

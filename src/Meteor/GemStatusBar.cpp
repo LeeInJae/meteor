@@ -18,6 +18,7 @@ CGemStatusBar::CGemStatusBar( CPC & player )
 CGemStatusBar::~CGemStatusBar(void)
 {
 	SafeRelease( m_StatusBar );
+	SafeRelease( m_GemCool );
 }
 
 void CGemStatusBar::LoadSprites()

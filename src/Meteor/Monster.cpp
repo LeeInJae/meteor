@@ -22,6 +22,8 @@ CMonster::CMonster( ResourceId monsterId )
 
 	m_Speed			= SKELETON_MAGE_WALK_SPEED;
 	m_BackSpeed		= SKELETON_MAGE_WALK_SPEED * 25;
+
+	m_Type			= MONSTER;
 }
 
 

@@ -21,6 +21,13 @@ enum EventType
 	EVENT_DEAD,
 };
 
+enum ObjectType
+{
+	PLAYER,
+	MONSTER,
+	SKILL,
+};
+
 // 게임상의 각 개체
 class CGameObject : public IEventListener<CGameObject>
 {
@@ -32,6 +39,7 @@ public:
 	void				SetDirection( Direction direction )		{ m_Direction = direction; }
 	const Position &	GetPosition() const						{ return m_Position; }
 	Direction			GetDirection() const					{ return m_Direction; }
+	ObjectType			GetType() const							{ return m_Type; }
 
 	void	SetZone( CZone * zone )	{ m_Zone = zone; }
 	CZone *	GetZone() const			{ return m_Zone; }
@@ -62,4 +70,5 @@ protected:
 	std::map<ResourceId, CAnimation *>	m_Animation;
 	IEventSubject<CGameObject> *		m_EventSubject;
 	std::vector<CGameObject *>			m_EventBucket;
+	ObjectType							m_Type;
 };

@@ -9,7 +9,7 @@
 class CSkill : public CGameObject
 {
 public:
-	CSkill() {};
+	CSkill() { m_Type = SKILL; }
 	virtual ~CSkill() {};
 
 	float					GetDamage()			{ return m_Damage; };
