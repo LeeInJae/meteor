@@ -46,7 +46,7 @@ bool CCharacter::Update( float deltaTime )
 	else if ( m_Status == CHARACTER_ATTACK )
 		Move( m_Direction, m_Speed * 0.5f * deltaTime );
 	else if ( m_Status == CHARACTER_STIFF )
-		Move( m_Direction, -m_BackSpeed * deltaTime );
+		Move( m_Direction, -m_ActionTime * m_BackSpeed * deltaTime );
 	
 	return CGameObject::Update( deltaTime );
 }
