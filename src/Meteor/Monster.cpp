@@ -21,7 +21,7 @@ CMonster::CMonster( ResourceId monsterId )
 	m_BasicAttack = new CMonsterAttack();
 
 	m_Speed			= SKELETON_MAGE_WALK_SPEED;
-	m_StiffSpeed	= SKELETON_MAGE_WALK_SPEED * 5;
+	m_BackSpeed		= SKELETON_MAGE_WALK_SPEED * 8;
 }
 
 

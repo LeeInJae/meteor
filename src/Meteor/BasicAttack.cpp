@@ -31,6 +31,7 @@ bool CBasicAttack::Update( float deltaTime )
 void CBasicAttack::ApplySkill( CGameObject * target )
 {
 	m_Target = target;
+	m_Position = m_Target->GetPosition();
 	CAnimation * animation = GetAnimation();
 	animation->Play( 0, false );
 

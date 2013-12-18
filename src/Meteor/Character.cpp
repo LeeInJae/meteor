@@ -8,6 +8,7 @@ CCharacter::CCharacter(void)
 	: m_Hp(1.0f)
 	, m_MaxHp(1.0f)
 	, m_Speed(0.0f)
+	, m_BackSpeed(0.0f)
 	, m_ActionTime(0.0f)
 	, m_BasicAttack(nullptr)
 	, m_Skill(nullptr)
@@ -45,7 +46,7 @@ bool CCharacter::Update( float deltaTime )
 	else if ( m_Status == CHARACTER_ATTACK )
 		Move( m_Direction, m_Speed * 0.5f * deltaTime );
 	else if ( m_Status == CHARACTER_STIFF )
-		Move( m_Direction, -m_StiffSpeed * deltaTime );
+		Move( m_Direction, -m_BackSpeed * deltaTime );
 	
 	return CGameObject::Update( deltaTime );
 }

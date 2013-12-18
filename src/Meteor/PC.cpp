@@ -17,8 +17,8 @@ CPC::CPC(void)
 	m_SkillTable["RedGreen"] = new CFlameSlash();
 	m_SkillTable["RedGreen"]->LoadAnimation();
 
-	m_Speed = WALK_SPEED;
-	m_StiffSpeed = WALK_SPEED * 0.5f;
+	m_Speed		= WALK_SPEED;
+	m_BackSpeed	= WALK_SPEED * 0.5f;
 }
 
 CPC::~CPC(void)
