@@ -135,7 +135,7 @@ bool CPC::Cast( std::string id )
 
 bool CPC::Action()
 {
-	if( m_ActionTime > 0.0f )
+	if( m_ActionTime > 0.0f || GetStatus() == CHARACTER_DEAD )
 		return false;
 
 	if( m_Casting.empty() )
