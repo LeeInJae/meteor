@@ -72,14 +72,6 @@ bool CMonster::LoadAnimation()
 }
 
 
-void CMonster::Resurrect()
-{
-	SetHp( 2.0f );
-	SetStatus( CHARACTER_STAND );
-	m_Zone->SetRandomPosition( this );
-}
-
-
 bool CMonster::Action()
 {
 	if( m_ActionTime > 0.0f )
@@ -103,6 +95,7 @@ bool CMonster::Update( float deltaTime )
 			return CCharacter::Update( deltaTime );
 
 		Resurrect();
+		m_Zone->SetRandomPosition(this);
 	}
 
 	Position playerPosition = m_Zone->GetPlayer()->GetPosition();

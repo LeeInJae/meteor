@@ -130,14 +130,14 @@ CAnimation * CPC::GetAnimation() const
 
 bool CPC::Cast( std::string id )
 {
-	if ( m_Casting.size() < 6 )
+	if ( IsAlive() && m_Casting.size() < 6 )
 		m_Casting.push_back( id );
 	return true;
 }
 
 bool CPC::Action()
 {
-	if( m_ActionTime > 0.0f || GetStatus() == CHARACTER_DEAD )
+	if( m_ActionTime > 0.0f || IsDead() )
 		return false;
 
 	if( m_Casting.empty() )
@@ -205,7 +205,7 @@ void CPC::EventHandler( CGameObject * event )
 {
 	if( event->GetEventType() == EVENT_DEAD )
 	{
-		// TODO: Game Over
+		m_Casting.clear();
 	}
 	else
 		CCharacter::EventHandler( event );

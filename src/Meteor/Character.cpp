@@ -97,10 +97,10 @@ void CCharacter::SetStatus( CharacterStatus status )
 	if ( m_Status == status )
 		return;
 
-	if ( IsDead() && status != CHARACTER_DEAD )
+	if ( IsDead() )
 		return;
 
-	if ( IsAlive() && m_ActionTime > 0.0f )
+	if ( m_ActionTime > 0.0f )
 	{
 		if ( status != CHARACTER_STIFF || m_Status != CHARACTER_ATTACK )
 			return;
@@ -117,14 +117,21 @@ void CCharacter::SetDirection( Direction direction )
 	if ( m_Direction == direction )
 		return;
 
-	if ( IsDead() || m_Status == CHARACTER_DEAD )
+	if ( IsDead() )
 		return;
 
-	if ( IsAlive() && m_ActionTime > 0.0f )
+	if ( m_ActionTime > 0.0f )
 		return;
 	m_Direction = direction;
 
 	ResetAnimation();
+}
+
+
+void CCharacter::Resurrect()
+{
+	SetHp( 2.0f );
+	m_Status = CHARACTER_STAND;
 }
 
 
@@ -169,6 +176,7 @@ void CCharacter::EventHandler( CGameObject * event )
 			if ( m_Hp < 1e-6f )
 			{
 				m_Hp = 0.0f;
+
 				switch ( m_Direction )
 				{
 				case UP_LEFT:
@@ -187,8 +195,9 @@ void CCharacter::EventHandler( CGameObject * event )
 
 				SetEventType( EVENT_DEAD );
 				EventHandler( this );
+				m_ActionTime = 0.0f;
  				SetStatus( CHARACTER_DEAD );
-				m_ActionTime = 5.0f;
+				m_ActionTime = 2.0f;
 
 			}
 			else

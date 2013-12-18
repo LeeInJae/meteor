@@ -13,7 +13,6 @@ public:
 	~CMonster(void);
 
 	bool LoadAnimation();
-	void Resurrect();
 
 	// --------------------------------
 	//	CCharacter

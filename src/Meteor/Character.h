@@ -39,8 +39,8 @@ public:
 	void	SetMaxHp( float hp )	{ m_MaxHp = hp; }
 	float	GetHp() const			{ return m_Hp; }
 	float	GetMaxHp() const		{ return m_MaxHp; }
-	bool	IsAlive() const			{ return (m_Hp >= 1e-6f); }
-	bool	IsDead() const			{ return (m_Hp < 1e-6f); }
+	bool	IsAlive() const			{ return (m_Status != CHARACTER_DEAD); }
+	bool	IsDead() const			{ return (m_Status == CHARACTER_DEAD); }
 
 	virtual bool Action() = 0;
 
@@ -59,6 +59,7 @@ public:
 
 protected:
 	void	ResetAnimation();
+	void	Resurrect();
 
 	float	m_Hp;
 	float	m_MaxHp;
