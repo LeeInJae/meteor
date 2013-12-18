@@ -83,7 +83,7 @@ void CD2DText::SetTextFormat()
 // ----------------------------------------------------------------
 void CD2DText::Render()
 {
-	m_Matrix = D2D1::Matrix3x2F::Translation( 0, 0 );
+	m_Matrix = D2D1::Matrix3x2F::Translation( m_PosX, m_PosY );
 	m_pD2DRenderer->GetHwndRenderTarget()->SetTransform( m_Matrix );
 
 	SetTextFormat();

@@ -1037,8 +1037,16 @@ bool CSpriteInfo::LoadResource( ResourceId id )
 	}
 	else if( id.find(L"ui_") != std::wstring::npos )
 	{
-		m_SpriteWidth = 300.0f;
-		m_SpriteHeight = 54.0f;
+		if ( id.find(L"cool_") != std::wstring::npos )
+		{
+			m_SpriteWidth = 48.0f;
+			m_SpriteHeight = 48.0f;
+		}
+		else
+		{
+			m_SpriteWidth = 300.0f;
+			m_SpriteHeight = 54.0f;
+		}
 		m_BitmapId = L".\\UI\\" + id + L".png";
 	}
 	else

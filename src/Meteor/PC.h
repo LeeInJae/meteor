@@ -14,11 +14,13 @@ public:
 	bool LoadAnimation();
 	std::list<std::string> &	GetCasting() { return m_Casting; }
 	bool						Cast( std::string id );
+	float						GetCoolTime( std::string gem ) { return m_CoolTime[gem]; }
 
 	// --------------------------------
 	//	CCharacter
 	// --------------------------------
 	bool Action() override;
+	bool Update( float deltaTime ) override;
 
 	// --------------------------------
 	//	CGameObject
@@ -33,5 +35,6 @@ public:
 private:
 	std::list<std::string>				m_Casting;
 	std::map< std::string, CSkill * >	m_SkillTable;
+	std::map< std::string, float >		m_CoolTime;
 };
 

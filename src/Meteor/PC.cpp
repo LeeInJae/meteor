@@ -153,7 +153,13 @@ bool CPC::Action()
 	std::string castingGems;
 	for ( auto cast : m_Casting )
 	{
-		castingGems += cast;
+		if( m_CoolTime[cast] > 0 )
+		{
+			m_Casting.clear();
+			return false;
+		}
+		else
+			castingGems += cast;
 	}
 	
 	if ( m_SkillTable[castingGems] == nullptr )
@@ -170,10 +176,26 @@ bool CPC::Action()
 	m_Skill->SetPosition( m_Position.x, m_Position.y );
 	m_Skill->SetSubject( m_EventSubject );
 	m_Skill->ApplySkill( this );
-		
+	
+	for ( auto cast : m_Casting )
+	{
+		m_CoolTime[cast] += 2.0f;
+	}
 	m_Casting.clear();
 
 	return true;
+}
+
+bool CPC::Update( float deltaTime )
+{
+	for ( auto gem : m_CoolTime )
+	{
+		if ( gem.second > 0.0f )
+			m_CoolTime[gem.first] -= deltaTime;
+		else
+			m_CoolTime[gem.first] = 0.0f;
+	}
+	return CCharacter::Update( deltaTime );
 }
 
 
