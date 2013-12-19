@@ -33,6 +33,7 @@ public:
 	bool	SetBuff( CSkill & );
 	void	SetStatus( CharacterStatus status );
 	void	SetDirection( Direction direction );
+	bool	Bump( CCharacter * other );
 	CharacterStatus GetStatus() const { return m_Status; }
 
 	void	SetHp( float hp )		{ m_Hp = hp; }

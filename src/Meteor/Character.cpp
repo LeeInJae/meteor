@@ -128,6 +128,38 @@ void CCharacter::SetDirection( Direction direction )
 }
 
 
+bool CCharacter::Bump( CCharacter * origin )
+{
+	static int bumpCount = 0;
+	if( bumpCount++ > 10 )
+	{
+		bumpCount--;
+		return false;
+	}
+
+	switch( origin->GetStatus() )
+	{
+	case CHARACTER_WALK:
+		bumpCount--;
+		return false;
+	case CHARACTER_STIFF:
+		SetStatus( CHARACTER_STIFF );
+		m_ActionTime = origin->m_ActionTime;
+		Move( m_Direction, -m_ActionTime * m_BackSpeed * 0.05f );
+		break;
+	}
+
+	if( GetBoundary().isIntersected( origin->GetBoundary() ) )
+	{
+		bumpCount--;
+		return true;
+	}
+
+	bumpCount--;
+	return false;
+}
+
+
 void CCharacter::Resurrect()
 {
 	SetHp( 2.0f );
@@ -164,9 +196,17 @@ void CCharacter::EventHandler( CGameObject * event )
 	if ( this == event ) return;
 	if ( IsDead() ) return;
 
+	EventType originalEvent = event->GetEventType();
+
 	CGameObject::EventHandler( event );
 
-	if ( ( event->GetEventType() == EVENT_HIT ) )
+	if ( event->GetEventType() == EVENT_CANCEL && GetBoundary().isIntersected( event->GetBoundary() ) )
+	{
+		assert( dynamic_cast<CCharacter *>(event) != NULL );
+		if( Bump( static_cast<CCharacter *>(event) ) )
+			event->SetEventType( originalEvent  );
+	}
+	else if ( event->GetEventType() == EVENT_HIT )
 	{
 		CSkill * skill = static_cast<CSkill *>(event);
 
@@ -202,6 +242,7 @@ void CCharacter::EventHandler( CGameObject * event )
 			}
 			else
 			{
+				SetDirection( ::GetDirection( m_Position.x, m_Position.y, event->GetPosition().x, event->GetPosition().y ) );
 				SetStatus( CHARACTER_STIFF );
 				m_ActionTime = 0.3f;
 			}
