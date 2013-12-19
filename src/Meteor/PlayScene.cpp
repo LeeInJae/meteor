@@ -28,6 +28,7 @@ CPlayScene::~CPlayScene(void)
 {
 	SafeDelete( m_Zone );
 	SafeDelete( m_CastingUI );
+	SafeDelete( m_GemStatusBar );
 }
 
 
