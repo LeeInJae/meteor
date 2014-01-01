@@ -99,16 +99,18 @@ CZoneMap * CMapInfo::CreateMap()
 {
 	CZoneMap * map = new CZoneMap();
 
-	UINT	rowSize = m_Maps[0]->m_NumOfColumn;
-	UINT	colSize = m_Maps[0]->m_NumOfRow;
+	UINT	colSize = m_Maps[0]->m_NumOfColumn;
+	UINT	rowSize = m_Maps[0]->m_NumOfRow;
 
-	map->SetSize( rowSize, colSize, 128.0f, 128.0f );
+	map->SetSize( colSize, rowSize, 128.0f, 128.0f );
 
 	for( UINT row = 0; row < rowSize; ++row )
 	{
 		for( UINT col = 0; col < colSize; ++col )
 		{
-			UINT tileNo = m_Maps[0]->m_Tiles[ row * rowSize + col ].m_TileNo;
+			UINT tileNo = m_Maps[0]->m_Tiles[ row * colSize + col ].m_TileNo % 128;
+			UINT treeNo = m_Maps[0]->m_Tiles[ row * colSize + col ].m_TileNo / 128;
+
 			CD2DSprite * sprite = new CD2DSprite();
 			CD2DBitmap * bitmap = static_cast<CD2DBitmap *>( CResourceManager::GetInstance().GetResource( m_Tiles[tileNo].m_FileName ) );
 
@@ -118,6 +120,19 @@ CZoneMap * CMapInfo::CreateMap()
 			sprite->SetBitmap( bitmap );
 
 			map->AddSprite( row, sprite );
+
+			if ( treeNo > 0 )
+			{
+				sprite = new CD2DSprite();
+				bitmap = static_cast<CD2DBitmap *>( CResourceManager::GetInstance().GetResource( m_Tiles[treeNo].m_FileName ) );
+
+				sprite->SetBaseMatrix( D2D1::Matrix3x2F::Translation( col * 128.0f, row * 128.0f ) );
+				sprite->SetImageWidth( bitmap->GetD2DBitmap()->GetSize().width );
+				sprite->SetImageHeight( bitmap->GetD2DBitmap()->GetSize().width );
+				sprite->SetBitmap( bitmap );
+
+				map->AddSprite( row, sprite );
+			}
 		}
 	}
 
@@ -142,178 +157,174 @@ void CMapInfo::Release()
 // ----------------------------------------------------------------
 void CMapInfo::SampleData()
 {
-	const UINT COLUMN = 16;
+	const UINT COLUMN = 24;
 	const UINT ROW = 16;
 
 	m_MapId = L"map_village";
 
 	SetTileSize( 128, 128 );
 
-	AddTile( L"map_village_0000_1.png" );
+	AddTile( L"map_village_0000_1.png" );	// 0
 	AddTile( L"map_village_0000_2.png" );
 	AddTile( L"map_village_0000_3.png" );
 	AddTile( L"map_village_0000_4.png" );
 
-	AddTile( L"map_village_0001_1.png" );
+	AddTile( L"map_village_0001_1.png" );	// 4
 	AddTile( L"map_village_0001_2.png" );
 	AddTile( L"map_village_0001_3.png" );
 	AddTile( L"map_village_0001_4.png" );
 
-	AddTile( L"map_village_0010_1.png" );
+	AddTile( L"map_village_0010_1.png" );	// 8
 	AddTile( L"map_village_0010_2.png" );
 	AddTile( L"map_village_0010_3.png" );
 	AddTile( L"map_village_0010_4.png" );
 
-	AddTile( L"map_village_0011_1.png" );
+	AddTile( L"map_village_0011_1.png" );	// 12
 	AddTile( L"map_village_0011_2.png" );
 	AddTile( L"map_village_0011_3.png" );
 	AddTile( L"map_village_0011_4.png" );
 
-	AddTile( L"map_village_0100_1.png" );
+	AddTile( L"map_village_0100_1.png" );	// 16
 	AddTile( L"map_village_0100_2.png" );
 	AddTile( L"map_village_0100_3.png" );
 	AddTile( L"map_village_0100_4.png" );
 
-	AddTile( L"map_village_0101_1.png" );
+	AddTile( L"map_village_0101_1.png" );	// 20
 	AddTile( L"map_village_0101_2.png" );
 	AddTile( L"map_village_0101_3.png" );
 	AddTile( L"map_village_0101_4.png" );
 
-	AddTile( L"map_village_0111_1.png" );
+	AddTile( L"map_village_0111_1.png" );	// 24
 	AddTile( L"map_village_0111_2.png" );
 	AddTile( L"map_village_0111_3.png" );
 	AddTile( L"map_village_0111_4.png" );
 
-	AddTile( L"map_village_1000_1.png" );
+	AddTile( L"map_village_1000_1.png" );	// 28
 	AddTile( L"map_village_1000_2.png" );
 	AddTile( L"map_village_1000_3.png" );
 	AddTile( L"map_village_1000_4.png" );
 
-	AddTile( L"map_village_1010_1.png" );
+	AddTile( L"map_village_1010_1.png" );	// 32
 	AddTile( L"map_village_1010_2.png" );
 	AddTile( L"map_village_1010_3.png" );
 	AddTile( L"map_village_1010_4.png" );
 
-	AddTile( L"map_village_1011_1.png" );
+	AddTile( L"map_village_1011_1.png" );	// 36
 	AddTile( L"map_village_1011_2.png" );
 	AddTile( L"map_village_1011_3.png" );
 	AddTile( L"map_village_1011_4.png" );
 
-	AddTile( L"map_village_1100_1.png" );
+	AddTile( L"map_village_1100_1.png" );	// 40
 	AddTile( L"map_village_1100_2.png" );
 	AddTile( L"map_village_1100_3.png" );
 	AddTile( L"map_village_1100_4.png" );
 
-	AddTile( L"map_village_1101_1.png" );
+	AddTile( L"map_village_1101_1.png" );	// 44
 	AddTile( L"map_village_1101_2.png" );
 	AddTile( L"map_village_1101_3.png" );
 	AddTile( L"map_village_1101_4.png" );
 
-	AddTile( L"map_village_1110_1.png" );
+	AddTile( L"map_village_1110_1.png" );	// 48
 	AddTile( L"map_village_1110_2.png" );
 	AddTile( L"map_village_1110_3.png" );
 	AddTile( L"map_village_1110_4.png" );
 
-	AddTile( L"map_village_1111_1.png" );
+	AddTile( L"map_village_1111_1.png" );	// 52
 	AddTile( L"map_village_1111_2.png" );
 	AddTile( L"map_village_1111_3.png" );
 	AddTile( L"map_village_1111_4.png" );
 
+	AddTile( L"map_tree_0011.png" );	// 56
+	AddTile( L"map_tree_0101.png" );	// 57
+	AddTile( L"map_tree_0111.png" );	// 58
+	AddTile( L"map_tree_1010.png" );	// 59
+	AddTile( L"map_tree_1011.png" );	// 60
+	AddTile( L"map_tree_1100.png" );	// 61
+	AddTile( L"map_tree_1101.png" );	// 62
+	AddTile( L"map_tree_1110.png" );	// 63
+	AddTile( L"map_tree_1111.png" );	// 64
+
 	CreateMapData( COLUMN, ROW );
 
-	srand((UINT)time(nullptr));
+	UINT fildTileNo[ROW][COLUMN] = {
+		{ 0, 0, 0, 0, 25, 37, 11, 16, 40, 28, 7, 24, 39, 12, 14, 15, 25, 33, 16, 42, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 53, 49, 28, 7, 10, 2, 22, 55, 48, 42, 42, 42, 47, 32, 7, 15, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 48, 28, 1, 23, 32, 0, 21, 50, 28, 0, 7, 8, 18, 30, 23, 55, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 38, 15, 9, 17, 28, 1, 21, 34, 0, 0, 21, 37, 10, 2, 19, 47, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 51, 41, 29, 2, 6, 15, 26, 34, 6, 11, 21, 49, 29, 1, 3, 21, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 38, 12, 14, 10, 22, 51, 43, 28, 16, 31, 18, 31, 6, 15, 9, 20, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 42, 41, 46, 35, 21, 33, 1, 2, 1, 0, 0, 5, 26, 48, 31, 19, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 4, 9, 22, 39, 24, 35, 5, 9, 0, 1, 3, 17, 45, 33, 5, 9, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 19, 28, 17, 43, 42, 28, 20, 32, 0, 5, 13, 12, 24, 36, 25, 39, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 8, 5, 10, 7, 8, 3, 22, 39, 9, 23, 51, 41, 46, 55, 53, 52, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 33, 23, 37, 26, 39, 8, 19, 43, 28, 16, 29, 0, 17, 46, 53, 55, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 39, 24, 48, 46, 50, 31, 1, 5, 13, 14, 12, 15, 12, 27, 54, 50, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 43, 42, 31, 17, 28, 4, 14, 25, 48, 46, 50, 44, 54, 51, 43, 30, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 9, 3, 3, 0, 1, 19, 41, 43, 30, 18, 31, 18, 42, 30, 3, 4, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 28, 1, 1, 3, 5, 15, 14, 14, 10, 5, 11, 2, 2, 5, 15, 27, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 11, 7, 15, 12, 27, 51, 42, 42, 31, 17, 31, 0, 4, 26, 51, 43, 0, 0, 0, 0 }
+	};
 
-	for ( UINT col = 0; col < COLUMN; ++col )
+	UINT treeTileNo[ROW][COLUMN] = {
+		{ 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 63, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 62, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 60, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 58, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 },
+		{ 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 }
+	};
+
+	UINT fildMovement[ROW][COLUMN] = {
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF },
+		{ 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF }
+	};
+
+	for ( UINT row = 0; row < ROW; ++row )
 	{
-		for ( UINT row = 0; row < ROW; ++row )
+		for ( UINT col = 0; col < COLUMN; ++col )
 		{
-			UINT tileNo;
-			UINT movement = 6;
-			while ( movement == 6 || movement == 9 )
-			{
-				movement = rand() % 0x10;
-#define TOPLEFT(movement)		(( movement & 0x8 ) >> 3)
-#define TOPRIGHT(movement)		(( movement & 0x4 ) >> 2)
-#define BOTTOMLEFT(movement)	(( movement & 0x2 ) >> 1)
-#define BOTTOMRIGHT(movement)	(( movement & 0x1 ))
-				if ( row > 0 )
-				{
-					UINT upper = m_Maps[0]->m_Tiles[(row-1) * COLUMN + col].m_Movement;
-					if ( TOPLEFT(movement) != BOTTOMLEFT(upper) )
-						movement ^= 1 << 3;
-					if ( TOPRIGHT(movement) != BOTTOMRIGHT(upper) )
-						movement ^= 1 << 2;
-				}
-
-				if ( col > 0 )
-				{
-					UINT left = m_Maps[0]->m_Tiles[row * COLUMN + col - 1].m_Movement;
-					if ( TOPLEFT(movement) != TOPRIGHT(left) )
-						movement ^= 1 << 3;
-					if ( BOTTOMLEFT(movement) != BOTTOMRIGHT(left) )
-						movement ^= 1 << 1;
-				}
-			}
-
-			switch ( movement )
-			{
-			case 0x0:
-				tileNo = rand() % 4;
-				break;
-			case 0x1:
-				tileNo = 1 * 4 + rand() % 4;
-				break;
-			case 0x2:
-				tileNo = 2 * 4 + rand() % 4;
-				break;
-			case 0x3:
-				tileNo = 3 * 4 + rand() % 4;
-				break;
-			case 0x4:
-				tileNo = 4 * 4 + rand() % 4;
-				break;
-			case 0x5:
-				tileNo = 5 * 4 + rand() % 4;
-				break;
-			case 0x6:
-				tileNo = 0xBAB0;
-				break;	// Should not reach here
-			case 0x7:
-				tileNo = 6 * 4 + rand() % 4;
-				break;
-			case 0x8:
-				tileNo = 7 * 4 + rand() % 4;
-				break;
-			case 0x9:
-				tileNo = 0xBAB0;
-				break;	// Should not reach here
-			case 0xA:
-				tileNo = 8 * 4 + rand() % 4;
-				break;
-			case 0xB:
-				tileNo = 9 * 4 + rand() % 4;
-				break;
-			case 0xC:
-				tileNo = 10 * 4 + rand() % 4;
-				break;
-			case 0xD:
-				tileNo = 11 * 4 + rand() % 4;
-				break;
-			case 0xE:
-				tileNo = 12 * 4 + rand() % 4;
-				break;
-			case 0xF:
-				tileNo = 13 * 4 + rand() % 4;
-				break;
-			default:
-				tileNo = 0xBAB0;
-				break;	// Should not reach here
-			}
-
-			m_Maps[0]->m_Tiles[row * COLUMN + col].m_TileNo = tileNo;
-			m_Maps[0]->m_Tiles[row * COLUMN + col].m_Movement = movement;
+			m_Maps[0]->m_Tiles[row * COLUMN + col].m_TileNo		= fildTileNo[row][col] + treeTileNo[row][col] * 128;
+			m_Maps[0]->m_Tiles[row * COLUMN + col].m_Movement	= fildMovement[row][col];
 		}
 	}
+
+	for ( UINT row = 0; row < ROW; ++row )
+	{
+		printf( "{" );
+		for ( UINT col = 0; col < COLUMN; ++col )
+		{
+			if ( col != 0 )
+				printf(",");
+
+			printf( " %d", m_Maps[0]->m_Tiles[row * COLUMN + col].m_TileNo );
+		}
+		printf( " },\n" );
+	}
+
 }
 
 

@@ -78,7 +78,7 @@ CZone * CZoneInfo::CreateZone()
 
 	CMonster * monster = new CMonster( L"skeleton_mage" );
 	monster->LoadAnimation();
-	monster->SetPosition( 150, 150 );
+	monster->SetPosition( 1024, 768 );
 	monster->SetDirection( RIGHT );
 	monster->SetHp( 2.0f );
 	monster->SetMaxHp( 2.0f );

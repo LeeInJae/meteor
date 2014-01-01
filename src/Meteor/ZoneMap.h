@@ -25,6 +25,7 @@ public:
 	void Render();
 
 	Direction FindPath( const CGameObject * monster, const CGameObject * target, const std::list< CGameObject * > objects );
+	bool	CanMove( const Position & position );
 
 	// --------------------------------
 	//	IResource interface

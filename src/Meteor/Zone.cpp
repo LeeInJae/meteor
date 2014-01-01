@@ -61,8 +61,8 @@ void CZone::SetRandomPosition( CGameObject * object )
 	{
 		retry = false;
 
-		float x = static_cast<float>( rand() % ( 16 * 128 - 128 ) + 64 );
-		float y = static_cast<float>( rand() % ( 16 * 128 - 128 ) + 64 );
+		float x = static_cast<float>( rand() % ( 14 * 128 ) + 128 * 5 - 64 );
+		float y = static_cast<float>( rand() % ( 8 * 128 ) + 128 * 4 - 64 );
 
 		object->SetPosition( x, y );
 		CCircle boundary = object->GetBoundary();
@@ -85,7 +85,7 @@ void CZone::Enter( CPC * player, CZone * from )
 {
 	Register( player );
 	player->SetSubject( this );
-	player->SetPosition( 512.0f, 384.0f );
+	player->SetPosition( 512 + 256, 384 + 256 );
 	m_Player = player;
 }
 
@@ -97,8 +97,8 @@ void CZone::SendEvent( CGameObject * event )
 		return;
 	case EVENT_MOVE:
 		CEventSubject::SendEvent( event );
-		//if ( event->GetEventType() == EVENT_MOVE && ! m_Map->CanMove( event->GetPosition() ) )
-		//	event->SetEventType( EVENT_CANCEL );
+		if ( event->GetEventType() == EVENT_MOVE && ! m_Map->CanMove( event->GetPosition() ) )
+			event->SetEventType( EVENT_CANCEL );
 		return;
 	default:
 		CEventSubject::SendEvent( event );

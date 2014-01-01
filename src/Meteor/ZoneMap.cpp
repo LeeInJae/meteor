@@ -27,7 +27,7 @@ void CZoneMap::SetSize( UINT x, UINT y, float width, float height )
 	m_Height = y * height;
 
 	std::vector<CSprite *> row;
-	for ( UINT i = 0; i < x; ++i )
+	for ( UINT i = 0; i < y; ++i )
 		m_Sprites.push_back( row );
 }
 
@@ -98,6 +98,24 @@ Direction CZoneMap::FindPath( const CGameObject * monster, const CGameObject * t
 	//int targetY = static_cast<int>( targetPosition.y + 32 ) / 128;
 
 	//return m_PathFinder.FindPath( monsterX, monsterY, targetX, targetY );
+}
+
+
+bool CZoneMap::CanMove( const Position & position )
+{
+	const UINT colSize = 24;
+	const UINT rowSize = 16;
+
+	if ( position.x < 128 * 5 - 64 )
+		return false;
+	if ( position.x > 128 * (colSize - 5) - 64 )
+		return false;
+	if ( position.y < 128 * 4 - 64 )
+		return false;
+	if ( position.y > 128 * (rowSize - 4) - 64 )
+		return false;
+
+	return true;
 }
 
 
