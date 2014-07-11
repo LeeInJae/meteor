@@ -57,6 +57,10 @@ public:
 		wc.lpfnWndProc   = DERIVED_TYPE::WindowProc;
 		wc.hInstance     = GetModuleHandle(NULL);
 		wc.lpszClassName = ClassName();
+		
+		// Bug Fix
+		wc.hCursor	 = LoadCursor(NULL, IDC_ARROW);
+		// 마우스 커서 무한루프 돌던 버그 픽스
 
 		RegisterClass(&wc);
 
